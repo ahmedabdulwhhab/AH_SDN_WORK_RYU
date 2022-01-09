@@ -97,11 +97,12 @@ class FlowManager(app_manager.RyuApp):
             "portdesc": self.ofctl.get_port_desc,
             "portstat": self.ofctl.get_port_stats,
             "flowsumm": self.ofctl.get_aggregate_flow_stats,
-            "tablestat": self.ofctl.get_table_stats,
-            "queueconfig": self.ofctl.get_queue_config,
-            "queuestat": self.ofctl.get_queue_stats,
-            "meterstat": self.ofctl.get_meter_stats,
-            "tablefeature": self.ofctl.get_table_features,
+            "tablestat": self.ofctl.get_table_stats
+            #,
+            #"queueconfig": self.ofctl.get_queue_config,
+            #"queuestat": self.ofctl.get_queue_stats,
+            #"meterstat": self.ofctl.get_meter_stats,
+            #"tablefeature": self.ofctl.get_table_features,
         }
 
         # Setup logging
