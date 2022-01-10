@@ -664,32 +664,35 @@ class FlowManager(app_manager.RyuApp):
             # ignore lldp packet
             return
 
+#####################openflow 1.3 
         # Monitor packets. Flow entries with cookies take precedance
         tracked_msg = None
-        if msg.cookie & self.MAGIC_COOKIE == self.MAGIC_COOKIE:
-            # track the packet if it has a magic cookie
-            tracked_msg = self.tracker.track(msg.cookie, pkt)
-        elif not self.MONITOR_PKTIN:
-            # track the packet the global tracking option is enabled
-            tracked_msg = self.tracker.track(self.MAGIC_COOKIE, pkt)
+        #if msg.cookie & self.MAGIC_COOKIE == self.MAGIC_COOKIE:
+        #    # track the packet if it has a magic cookie
+        #    tracked_msg = self.tracker.track(msg.cookie, pkt)
+        #elif not self.MONITOR_PKTIN:
+        #    # track the packet the global tracking option is enabled
+        #    tracked_msg = self.tracker.track(self.MAGIC_COOKIE, pkt)
 
         # Send the tracked message to the interface
-        if tracked_msg:
-            self.rpc_broadcall("update", json.dumps(tracked_msg))
+        #if tracked_msg:
+        #    self.rpc_broadcall("update", json.dumps(tracked_msg))
 
+################################
         # Continue the normal processing of Packet_In
 
         # The reason for packet_in
         reason_msg = {ofp.OFPR_NO_MATCH: "NO MATCH",
-                      ofp.OFPR_ACTION: "ACTION",
-                      ofp.OFPR_INVALID_TTL: "INVALID TTL"
+                      ofp.OFPR_ACTION: "ACTION"
+                      #,
+                      #ofp.OFPR_INVALID_TTL: "INVALID TTL"          #openflow 1.3
                       }
         reason = reason_msg.get(msg.reason, 'UNKNOWN')
 
         now = time.strftime('%b %d %H:%M:%S')
-        match = msg.match.items()  # ['OFPMatch']['oxm_fields']
-        log = list(map(str, [now, 'PacketIn', dp.id, msg.table_id, reason, match,
-                        hex(msg.buffer_id), msg.cookie, self.get_packet_summary(msg.data)]))
+        #match = msg.match.items()  # ['OFPMatch']['oxm_fields']     #openflow 1.3
+        #log = list(map(str, [now, 'PacketIn', dp.id, msg.table_id, reason, match,
+        #                hex(msg.buffer_id), msg.cookie, self.get_packet_summary(msg.data)]))
         # self.logger.info('\t'.join(log))
         try:
             self.rpc_broadcall("log", json.dumps(log))
