@@ -120,8 +120,7 @@ class RypaceSwitch(app_manager.RyuApp):
                 dl_src=haddr_to_bin(eth.src),
                 dl_dst=haddr_to_bin(eth.dst),)
 
-            idleTimeout = 20
-            hardTimeout = 20
+
 
         mod = datapath.ofproto_parser.OFPFlowMod(
             datapath=datapath, match=match, cookie=0,
