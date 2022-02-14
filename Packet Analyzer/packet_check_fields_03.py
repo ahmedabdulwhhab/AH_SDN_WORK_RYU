@@ -6,11 +6,19 @@
 
 
 #ubuntu@ubuntu:~/sdn/nat$ sudo ryu-manager packet_check_fields.py ../flowmanager/flowmanager.py  --observe-links
+#tcp
 #h3 
 #iperf -s
 #h1 
 #iperf -c 10.0.0.3 -p 5001
 
+
+#udp
+#iperf -u -s
+#iperf -u -c 10.0.0.3 -b 10m -i 10 -t 30
+
+
+#
 
 # Copyright (C) 2011 Nippon Telegraph and Telephone Corporation.
 #
