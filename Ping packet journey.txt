@@ -1,0 +1,292 @@
+loading app /home/ubuntu/sdn/sources/flowmanager/flowmanager.py
+You are using Python v3.8.10.final.0
+loading app /home/ubuntu/sdn/projects/packet_analyzer/ofctl_rest_01.py
+loading app /home/ubuntu/sdn/projects/packet_analyzer/rest_router_04.py
+loading app /home/ubuntu/sdn/projects/packet_analyzer/proxy.py
+loading app ryu.topology.switches
+loading app ryu.controller.ofp_handler
+creating context wsgi
+instantiating app None of DPSet
+creating context dpset
+instantiating app /home/ubuntu/sdn/sources/flowmanager/flowmanager.py of FlowManager
+instantiating app /home/ubuntu/sdn/projects/packet_analyzer/ofctl_rest_01.py of RestStatsApi
+instantiating app /home/ubuntu/sdn/projects/packet_analyzer/rest_router_04.py of RestRouterAPI
+instantiating app /home/ubuntu/sdn/projects/packet_analyzer/proxy.py of SimpleSwitch13
+instantiating app ryu.topology.switches of Switches
+instantiating app ryu.controller.ofp_handler of OFPHandler
+(4139) wsgi starting up on http://0.0.0.0:8080
+[RT][INFO] switch_id=0000000000000032: Set SW config for TTL error packet in.
+[RT][INFO] switch_id=0000000000000032: Set ARP handling (packet in) flow [cookie=0x0]
+[RT][INFO] switch_id=0000000000000032: Set L2 switching (normal) flow [cookie=0x0]
+[RT][INFO] switch_id=0000000000000032: Set default route (drop) flow [cookie=0x0]
+[RT][INFO] switch_id=0000000000000032: Start cyclic routing table update.
+[RT][INFO] switch_id=0000000000000032: Join as router.
+[RT][INFO] switch_id=0000000000000033: Set SW config for TTL error packet in.
+[RT][INFO] switch_id=0000000000000033: Set ARP handling (packet in) flow [cookie=0x0]
+[RT][INFO] switch_id=0000000000000033: Set L2 switching (normal) flow [cookie=0x0]
+[RT][INFO] switch_id=0000000000000033: Set default route (drop) flow [cookie=0x0]
+[RT][INFO] switch_id=0000000000000033: Start cyclic routing table update.
+[RT][INFO] switch_id=0000000000000033: Join as router.
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:fb 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:fb 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:02 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:02 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:fb 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:02 4
+packet in 1 00:00:03:00:00:00 33:33:00:00:00:02 3
+packet in 4 00:00:03:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:01:00:00:00 33:33:00:00:00:02 1
+packet in 4 00:00:01:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:02:00:00:00 33:33:00:00:00:02 2
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:02 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:02 4
+packet in 4 00:00:02:00:00:00 33:33:00:00:00:02 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 4 00:00:05:00:00:00 33:33:00:00:00:02 2
+packet in 4 00:00:04:00:00:00 33:33:00:00:00:02 1
+packet in 4 00:00:06:00:00:00 33:33:00:00:00:02 3
+packet in 1 00:00:05:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:04:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:06:00:00:00 33:33:00:00:00:02 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:02 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:fb 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:fb 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:02 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:02 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:02 4
+packet in 1 00:00:03:00:00:00 33:33:00:00:00:02 3
+packet in 4 00:00:03:00:00:00 33:33:00:00:00:02 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:02 4
+packet in 4 00:00:05:00:00:00 33:33:00:00:00:02 2
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:02 4
+packet in 1 00:00:05:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:02:00:00:00 33:33:00:00:00:02 2
+packet in 1 00:00:01:00:00:00 33:33:00:00:00:02 1
+packet in 4 00:00:02:00:00:00 33:33:00:00:00:02 4
+packet in 4 00:00:01:00:00:00 33:33:00:00:00:02 4
+packet in 4 00:00:06:00:00:00 33:33:00:00:00:02 3
+packet in 4 00:00:04:00:00:00 33:33:00:00:00:02 1
+packet in 1 00:00:06:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:04:00:00:00 33:33:00:00:00:02 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:02 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:fb 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:fb 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:02 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:02 4
+(4139) accepted ('127.0.0.1', 56508)
+[RT][INFO] switch_id=0000000000000032: Set host MAC learning (packet in) flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000032: Set IP handling (packet in) flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000032: Set L2 switching (normal) flow [cookie=0x1]
+127.0.0.1 - - [27/Feb/2022 21:57:33] "POST /router/0000000000000032 HTTP/1.1" 200 228 0.027709
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  51  eth.src  f2:cc:60:03:8e:27  eth.dst  ff:ff:ff:ff:ff:ff  in_port  1
+pkt_arp =  arp(dst_ip='172.16.20.1',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.20.1',src_mac='f2:cc:60:03:8e:27')
+packet in 1 ba:3c:5f:0c:8b:24 ff:ff:ff:ff:ff:ff 4
+packet in 51 f2:cc:60:03:8e:27 ff:ff:ff:ff:ff:ff 1
+(4139) accepted ('127.0.0.1', 56510)
+[RT][INFO] switch_id=0000000000000032: Set host MAC learning (packet in) flow [cookie=0x2]
+[RT][INFO] switch_id=0000000000000032: Set IP handling (packet in) flow [cookie=0x2]
+[RT][INFO] switch_id=0000000000000032: Set L2 switching (normal) flow [cookie=0x2]
+127.0.0.1 - - [27/Feb/2022 21:57:33] "POST /router/0000000000000032 HTTP/1.1" 200 228 0.008240
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  51  eth.src  f2:cc:60:03:8e:27  eth.dst  ff:ff:ff:ff:ff:ff  in_port  1
+pkt_arp =  arp(dst_ip='172.16.30.30',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.30.30',src_mac='f2:cc:60:03:8e:27')
+packet in 1 ba:3c:5f:0c:8b:24 ff:ff:ff:ff:ff:ff 4
+packet in 51 f2:cc:60:03:8e:27 ff:ff:ff:ff:ff:ff 1
+(4139) accepted ('127.0.0.1', 56512)
+[RT][INFO] switch_id=0000000000000033: Set host MAC learning (packet in) flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000033: Set IP handling (packet in) flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000033: Set L2 switching (normal) flow [cookie=0x1]
+127.0.0.1 - - [27/Feb/2022 21:57:33] "POST /router/0000000000000033 HTTP/1.1" 200 228 0.004790
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  50  eth.src  52:3a:95:a1:e4:ca  eth.dst  ff:ff:ff:ff:ff:ff  in_port  2
+pkt_arp =  arp(dst_ip='172.16.10.1',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.10.1',src_mac='52:3a:95:a1:e4:ca')
+packet in 50 52:3a:95:a1:e4:ca ff:ff:ff:ff:ff:ff 2
+packet in 4 00:00:05:00:00:00 33:33:00:00:00:02 2
+packet in 4 9e:c7:82:f8:8d:97 ff:ff:ff:ff:ff:ff 4
+packet in 1 00:00:05:00:00:00 33:33:00:00:00:02 4
+(4139) accepted ('127.0.0.1', 56514)
+[RT][INFO] switch_id=0000000000000033: Set host MAC learning (packet in) flow [cookie=0x2]
+[RT][INFO] switch_id=0000000000000033: Set IP handling (packet in) flow [cookie=0x2]
+[RT][INFO] switch_id=0000000000000033: Set L2 switching (normal) flow [cookie=0x2]
+127.0.0.1 - - [27/Feb/2022 21:57:33] "POST /router/0000000000000033 HTTP/1.1" 200 228 0.009501
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  50  eth.src  52:3a:95:a1:e4:ca  eth.dst  ff:ff:ff:ff:ff:ff  in_port  2
+pkt_arp =  arp(dst_ip='172.16.30.1',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.30.1',src_mac='52:3a:95:a1:e4:ca')
+[RT][INFO] switch_id=0000000000000032: Set implicit routing flow [cookie=0x2]
+[RT][INFO] switch_id=0000000000000032: Receive GARP from [172.16.30.1].
+[RT][INFO] switch_id=0000000000000032: Send GARP (normal).
+packet in 4 9e:c7:82:f8:8d:97 ff:ff:ff:ff:ff:ff 4
+packet in 50 52:3a:95:a1:e4:ca ff:ff:ff:ff:ff:ff 2
+(4139) accepted ('127.0.0.1', 56516)
+packet in 1 52:3a:95:a1:e4:ca ff:ff:ff:ff:ff:ff 4
+[RT][INFO] switch_id=0000000000000032: Set default routing (packet in) flow [cookie=0x10000]
+127.0.0.1 - - [27/Feb/2022 21:57:33] "POST /router/0000000000000032 HTTP/1.1" 200 224 0.008291
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  51  eth.src  f2:cc:60:03:8e:27  eth.dst  ff:ff:ff:ff:ff:ff  in_port  1
+pkt_arp =  arp(dst_ip='172.16.30.1',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.30.30',src_mac='f2:cc:60:03:8e:27')
+[RT][INFO] switch_id=0000000000000033: Set implicit routing flow [cookie=0x2]
+[RT][INFO] switch_id=0000000000000033: Receive ARP request from [172.16.30.30] to router port [172.16.30.1].
+[RT][INFO] switch_id=0000000000000033: Send ARP reply to [172.16.30.30]
+packet in 51 f2:cc:60:03:8e:27 ff:ff:ff:ff:ff:ff 1
+packet in 1 ba:3c:5f:0c:8b:24 ff:ff:ff:ff:ff:ff 4
+(4139) accepted ('127.0.0.1', 56518)
+Received ARP Packet %s %s %s  dpid, src, dst
+pkt_arp =  arp(dst_ip='172.16.30.30',dst_mac='f2:cc:60:03:8e:27',hlen=6,hwtype=1,opcode=2,plen=4,proto=2048,src_ip='172.16.30.1',src_mac='52:3a:95:a1:e4:ca')
+[RT][INFO] switch_id=0000000000000032: Set default routing flow [cookie=0x10000]
+[RT][INFO] switch_id=0000000000000032: Receive ARP reply from [172.16.30.1] to router port [172.16.30.30].
+packet in 50 52:3a:95:a1:e4:ca f2:cc:60:03:8e:27 2
+[RT][INFO] switch_id=0000000000000033: Set default routing (packet in) flow [cookie=0x10000]
+127.0.0.1 - - [27/Feb/2022 21:57:33] "POST /router/0000000000000033 HTTP/1.1" 200 224 0.005224
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  50  eth.src  52:3a:95:a1:e4:ca  eth.dst  ff:ff:ff:ff:ff:ff  in_port  2
+pkt_arp =  arp(dst_ip='172.16.30.30',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.30.1',src_mac='52:3a:95:a1:e4:ca')
+[RT][INFO] switch_id=0000000000000032: Receive ARP request from [172.16.30.1] to router port [172.16.30.30].
+[RT][INFO] switch_id=0000000000000032: Send ARP reply to [172.16.30.1]
+packet in 4 9e:c7:82:f8:8d:97 ff:ff:ff:ff:ff:ff 4
+packet in 50 52:3a:95:a1:e4:ca ff:ff:ff:ff:ff:ff 2
+Received ARP Packet %s %s %s  dpid, src, dst
+pkt_arp =  arp(dst_ip='172.16.30.1',dst_mac='52:3a:95:a1:e4:ca',hlen=6,hwtype=1,opcode=2,plen=4,proto=2048,src_ip='172.16.30.30',src_mac='f2:cc:60:03:8e:27')
+[RT][INFO] switch_id=0000000000000033: Set default routing flow [cookie=0x10000]
+[RT][INFO] switch_id=0000000000000033: Receive ARP reply from [172.16.30.30] to router port [172.16.30.1].
+packet in 51 f2:cc:60:03:8e:27 52:3a:95:a1:e4:ca 1
+packet in 1 00:00:03:00:00:00 33:33:00:00:00:02 3
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:02 4
+packet in 4 00:00:03:00:00:00 33:33:00:00:00:02 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:02 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:02 4
+packet in 1 00:00:02:00:00:00 33:33:00:00:00:02 2
+packet in 4 00:00:02:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:01:00:00:00 33:33:00:00:00:02 1
+packet in 4 00:00:04:00:00:00 33:33:00:00:00:02 1
+packet in 4 00:00:06:00:00:00 33:33:00:00:00:02 3
+packet in 1 00:00:04:00:00:00 33:33:00:00:00:02 4
+packet in 4 00:00:01:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:06:00:00:00 33:33:00:00:00:02 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:fb 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:fb 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:02 4
+packet in 1 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff 1
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  50  eth.src  00:00:01:00:00:00  eth.dst  ff:ff:ff:ff:ff:ff  in_port  1
+pkt_arp =  arp(dst_ip='172.16.20.11',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.20.10',src_mac='00:00:01:00:00:00')
+[RT][INFO] switch_id=0000000000000032: Set implicit routing flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000032: Receive ARP from an internal host [172.16.20.10].
+[RT][INFO] switch_id=0000000000000032: Send ARP (normal)
+packet in 50 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff 1
+packet in 1 00:00:02:00:00:00 00:00:01:00:00:00 2
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  51  eth.src  00:00:01:00:00:00  eth.dst  ff:ff:ff:ff:ff:ff  in_port  1
+pkt_arp =  arp(dst_ip='172.16.20.11',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.20.10',src_mac='00:00:01:00:00:00')
+packet in 1 00:00:01:00:00:00 00:00:02:00:00:00 1
+packet in 51 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff 1
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:02 4
+packet in 4 00:00:05:00:00:00 33:33:00:00:00:02 2
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:02 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:02 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:02 4
+packet in 1 00:00:03:00:00:00 33:33:00:00:00:02 3
+packet in 4 00:00:03:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:05:00:00:00 33:33:00:00:00:02 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:02 4
+packet in 1 00:00:02:00:00:00 33:33:00:00:00:02 2
+packet in 4 00:00:02:00:00:00 33:33:00:00:00:02 4
+packet in 1 52:3a:95:a1:e4:ca 33:33:00:00:00:fb 4
+packet in 1 d2:60:01:d3:05:24 33:33:00:00:00:fb 4
+packet in 1 ba:3c:5f:0c:8b:24 33:33:00:00:00:fb 4
+packet in 4 26:49:89:a0:ca:f6 33:33:00:00:00:fb 4
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:fb 4
+packet in 4 9e:c7:82:f8:8d:97 33:33:00:00:00:fb 4
+packet in 4 00:00:06:00:00:00 33:33:00:00:00:02 3
+packet in 4 00:00:04:00:00:00 33:33:00:00:00:02 1
+packet in 1 00:00:06:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:04:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:01:00:00:00 33:33:00:00:00:02 1
+packet in 4 00:00:01:00:00:00 33:33:00:00:00:02 4
+packet in 1 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff 1
+Received ARP Packet 1 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff
+Matched MAC 00:00:33:00:00:00
+arp_resp  ethernet(dst='00:00:01:00:00:00',ethertype=2054,src='00:00:33:00:00:00'), arp(dst_ip='172.16.20.10',dst_mac='00:00:01:00:00:00',hlen=6,hwtype=1,opcode=2,plen=4,proto=2048,src_ip='172.16.20.120',src_mac='00:00:33:00:00:00')
+Proxied ARP Response packet
+packet in 1 00:00:01:00:00:00 00:00:33:00:00:00 1
+packet in 1 00:00:01:00:00:00 00:00:33:00:00:00 1
+packet in 4 f2:cc:60:03:8e:27 33:33:00:00:00:02 4
+packet in 1 00:00:01:00:00:00 00:00:33:00:00:00 1
+packet in 1 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff 1
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  50  eth.src  00:00:01:00:00:00  eth.dst  ff:ff:ff:ff:ff:ff  in_port  1
+pkt_arp =  arp(dst_ip='172.16.20.1',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.20.10',src_mac='00:00:01:00:00:00')
+[RT][INFO] switch_id=0000000000000032: Set implicit routing flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000032: Receive ARP request from [172.16.20.10] to router port [172.16.20.1].
+[RT][INFO] switch_id=0000000000000032: Send ARP reply to [172.16.20.10]
+packet in 50 00:00:01:00:00:00 ff:ff:ff:ff:ff:ff 1
+packet in 1 ba:3c:5f:0c:8b:24 00:00:01:00:00:00 4
+packet in 1 00:00:01:00:00:00 ba:3c:5f:0c:8b:24 1
+at switch  51    pkt_icmp =  icmp(code=0,csum=41031,data=echo(data=b'\x82d\x1cb\x00\x00\x00\x00\xdc\xd2\r\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567',id=4171,seq=1),type=8)
+
+self.icmp_srcip  172.16.20.10    self.icmp_dstip  172.16.10.12
+
+dst  52:3a:95:a1:e4:ca           src  f2:cc:60:03:8e:27
+[RT][INFO] switch_id=0000000000000033: Receive IP packet from [172.16.20.10] to an internal host [172.16.10.12].
+[RT][INFO] switch_id=0000000000000033: Send ARP request (flood)
+packet in 51 f2:cc:60:03:8e:27 52:3a:95:a1:e4:ca 1
+packet in 4 9e:c7:82:f8:8d:97 ff:ff:ff:ff:ff:ff 4
+packet in 4 00:00:06:00:00:00 9e:c7:82:f8:8d:97 3
+Received ARP Packet %s %s %s  dpid, src, dst
+pkt_arp =  arp(dst_ip='172.16.10.1',dst_mac='9e:c7:82:f8:8d:97',hlen=6,hwtype=1,opcode=2,plen=4,proto=2048,src_ip='172.16.10.12',src_mac='00:00:06:00:00:00')
+[RT][INFO] switch_id=0000000000000033: Set implicit routing flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000033: Receive ARP reply from [172.16.10.12] to router port [172.16.10.1].
+packet in 51 00:00:06:00:00:00 9e:c7:82:f8:8d:97 2
+[RT][INFO] switch_id=0000000000000033: Send suspend packet to [172.16.10.12].
+packet in 4 9e:c7:82:f8:8d:97 00:00:06:00:00:00 4
+at switch  51    pkt_icmp =  icmp(code=0,csum=40021,data=echo(data=b'\x86d\x1cb\x00\x00\x00\x00\xe3\xc2\x06\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567',id=4173,seq=1),type=8)
+
+self.icmp_srcip  172.16.20.10    self.icmp_dstip  172.16.10.120
+
+dst  52:3a:95:a1:e4:ca           src  f2:cc:60:03:8e:27
+[RT][INFO] switch_id=0000000000000033: Receive IP packet from [172.16.20.10] to an internal host [172.16.10.120].
+[RT][INFO] switch_id=0000000000000033: Send ARP request (flood)
+packet in 51 f2:cc:60:03:8e:27 52:3a:95:a1:e4:ca 1
+packet in 4 9e:c7:82:f8:8d:97 ff:ff:ff:ff:ff:ff 4
+Received ARP Packet 4 9e:c7:82:f8:8d:97 ff:ff:ff:ff:ff:ff
+Matched MAC 00:00:66:00:00:00
+arp_resp  ethernet(dst='9e:c7:82:f8:8d:97',ethertype=2054,src='00:00:66:00:00:00'), arp(dst_ip='172.16.10.1',dst_mac='9e:c7:82:f8:8d:97',hlen=6,hwtype=1,opcode=2,plen=4,proto=2048,src_ip='172.16.10.120',src_mac='00:00:66:00:00:00')
+Proxied ARP Response packet
+Received ARP Packet %s %s %s  dpid, src, dst
+pkt_arp =  arp(dst_ip='172.16.10.1',dst_mac='9e:c7:82:f8:8d:97',hlen=6,hwtype=1,opcode=2,plen=4,proto=2048,src_ip='172.16.10.120',src_mac='00:00:66:00:00:00')
+[RT][INFO] switch_id=0000000000000033: Set implicit routing flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000033: Receive ARP reply from [172.16.10.120] to router port [172.16.10.1].
+packet in 51 00:00:66:00:00:00 9e:c7:82:f8:8d:97 2
+[RT][INFO] switch_id=0000000000000033: Send suspend packet to [172.16.10.120].
+packet in 4 9e:c7:82:f8:8d:97 00:00:66:00:00:00 4
+packet in 4 9e:c7:82:f8:8d:97 00:00:66:00:00:00 4
+Received ARP Packet %s %s %s  dpid, src, dst
+datapath=  51  eth.src  00:00:06:00:00:00  eth.dst  9e:c7:82:f8:8d:97  in_port  2
+pkt_arp =  arp(dst_ip='172.16.10.1',dst_mac='00:00:00:00:00:00',hlen=6,hwtype=1,opcode=1,plen=4,proto=2048,src_ip='172.16.10.12',src_mac='00:00:06:00:00:00')
+[RT][INFO] switch_id=0000000000000033: Set implicit routing flow [cookie=0x1]
+[RT][INFO] switch_id=0000000000000033: Receive ARP request from [172.16.10.12] to router port [172.16.10.1].
+[RT][INFO] switch_id=0000000000000033: Send ARP reply to [172.16.10.12]
+packet in 51 00:00:06:00:00:00 9e:c7:82:f8:8d:97 2
+packet in 4 9e:c7:82:f8:8d:97 00:00:66:00:00:00 4
