@@ -59,6 +59,7 @@ class Switch(app_manager.RyuApp):
         dpid = datapath.id  # classifying the switch ID
         if dpid == 1: # switch S1
             ### implement TCP Forwarding
+            #add_layer4_rules(datapath, ip_proto, ipv4_dst = None, priority = 1, fwd_port = None):
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.1', 10, 1)
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.3', 10, 2)
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.2', 10, 2)
