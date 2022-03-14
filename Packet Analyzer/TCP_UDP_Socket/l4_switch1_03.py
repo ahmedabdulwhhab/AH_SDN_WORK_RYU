@@ -1,5 +1,8 @@
 #https://github.com/palakbhonsle/SDN-Simulation-using-RYU/blob/master/l4_switch1.py
 
+#sudo rm /home/ubuntu/sdn/projects/packet_analyzer/l4Switch/l4_switch1_03.py
+#sudo vimm /home/ubuntu/sdn/projects/packet_analyzer/l4Switch/l4_switch1_03.py
+
 # clear && sudo ryu-manager  --ofp-tcp-listen-port 6653  --observe-links  /home/ubuntu/sdn/sources/flowmanager/flowmanager.py /home/ubuntu/sdn/projects/packet_analyzer/l4Switch/l4_switch1_03.py
 
 
@@ -57,6 +60,10 @@ class Switch(app_manager.RyuApp):
 
         # Installing static rules to process TCP/UDP and ICMP and ACL
         dpid = datapath.id  # classifying the switch ID
+        print("switch is connected at datapath.id ", dpid)
+        print("inet.IPPROTO_ICMP ", inet.IPPROTO_ICMP)
+        print("inet.IPPROTO_TCP ", inet.IPPROTO_TCP)        
+        print("inet.IPPROTO_UDP ", inet.IPPROTO_UDP)
         if dpid == 1: # switch S1
             ### implement TCP Forwarding
             #add_layer4_rules(datapath, ip_proto, ipv4_dst = None, priority = 1, fwd_port = None):
@@ -66,6 +73,7 @@ class Switch(app_manager.RyuApp):
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.4', 10, 3)
 
             ### implement ICMP Forwarding
+            #add_layer4_rules(datapath, ip_proto, ipv4_dst = None, priority = 1, fwd_port = None):
             self.add_layer4_rules(datapath, inet.IPPROTO_ICMP, '10.0.0.1', 10, 1)
             self.add_layer4_rules(datapath, inet.IPPROTO_ICMP, '10.0.0.3', 10, 2)
             self.add_layer4_rules(datapath, inet.IPPROTO_ICMP, '10.0.0.2', 10, 2)
@@ -86,6 +94,7 @@ class Switch(app_manager.RyuApp):
             actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
                                               ofproto.OFPCML_NO_BUFFER)]
             self.add_flow(datapath, 30, match, actions)
+            # This rule directs the TCP packets from h3 to h1 to the controller
             match = parser.OFPMatch(eth_type = ether.ETH_TYPE_IP,
                                     ipv4_src = '10.0.0.3',
                                     ipv4_dst = '10.0.0.1',
@@ -96,6 +105,7 @@ class Switch(app_manager.RyuApp):
 
         elif dpid == 2: # switch S2
             ### Implement TCP Forwarding
+            #add_layer4_rules(datapath, ip_proto, ipv4_dst = None, priority = 1, fwd_port = None):
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.1', 10, 2)
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.3', 10, 3)
             self.add_layer4_rules(datapath, inet.IPPROTO_TCP, '10.0.0.2', 10, 1)
@@ -156,6 +166,7 @@ class Switch(app_manager.RyuApp):
             self.add_layer4_rules(datapath, inet.IPPROTO_ICMP, '10.0.0.4', 10, 1)
             
             ### Implement UDP Forwarding
+            #add_layer4_rules(datapath, ip_proto, ipv4_dst = None, priority = 1, fwd_port = None):
             self.add_layer4_rules(datapath, inet.IPPROTO_UDP, '10.0.0.1', 10, 3)
             self.add_layer4_rules(datapath, inet.IPPROTO_UDP, '10.0.0.3', 10, 3)
             self.add_layer4_rules(datapath, inet.IPPROTO_UDP, '10.0.0.2', 10, 2)
@@ -179,7 +190,7 @@ class Switch(app_manager.RyuApp):
         datapath = msg.datapath
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
-        
+        #print("msg is ", msg)
         in_port = msg.match['in_port']
         pkt = packet.Packet(msg.data)
         eth = pkt.get_protocol(ethernet.ethernet)
@@ -247,7 +258,9 @@ class Switch(app_manager.RyuApp):
         arp_reply = packet.Packet()
         arp_reply.add_protocol(ether_hd)
         arp_reply.add_protocol(arp_hd)
+        #print("arp_reply ", arp_reply)
         arp_reply.serialize()
+        print("Executing ARP Reply IP ", arp_pkt.src_ip, " located at datapath.id ", datapath.id, " at port ", in_port)
         
         # send the Packet Out mst to back to the host who is initilaizing the ARP
         actions = [parser.OFPActionOutput(in_port)];
@@ -266,12 +279,10 @@ class Switch(app_manager.RyuApp):
     def handle_ip(self, datapath, in_port, pkt):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
+        #print(" inside handle_ip , pkt ",pkt)
 
         ipv4_pkt = pkt.get_protocol(ipv4.ipv4) # parse out the IPv4 pkt
-
-        
-        
-        
+        #print(" inside handle_ip , ipv4_pkt ",ipv4_pkt)
 
         if datapath.id == 1 and ipv4_pkt.proto == inet.IPPROTO_TCP:
             tcp_pkt = pkt.get_protocol(tcp.tcp) # parser out the TCP pkt
