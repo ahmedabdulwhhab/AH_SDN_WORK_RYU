@@ -1,2 +1,2 @@
 #!/bin/bash
-ryu-manager --observe-links --ofp-tcp-listen-port 6632 SlaveApp.py
+ryu-manager --observe-links --ofp-tcp-listen-port 6632 SlaveApp.py ryu.app.simple_switch_13
