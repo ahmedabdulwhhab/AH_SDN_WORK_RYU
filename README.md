@@ -1,5 +1,5 @@
 # AH_SDN_WORK_RYU
-Trying to do Multi-Controller, Still not working.
+Trying to do Multi-Controller, Master/ slave is working but other types is still not working.
 <br> <b>
 FlowManager for Open flow version 1.0
 <br> <b>
