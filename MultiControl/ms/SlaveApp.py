@@ -17,6 +17,7 @@ import socket
 from threading import Thread
 
 
+
 class SlaveApp(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
     def __init__(self, *args, **kwargs):
@@ -102,5 +103,5 @@ class ClientThread(Thread):
                 master_data = c_socket.recv(1024)
                 # print('receive master message: %s' % (master_data))
                 c_socket.send('hello')
-        except Exception, e:
+        except Exception as e:
             self.slave_app.on_master_down()
