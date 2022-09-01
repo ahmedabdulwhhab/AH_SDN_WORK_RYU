@@ -1,3 +1,4 @@
+#https://github.com/Yi-Tseng/SDN-Work/tree/master/MultiControl/ms
 '''
 Master App, testing for master controller
 '''
@@ -17,6 +18,10 @@ from threading import Thread
 import socket
 import time
 
+
+import os
+os.system("  sudo lsof -ti tcp:7999  ")
+os.system("  sudo pkill -9 -f  tcp:7999  ")
 class MasterApp(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
     def __init__(self, *args, **kwargs):
@@ -88,7 +93,7 @@ class ServerTask(Thread):
                 client_data = self.client_socket.recv(1024)
                 # print ('from client: %s' % (client_data))
                 time.sleep(1)
-        except Exception, e:
+        except Exception as e:
             print ('client break')
             client_sockets = self.server.client_sockets
             client_socket = self.client_socket
