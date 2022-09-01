@@ -1,2 +1,2 @@
 #!/bin/bash
-ryu-manager --observe-links --ofp-tcp-listen-port 6633 MasterApp.py  controller.py
+sudo ryu-manager --observe-links --ofp-tcp-listen-port 6633 MasterApp.py controller.py /home/ubuntu/sdn/sources/flowmanager/flowmanager.py --observe-links --wsapi-port 8080
