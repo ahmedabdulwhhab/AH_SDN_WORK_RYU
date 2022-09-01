@@ -61,12 +61,12 @@ class SimpleSwitch13(app_manager.RyuApp):
                                              actions)]
         if buffer_id:
             mod = parser.OFPFlowMod(datapath=datapath, buffer_id=buffer_id,
-                                    hard_timeout=43,   ##new
+                                    hard_timeout=0,   ##new
                                     priority=priority, match=match,
                                     instructions=inst)
         else:
             mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
-                                    hard_timeout=44,   ##new
+                                    hard_timeout=0,   ##new
                                     match=match, instructions=inst)
         datapath.send_msg(mod)
 
