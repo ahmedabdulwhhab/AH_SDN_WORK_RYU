@@ -7,7 +7,7 @@ Master App, testing for master controller
 
 #sudo ryu-manager MasterApp.py controller.py /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  ryu.app.ofctl_rest --observe-links --ofp-tcp-listen-port 6632 --wsapi-port 8080
 
-#curl -X GET http://localhost:8081/stats/role/1
+#curl -X GET http://localhost:8080/stats/role/1
 #curl -X POST -d '{"dpid": 1, "role":"MASTER"}' http://localhost:8080/stats/role
 #curl -X POST -d '{"dpid": switch-dpid, "role":"EQUAL"}'    http://localhost:8080/stats/role
 #curl -X POST -d '{"dpid": switch-dpid, "role":"SLAVE"}'    http://localhost:8080/stats/role
