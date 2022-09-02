@@ -23,3 +23,10 @@ and slave App which only make check whether I am slave or not
   <br>
 #curl -X POST -d '{"dpid": switch-dpid, "role":"SLAVE"}'    http://localhost:8081/stats/role
   <br>
+
+
+<br>
+<br>
+Refer to youtube link
+<br>
+https://youtu.be/pH5Sj8-O3Ek
