@@ -34,3 +34,5 @@ sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ov
  sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=3,fanout=5
  
 
+64 hosts & 21 switches
+ sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=3,fanout=4
