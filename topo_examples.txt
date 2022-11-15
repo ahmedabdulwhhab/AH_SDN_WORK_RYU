@@ -1,7 +1,7 @@
 sudo mn -c
 
 sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4
-
+sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6653
 
 
 sudo mn --controller=remote,ip=127.0.0.1:6633 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4,5
@@ -10,7 +10,7 @@ sudo mn --controller=remote,ip=127.0.0.1:6633 --mac -i 10.1.1.0/24 --switch=ovsk
 sudo mn --controller=remote,ip=192.168.1.4:6634 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=2,fanout=3
 
 
-ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6633
+sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6633
 
 
 ryu-manager ../../projects/Learn_Multi_path/Hedera/14112022/Hedera.py    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6633
