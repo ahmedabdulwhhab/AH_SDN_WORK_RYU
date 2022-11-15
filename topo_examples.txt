@@ -5,12 +5,32 @@ sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanage
 
 
 sudo mn --controller=remote,ip=127.0.0.1:6633 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4,5
-
-
-sudo mn --controller=remote,ip=192.168.1.4:6634 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=2,fanout=3
-
-
 sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6633
 
 
+
+sudo mn --controller=remote,ip=192.168.1.4:6634 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=2,fanout=3
+sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6634
+
+
+sudo mn --controller=remote,ip=192.168.1.4:6666 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=4,fanout=3
+sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6666
+
+
 ryu-manager ../../projects/Learn_Multi_path/Hedera/14112022/Hedera.py    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6633
+
+
+
+216 hosts & 43 switches
+ sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=3,fanout=6
+
+
+27 hosts & 13 switches
+sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=3,fanout=6
+
+
+
+125 hosts & 31 switches
+ sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=3,fanout=5
+ 
+
