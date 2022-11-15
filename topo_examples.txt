@@ -36,3 +36,5 @@ sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ov
 
 64 hosts & 21 switches
  sudo mn --controller=remote,ip=192.168.1.4:6632 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13  --topo=tree,depth=3,fanout=4
+ sudo ryu-manager switch.py    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6632
+
