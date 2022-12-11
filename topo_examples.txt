@@ -1,7 +1,8 @@
 sudo mn -c
 
 sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4
-sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6653
+sudo ryu-manager ryu.app.simple_switch_13    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --observe-links --ofp-tcp-listen-port 6653 --wsapi-port 8080
+http://127.0.0.1:8080/home/flows.html
 
 
 sudo mn --controller=remote,ip=127.0.0.1:6633 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4,5
