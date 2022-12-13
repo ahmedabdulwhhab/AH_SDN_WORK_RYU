@@ -72,5 +72,5 @@ curl -X POST -d '{"nw_src": "10.0.0.0/24", "nw_proto": "ICMP"}' http://localhost
 
 h1 ping 10.0.0.2    #success
 
-h3 ping 10.0.0.4			#fail
+h3 ping 10.0.0.1			#fail
 
