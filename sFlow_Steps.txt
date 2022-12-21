@@ -128,3 +128,15 @@ setIntervalHandler(function() {
 
 
 sudo ./sflow-rt/start.sh -Dscript.file=../ry
+
+
+
+ubuntu@ubuntu:~/sdn/projects/sflow$ sudo ./sflow-rt/start.sh -Dscript.file=../ryu.js
+2022-12-20T23:19:45-08:00 INFO: Starting sFlow-RT 3.0-1677
+2022-12-20T23:19:50-08:00 INFO: Version check, running latest
+2022-12-20T23:19:51-08:00 INFO: Listening, sFlow port 6343
+2022-12-20T23:19:53-08:00 INFO: Listening, HTTP port 8008
+2022-12-20T23:19:54-08:00 INFO: ../ryu.js started
+2022-12-20T23:19:54-08:00 INFO: app/mininet-dashboard/scripts/metrics.js started
+2022-12-20T23:20:32-08:00 INFO: blocking 10.0.0.3,53
+
