@@ -1,0 +1,130 @@
+ubuntu 20.04
+
+
+sudo mkdir sflow
+cd sflow
+Download sFlow-RT:
+sudo git clone https://github.com/sflow-rt/mininet-dashboard
+sudo wget https://inmon.com/products/sFlow-RT/sflow-rt.tar.gz
+sudo tar -xvzf sflow-rt.tar.gz
+
+
+confirm java is already installed
+java --version
+if not
+sudo apt update
+sudo apt install default-jre
+ubuntu@ubuntu:~$ java --version
+openjdk 11.0.17 2022-10-18
+OpenJDK Runtime Environment (build 11.0.17+8-post-Ubuntu-1ubuntu220.04)
+OpenJDK 64-Bit Server VM (build 11.0.17+8-post-Ubuntu-1ubuntu220.04, mixed mode, sharing)
+ubuntu@ubuntu:~$
+
+sudo sflow-rt/get-app.sh sflow-rt mininet-dashboard
+
+sudo ./sflow-rt/start.sh
+
+ryu-manager ryu.app.simple_switch_13,ryu.app.ofctl_rest --observe-links --ofp-tcp-listen-port 6653 --wsapi-port 8080
+
+
+ sudo mn -c && sudo mn --controller=remote,ip=192.168.1.10:6653 --mac --switch=ovsk,protocols=OpenFlow13 --topo=linear,2,3
+
+
+
+
+http://192.168.1.10:8008
+
+pingall
+tcp test
+h3 iperf -s &
+h1 iperf -c 10.0.0.6
+
+udp test
+h3 iperf -u &
+h1 iperf -u -c 10.0.0.3 -b 10m
+
+
+
+sflow-rt/get-app.sh sflow-rt mininet-dashboard
+The following script, ryu.js, implements the DDoS mitigation function described in the previous article:
+var ryu = '127.0.0.1';
+var controls = {};
+
+setFlow('udp_reflection',
+ {keys:'ipdestination,udpsourceport',value:'frames'});
+setThreshold('udp_reflection_attack',
+ {metric:'udp_reflection',value:100,byFlow:true,timeout:2});
+
+setEventHandler(function(evt) {
+ // don't consider inter-switch links
+ var link = topologyInterfaceToLink(evt.agent,evt.dataSource);
+ if(link) return;
+
+ // get port information
+ var port = topologyInterfaceToPort(evt.agent,evt.dataSource);
+ if(!port) return;
+
+ // need OpenFlow info to create Ryu filtering rule
+ if(!port.dpid || !port.ofport) return;
+
+ // we already have a control for this flow
+ if(controls[evt.flowKey]) return;
+
+ var [ipdestination,udpsourceport] = evt.flowKey.split(',');
+ var msg = {
+  priority:40000,
+  dpid:parseInt(port.dpid,16),
+  match: {
+   in_port:port.ofport,
+   dl_type:0x800,
+   nw_dst:ipdestination+'/32',
+   nw_proto:17,
+   tp_src:udpsourceport 
+  }
+ };
+
+ var resp = http2({
+  url:'http://'+ryu+':8080/stats/flowentry/add',
+  headers:{'Content-Type':'application/json','Accept':'application/json'},
+  operation:'post',
+  body: JSON.stringify(msg)
+ });
+
+ controls[evt.flowKey] = {
+  time:Date.now(),
+  threshold:evt.thresholdID,
+  agent:evt.agent,
+  metric:evt.dataSource+'.'+evt.metric,
+  msg:msg
+ };
+
+ logInfo("blocking " + evt.flowKey);
+},['udp_reflection_attack']);
+
+setIntervalHandler(function() {
+ var now = Date.now();
+ for(var key in controls) {
+  let rec = controls[key];
+
+  // keep control for at least 10 seconds
+  if(now - rec.time < 10000) continue;
+  // keep control if threshold still triggered
+  if(thresholdTriggered(rec.threshold,rec.agent,rec.metric,key)) continue;
+
+  var resp = http2({
+   url:'http://'+ryu+':8080/stats/flowentry/delete',
+   headers:{'Content-Type':'application/json','Accept':'application/json'},
+   operation:'post',
+   body: JSON.stringify(rec.msg)
+  });
+
+  delete controls[key];
+
+  logInfo("unblocking " + key);
+ }
+});
+
+
+
+
+sudo ./sflow-rt/start.sh -Dscript.file=../ry
