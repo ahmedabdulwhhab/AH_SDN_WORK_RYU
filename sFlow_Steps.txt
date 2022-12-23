@@ -21,18 +21,21 @@ OpenJDK 64-Bit Server VM (build 11.0.17+8-post-Ubuntu-1ubuntu220.04, mixed mode,
 ubuntu@ubuntu:~$
 
 sudo sflow-rt/get-app.sh sflow-rt mininet-dashboard
+sudo ./sflow-rt/get-app.sh sflow-rt browse-flows
 
 sudo ./sflow-rt/start.sh
 
-ryu-manager ryu.app.simple_switch_13,ryu.app.ofctl_rest --observe-links --ofp-tcp-listen-port 6653 --wsapi-port 8080
+ryu-manager ryu.app.simple_switch_13,ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py    --observe-links --ofp-tcp-listen-port 6653 --wsapi-port 8080
 
 
- sudo mn -c && sudo mn --controller=remote,ip=192.168.1.10:6653 --mac --switch=ovsk,protocols=OpenFlow13 --topo=linear,2,3
+ sudo mn -c && sudo mn  --custom sflow-rt/extras/sflow.py --controller=remote,ip=192.168.1.6:6653 --mac --switch=ovsk,protocols=OpenFlow13 --topo=linear,2,3
+
+ sudo mn -c && sudo mn --custom sflow-rt/extras/sflow.py --link tc,bw=10 --controller=remote,ip=ip=192.168.1.6:6653 --topo tree,depth=2,fanout=2
 
 
 
 
-http://192.168.1.10:8008
+http://192.168.1.6:8008
 
 pingall
 tcp test
@@ -127,8 +130,9 @@ setIntervalHandler(function() {
 
 
 
-sudo ./sflow-rt/start.sh -Dscript.file=../ry
+sudo ./sflow-rt/start.sh -Dscript.file=../ryu.js
 
+sudo ryu-manager ryu.app.simple_switch_13,ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py   --observe-links --ofp-tcp-listen-port 6653 --wsapi-port 8080
 
 
 ubuntu@ubuntu:~/sdn/projects/sflow$ sudo ./sflow-rt/start.sh -Dscript.file=../ryu.js
@@ -139,4 +143,8 @@ ubuntu@ubuntu:~/sdn/projects/sflow$ sudo ./sflow-rt/start.sh -Dscript.file=../ry
 2022-12-20T23:19:54-08:00 INFO: ../ryu.js started
 2022-12-20T23:19:54-08:00 INFO: app/mininet-dashboard/scripts/metrics.js started
 2022-12-20T23:20:32-08:00 INFO: blocking 10.0.0.3,53
+
+h3 timeout 20s hping3 -S -V -d 120 -w 64 -p 80 --rand-source --flood 10.0.0.1
+h1 timeout 20s  hping3 --flood --udp -k -s 53 h3
+
 
