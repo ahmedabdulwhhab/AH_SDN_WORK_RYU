@@ -53,10 +53,10 @@ curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": 
 echo
 echo #################################
 echo S1  ALLOW "nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP"
-curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://localhost:8080/firewall/rules/0000000000000012 #to allow ICMP
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://localhost:8080/firewall/rules/0000000000000001 #to allow ICMP
 echo
 
 
 echo S2  ALLOW "nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP"
-curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://localhost:8080/firewall/rules/0000000000000013 #to allow ICMP
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://localhost:8080/firewall/rules/0000000000000001 #to allow ICMP
 echo
