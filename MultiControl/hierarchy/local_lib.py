@@ -138,6 +138,9 @@ class LocalControllerLib(app_manager.RyuApp):
             self.server_addr = server_addr
             self.server_port = server_port
             self.socket.connect((self.server_addr, self.server_port))
+            LOG.debug("local_lib.py ; i will start serve at self.server_addr %s ",self.server_addr)
+            LOG.debug("local_lib.py ; i will start serve at self.server_port %s ",self.server_port)
+            
             self.is_active = True
             hub.spawn(self._serve_loop)
             hub.spawn(self._send_loop)
@@ -175,7 +178,7 @@ class LocalControllerLib(app_manager.RyuApp):
                 LOG.info('connection fail, close')
                 self.is_active = False
                 break
-            LOG.debug('Receive: %s', buf)
+            LOG.debug('local_lib.py ; Line 179 Receive: %s', buf)
             try:
                 msg = json.loads(buf)
             except ValueError:
