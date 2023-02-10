@@ -201,7 +201,7 @@ class GlobalAgent(object):
             'cmd': 'set_agent_id',
             'agent_id': agent_id
         })
-        print("line 204 msg is ",msg)
+        
         self.send(msg)
 
     def send(self, msg):
@@ -236,21 +236,28 @@ class GlobalAgent(object):
             try:
                 _buf = self.socket.recv(128)
                 print("at line 238 rec is ",_buf)
+
+                               
                 if len(_buf) == 0:
                     LOG.info('connection fail, close')
                     self.is_active = False
                     break
+                # _buf2="" 
+                # while '\n' != _buf[-1]:
+                     # _buf += self.socket.recv(128)
 
-                while '\n' != _buf[-1]:
-                    _buf += self.socket.recv(128)
-
-                bufs = _buf.split('\n')
-
+                #data is read as bytes so it should be converted to str
+                encoding = 'utf-8'
+                msg=_buf.decode(encoding)
+                bufs = msg.split('\n')
+                print("at line 248 rec is ",_buf)
                 for buf in bufs:
+                    msg = json.loads(buf)       #will be dict
+                    #if len(buf) == 0:
+                    #    continue
 
-                    if len(buf) == 0:
-                        continue
-                    msg = json.loads(buf)
+                    
+                    print("Line 259 msg['cmd'] is ",msg['cmd'])
                     LOG.debug('receive : %s', msg)
                     if msg['cmd'] == 'add_cross_domain_link':
                         LOG.debug('receive cross domain link message')
@@ -261,6 +268,7 @@ class GlobalAgent(object):
 
                     elif msg['cmd'] == 'response_host':
                         host = msg['host']
+                        print("Line 270 host in msg  is ",host)
                         self.global_ctrn.response_host(host, self)
 
                     elif msg['cmd'] == 'get_route':

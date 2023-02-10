@@ -1,112 +1,714 @@
-loading app local.py
-require_app: ryu.topology.switches is required by local
-loading app ryu.controller.ofp_handler
-loading app ryu.topology.switches
-loading app ryu.controller.ofp_handler
-instantiating app None of LocalControllerLib
-creating context local_lib
-instantiating app local.py of LocalControllerApp
-local_lib.py ; i will start serve at self.server_addr 127.0.0.1
-local_lib.py ; i will start serve at self.server_port 10807
-instantiating app ryu.controller.ofp_handler of OFPHandler
-instantiating app ryu.topology.switches of Switches
-BRICK local_lib
-  PROVIDES EventAskDpid TO {'LocalControllerApp': {'main'}}
-  PROVIDES EventAskHost TO {'LocalControllerApp': {'main'}}
-  PROVIDES EventHostDiscovery TO {'LocalControllerApp': {'main'}}
-  PROVIDES EventRouteResult TO {'LocalControllerApp': {'main'}}
-  CONSUMES EventOFPPacketIn
-BRICK LocalControllerApp
-  CONSUMES EventOFPSwitchFeatures
-  CONSUMES EventAskDpid
-  CONSUMES EventAskHost
-  CONSUMES EventHostDiscovery
-  CONSUMES EventOFPPacketIn
-  CONSUMES EventRouteResult
-BRICK ofp_event
-  PROVIDES EventOFPPacketIn TO {'local_lib': {'main'}, 'LocalControllerApp': {'main'}, 'switches': {'main'}}
-  PROVIDES EventOFPSwitchFeatures TO {'LocalControllerApp': {'config'}}
-  PROVIDES EventOFPPortStatus TO {'switches': {'main'}}
-  PROVIDES EventOFPStateChange TO {'switches': {'dead', 'main'}}
-  CONSUMES EventOFPEchoReply
-  CONSUMES EventOFPEchoRequest
-  CONSUMES EventOFPErrorMsg
-  CONSUMES EventOFPHello
-  CONSUMES EventOFPPortDescStatsReply
-  CONSUMES EventOFPPortStatus
-  CONSUMES EventOFPSwitchFeatures
-BRICK switches
-  CONSUMES EventOFPPacketIn
-  CONSUMES EventHostRequest
-  CONSUMES EventLinkRequest
-  CONSUMES EventOFPPortStatus
-  CONSUMES EventOFPStateChange
-  CONSUMES EventSwitchRequest
-local_lib.py ; Line 179 Receive: b'{"cmd": "set_agent_id", "agent_id": 0}'
-connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f88fae11d30> address:('127.0.0.1', 46054)
-hello ev <ryu.controller.ofp_event.EventOFPHello object at 0x7f88fae25e80>
-move onto config mode
-connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f88fae255e0> address:('127.0.0.1', 46064)
-hello ev <ryu.controller.ofp_event.EventOFPHello object at 0x7f88fad83580>
-move onto config mode
-EVENT ofp_event->LocalControllerApp EventOFPSwitchFeatures
-switch features ev version=0x4,msg_type=0x6,msg_len=0x20,xid=0x9bc07a9a,OFPSwitchFeatures(auxiliary_id=0,capabilities=79,datapath_id=1,n_buffers=0,n_tables=254)
-EVENT ofp_event->LocalControllerApp EventOFPSwitchFeatures
-switch features ev version=0x4,msg_type=0x6,msg_len=0x20,xid=0xe6a35233,OFPSwitchFeatures(auxiliary_id=0,capabilities=79,datapath_id=2,n_buffers=0,n_tables=254)
-switch_features_handler is called
-switch_features_handler is called for  1
-switch_features_handler is called
-switch_features_handler is called for  2
-move onto main mode
-EVENT ofp_event->switches EventOFPStateChange
-move onto main mode
-EVENT ofp_event->switches EventOFPStateChange
-<ryu.controller.controller.Datapath object at 0x7f88fae25880>
-register Switch<dpid=2, Port<dpid=2, port_no=1, LIVE> Port<dpid=2, port_no=2, LIVE> Port<dpid=2, port_no=3, LIVE> >
-<ryu.controller.controller.Datapath object at 0x7f88fae253d0>
-register Switch<dpid=1, Port<dpid=1, port_no=1, LIVE> Port<dpid=1, port_no=2, LIVE> Port<dpid=1, port_no=3, LIVE> >
-EVENT ofp_event->local_lib EventOFPPacketIn
-EVENT ofp_event->LocalControllerApp EventOFPPacketIn
-EVENT ofp_event->switches EventOFPPacketIn
-Inside Packet ,LLDPPacket is received
-src_dpid is  1  dst_dpid is  2
-EVENT LocalControllerApp->switches EventSwitchRequest
-EVENT ofp_event->local_lib EventOFPPacketIn
-EVENT ofp_event->LocalControllerApp EventOFPPacketIn
-EVENT ofp_event->switches EventOFPPacketIn
-EVENT LocalControllerApp->switches EventSwitchRequest
- api.get_switch(self, src_dpid) =  [<ryu.topology.switches.Switch object at 0x7f88fae25310>]
-len(switch) !=0 so i will return
-Inside Packet ,LLDPPacket is received
-src_dpid is  2  dst_dpid is  1
-EVENT LocalControllerApp->switches EventSwitchRequest
-EVENT ofp_event->local_lib EventOFPPacketIn
-EVENT ofp_event->LocalControllerApp EventOFPPacketIn
-EVENT ofp_event->switches EventOFPPacketIn
-EVENT LocalControllerApp->switches EventSwitchRequest
- api.get_switch(self, src_dpid) =  [<ryu.topology.switches.Switch object at 0x7f88fad9a5e0>]
-len(switch) !=0 so i will return
-Inside Packet ,LLDPPacket is received
-src_dpid is  2  dst_dpid is  1
-EVENT LocalControllerApp->switches EventSwitchRequest
-EVENT LocalControllerApp->switches EventSwitchRequest
- api.get_switch(self, src_dpid) =  [<ryu.topology.switches.Switch object at 0x7f88fad9a2e0>]
-len(switch) !=0 so i will return
-EVENT ofp_event->local_lib EventOFPPacketIn
-EVENT ofp_event->LocalControllerApp EventOFPPacketIn
-EVENT ofp_event->switches EventOFPPacketIn
-Inside Packet ,LLDPPacket is received
-src_dpid is  1  dst_dpid is  2
-EVENT LocalControllerApp->switches EventSwitchRequest
-EVENT LocalControllerApp->switches EventSwitchRequest
- api.get_switch(self, src_dpid) =  [<ryu.topology.switches.Switch object at 0x7f88fad9ad00>]
-len(switch) !=0 so i will return
-EVENT ofp_event->local_lib EventOFPPacketIn
-EVENT ofp_event->LocalControllerApp EventOFPPacketIn
-EVENT ofp_event->switches EventOFPPacketIn
-Inside Packet ,LLDPPacket is received
-src_dpid is  2  dst_dpid is  1
-EVENT LocalControllerApp->switches EventSwitchRequest
-EVENT LocalControllerApp->switches EventSwitchRequest
- api.get_switch(self, src_dpid) =  [<ryu.topology.switches.Switch object at 0x7f88fad9a250>]
-len(switch) !=0 so i will return
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fccfce16f40> address:('127.0.0.1', 41932)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fccfd370730> address:('127.0.0.1', 45546)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fccfd32b640> address:('127.0.0.1', 45548)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+login as: ubuntu
+ubuntu@192.168.1.8's password:
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-137-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ System information disabled due to load higher than 1.0
+
+
+105 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+New release '22.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+*** System restart required ***
+Last login: Fri Feb 10 04:20:55 2023 from 192.168.1.9
+ubuntu@ubuntu:~$  cd ./sdn/projects/multi-control/hierarchy/
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+[sudo] password for ubuntu:
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f35532fdf40> address:('127.0.0.1', 36908)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+INFO:__main__:connection fail, close
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3553858730> address:('127.0.0.1', 53648)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+^CERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 245, in recv_loop
+    _buf += self.socket.recv(128)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 367, in recv
+    return self._recv_loop(self.fd.recv, b'', bufsize, flags)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 351, in _recv_loop
+    return recv_meth(*args)
+KeyboardInterrupt
+
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3553814580> address:('127.0.0.1', 36264)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f35538149d0> address:('127.0.0.1', 60836)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 3}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3553814c40> address:('127.0.0.1', 40114)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 4}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3553814d60> address:('127.0.0.1', 52020)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 5}
+^CERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 245, in recv_loop
+    _buf += self.socket.recv(128)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 367, in recv
+    return self._recv_loop(self.fd.recv, b'', bufsize, flags)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 351, in _recv_loop
+    return recv_meth(*args)
+KeyboardInterrupt
+
+INFO:__main__:connection fail, close
+INFO:__main__:connection fail, close
+^CTraceback (most recent call last):
+  File "global.py", line 299, in <module>
+    main()
+  File "global.py", line 296, in main
+    GlobalController().start()
+  File "global.py", line 45, in start
+    self.server.serve_forever()
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 154, in serve_forever
+    sock, addr = self.server.accept()
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 230, in accept
+    self._trampoline(fd, read=True, timeout=self.gettimeout(), timeout_exc=_timeout_exc)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 208, in _trampoline
+    return trampoline(fd, read=read, write=write, timeout=timeout,
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/__init__.py", line 159, in trampoline
+    return hub.switch()
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/hub.py", line 313, in switch
+    return self.greenlet.switch()
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/hub.py", line 365, in run
+    self.wait(sleep_time)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/poll.py", line 80, in wait
+    presult = self.do_poll(seconds)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/epolls.py", line 31, in do_poll
+    return self.poll.poll(seconds)
+KeyboardInterrupt
+^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+[sudo] password for ubuntu:
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f222653bf40> address:('127.0.0.1', 36258)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+[sudo] password for ubuntu:
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f449e7d4f40> address:('127.0.0.1', 41244)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f449ed2f730> address:('127.0.0.1', 41246)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+INFO:__main__:connection fail, close
+INFO:__main__:connection fail, close
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f4ad229df40> address:('127.0.0.1', 41860)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f4ad27f8730> address:('127.0.0.1', 41864)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f4ad27b3640> address:('127.0.0.1', 41872)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f870759bf40> address:('127.0.0.1', 56074)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f8707af6730> address:('127.0.0.1', 56076)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f8707ab2640> address:('127.0.0.1', 58596)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fedfe695f40> address:('127.0.0.1', 49038)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fedfebf0730> address:('127.0.0.1', 49048)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fedfebab640> address:('127.0.0.1', 49050)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3192853f40> address:('127.0.0.1', 54014)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3192dae730> address:('127.0.0.1', 54022)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3192d6a640> address:('127.0.0.1', 54024)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f06e9367f40> address:('127.0.0.1', 33092)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f06e98c2730> address:('127.0.0.1', 33096)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f06e987e640> address:('127.0.0.1', 33100)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fddde3c3f40> address:('127.0.0.1', 48746)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fddde91e730> address:('127.0.0.1', 34416)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fddde8d9640> address:('127.0.0.1', 34424)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fb401153f40> address:('127.0.0.1', 48966)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fb4016ae730> address:('127.0.0.1', 56772)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f6b5ac85f40> address:('127.0.0.1', 38354)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f6b5b1e0730> address:('127.0.0.1', 38362)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f6b5b19b640> address:('127.0.0.1', 38368)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 2}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f1b5cf19f40> address:('127.0.0.1', 57540)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f4d6c7c2f40> address:('127.0.0.1', 57290)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fa9b366ef40> address:('127.0.0.1', 38570)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+^CERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 245, in recv_loop
+    _buf += self.socket.recv(128)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 367, in recv
+    return self._recv_loop(self.fd.recv, b'', bufsize, flags)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 351, in _recv_loop
+    return recv_meth(*args)
+KeyboardInterrupt
+
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fa9b3bc8730> address:('127.0.0.1', 58904)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+^CTraceback (most recent call last):
+  File "global.py", line 299, in <module>
+    main()
+  File "global.py", line 296, in main
+    GlobalController().start()
+  File "global.py", line 45, in start
+    self.server.serve_forever()
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 154, in serve_forever
+^C
+^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ ^C
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f0ff8443f40> address:('127.0.0.1', 50588)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7ff229610f40> address:('127.0.0.1', 54252)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fdd71ad5f40> address:('127.0.0.1', 44296)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fdd72030730> address:('127.0.0.1', 55362)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f8dd8bcdf40> address:('127.0.0.1', 52168)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fb810414f40> address:('127.0.0.1', 53138)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+INFO:__main__:connection fail, close
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fcd08c4ff40> address:('127.0.0.1', 37852)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f86c4973f40> address:('127.0.0.1', 57406)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f221fdb1f40> address:('127.0.0.1', 36354)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py --verbose
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f884d194f40> address:('127.0.0.1', 34690)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+^CTraceback (most recent call last):
+  File "global.py", line 299, in <module>
+    main()
+  File "global.py", line 296, in main
+    GlobalController().start()
+  File "global.py", line 45, in start
+    self.server.serve_forever()
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 154, in serve_forever
+    sock, addr = self.server.accept()
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 230, in accept
+    self._trampoline(fd, read=True, timeout=self.gettimeout(), timeout_exc=_timeout_exc)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/greenio/base.py", line 208, in _trampoline
+    return trampoline(fd, read=read, write=write, timeout=timeout,
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/__init__.py", line 159, in trampoline
+    return hub.switch()
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/hub.py", line 313, in switch
+    return self.greenlet.switch()
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/hub.py", line 365, in run
+    self.wait(sleep_time)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/poll.py", line 80, in wait
+    presult = self.do_poll(seconds)
+  File "/usr/local/lib/python3.8/dist-packages/eventlet/hubs/epolls.py", line 31, in do_poll
+    return self.poll.poll(seconds)
+KeyboardInterrupt
+
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fbb966e0f40> address:('127.0.0.1', 51308)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f445701ff40> address:('127.0.0.1', 56464)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7efeebddef40> address:('127.0.0.1', 42974)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f1964cccf40> address:('127.0.0.1', 48730)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fccfb293f40> address:('127.0.0.1', 52702)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f04b13a8f40> address:('127.0.0.1', 54730)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fbb1591bf40> address:('127.0.0.1', 36018)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fbc470b3f40> address:('127.0.0.1', 54138)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3056ee6f40> address:('127.0.0.1', 57446)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:03"}\n'
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3057442730> address:('127.0.0.1', 34296)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f3501b63f40> address:('127.0.0.1', 41110)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f35020bf730> address:('127.0.0.1', 40100)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f63ac789f40> address:('127.0.0.1', 49054)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f63acce6730> address:('127.0.0.1', 49064)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+[sudo] password for ubuntu:
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f4f65547f40> address:('127.0.0.1', 44616)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f4f65aa3730> address:('127.0.0.1', 44624)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:04"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.split('\n')
+TypeError: a bytes-like object is required, not 'str'
+
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:04"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.split('\n')
+TypeError: a bytes-like object is required, not 'str'
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f9b396a3f40> address:('127.0.0.1', 58948)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f9b39bff730> address:('127.0.0.1', 58962)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.encode().split('\n')
+AttributeError: 'bytes' object has no attribute 'encode'
+
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.encode().split('\n')
+AttributeError: 'bytes' object has no attribute 'encode'
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f1b2cec9f40> address:('127.0.0.1', 39548)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f1b2d426730> address:('127.0.0.1', 39554)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:03"}\n'
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:03"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 245, in recv_loop
+    _buf2 += self.socket.recv(128)
+TypeError: can only concatenate str (not "bytes") to str
+
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 245, in recv_loop
+    _buf2 += self.socket.recv(128)
+TypeError: can only concatenate str (not "bytes") to str
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f0e826d4f40> address:('127.0.0.1', 50234)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f0e82c30730> address:('127.0.0.1', 50236)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.split('\n')
+TypeError: a bytes-like object is required, not 'str'
+
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.split('\n')
+TypeError: a bytes-like object is required, not 'str'
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f00db309f40> address:('127.0.0.1', 54792)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f00db865730> address:('127.0.0.1', 38758)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:03"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.encode().split('\n')
+AttributeError: 'bytes' object has no attribute 'encode'
+
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:03"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 247, in recv_loop
+    bufs = _buf.encode().split('\n')
+AttributeError: 'bytes' object has no attribute 'encode'
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+  File "global.py", line 247
+    %bufs = _buf.encode().split('\n')
+    ^
+SyntaxError: invalid syntax
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+  File "global.py", line 247
+    %bufs = _buf.encode().split('\n')
+    ^
+SyntaxError: invalid syntax
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f6cd9ae7f40> address:('127.0.0.1', 34776)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7f6cda044730> address:('127.0.0.1', 34792)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+at line 248 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 251, in recv_loop
+    if len(buf) == 0:
+TypeError: object of type 'int' has no len()
+
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+at line 248 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 251, in recv_loop
+    if len(buf) == 0:
+TypeError: object of type 'int' has no len()
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fda4389ef40> address:('127.0.0.1', 35984)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fda43dfb730> address:('127.0.0.1', 45402)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 1}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+at line 248 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 253, in recv_loop
+    msg = json.loads(buf)
+  File "/usr/lib/python3.8/json/__init__.py", line 341, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not int
+
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+at line 248 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 253, in recv_loop
+    msg = json.loads(buf)
+  File "/usr/lib/python3.8/json/__init__.py", line 341, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not int
+
+Killed
+ubuntu@ubuntu:~/sdn/projects/multi-control/hierarchy$ sudo python3 global.py
+[sudo] password for ubuntu:
+INFO:__main__:Waiting for connection.....
+connected socket:<eventlet.greenio.base.GreenSocket object at 0x7fb05d94ef40> address:('127.0.0.1', 60428)
+line 204 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+line 208 msg is  {"cmd": "set_agent_id", "agent_id": 0}
+at line 238 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+at line 248 rec is  b'{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n'
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+Line 254 msg is  {'cmd': 'get_route', 'dst': '00:00:00:00:00:02'}
+line 208 msg is  {"cmd": "route_result", "dpid": -1, "port": -1, "host": "00:00:00:00:00:02"}
+at line 238 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:03"}\n{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n{"cmd": "response_host", '
+at line 248 rec is  b'{"cmd": "response_host", "host": "00:00:00:00:00:03"}\n{"cmd": "get_route", "dst": "00:00:00:00:00:02"}\n{"cmd": "response_host", '
+ERROR:ryu.lib.hub:hub: uncaught exception: Traceback (most recent call last):
+  File "global.py", line 253, in recv_loop
+    msg = json.loads(_buf)
+  File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.8/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 2 column 1 (char 54)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/ryu/lib/hub.py", line 60, in _launch
+    return func(*args, **kwargs)
+  File "global.py", line 277, in recv_loop
+    LOG.warning('Value error for %s, len: %d', buf, len(buf))
+TypeError: object of type 'int' has no len()
