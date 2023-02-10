@@ -103,7 +103,7 @@ class LocalControllerLib(app_manager.RyuApp):
             pkt = packet.Packet(msg.data)
             eth = pkt.get_protocols(ethernet.ethernet)[0]
             mac = eth.src
-
+            print("Msg arrived from ",eth.src," is going to dst ",eth.dst)
             if mac not in self.hosts and port != -1 and \
                 not self._host_exist_in_port(dpid, port) and \
                     not self._is_switch_port_to_port(dpid, port):
@@ -125,8 +125,8 @@ class LocalControllerLib(app_manager.RyuApp):
         return False
 
     def _host_exist_in_port(self, dpid, port):
-
-        for (d, p) in self.hosts.itervalues():
+        print("self.hosts.items ",self.hosts )
+        for (d, p) in self.hosts.items():
             if d == dpid and p == port:
                 return True
 
@@ -142,7 +142,7 @@ class LocalControllerLib(app_manager.RyuApp):
             hub.spawn(self._serve_loop)
             hub.spawn(self._send_loop)
 
-        except Exception, ex:
+        except Exception as ex:
             raise ex
 
     def _send_loop(self):
@@ -152,7 +152,7 @@ class LocalControllerLib(app_manager.RyuApp):
             while self.is_active:
                 buf = self.send_q.get()
                 buf += '\n'
-                self.socket.sendall(buf)
+                self.socket.sendall(buf.encode())
 
         finally:
             q = self.send_q
@@ -205,7 +205,7 @@ class LocalControllerLib(app_manager.RyuApp):
                 self.send_event_to_observers(ev)
 
     def send(self, msg):
-
+        print("local_lib.py ; i will send msg ",msg)
         if self.send_q != None:
             self.send_q.put(msg)
 

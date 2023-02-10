@@ -24,7 +24,7 @@ class GlobalController(object):
         self.hosts = {}  # host -> domain number
 
     def _connection_factory(self, socket, address):
-        print 'connected socket:%s address:%s' % (socket, address)
+        print('connected socket:%s address:%s' % (socket, address))
 
         with contextlib.closing(GlobalAgent(socket, address)) as agent:
             agent.global_ctrn = self
@@ -47,7 +47,7 @@ class GlobalController(object):
     def print_agents_status(self):
 
         for agent in self.agents:
-            print "%s:%s" % (agent.address, agent.__str__(), )
+            print ("%s:%s" % (agent.address, agent.__str__(), ))
 
     def add_cross_domain_link(self, src, dst, agent_id):
         src['agent_id'] = agent_id
@@ -201,10 +201,11 @@ class GlobalAgent(object):
             'cmd': 'set_agent_id',
             'agent_id': agent_id
         })
+        print("line 204 msg is ",msg)
         self.send(msg)
 
     def send(self, msg):
-
+        print("line 208 msg is ",msg)
         if self.send_q:
             self.send_q.put(msg)
 
@@ -214,7 +215,7 @@ class GlobalAgent(object):
 
             while self.is_active:
                 buf = self.send_q.get()
-                self.socket.sendall(buf)
+                self.socket.sendall(buf.encode())
                 hub.sleep(0.1)
 
         finally:

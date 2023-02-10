@@ -14,9 +14,9 @@ def ofp_version(switch, protocols):
 if '__main__' == __name__:
     net = Mininet(switch=OVSSwitch)
     controllers = []
-    c0 = RemoteController('c0', '10.10.10.10', 6633)
-    c1 = RemoteController('c1', '10.10.10.10', 6634)
-    c2 = RemoteController('c2', '10.10.10.10', 6635)
+    c0 = RemoteController('c0', '192.168.1.8', 6633)
+    c1 = RemoteController('c1', '192.168.1.8', 6634)
+    c2 = RemoteController('c2', '192.168.1.8', 6635)
     controllers.append(c0)
     controllers.append(c1)
     controllers.append(c2)
@@ -32,8 +32,8 @@ if '__main__' == __name__:
         s3 = net.addSwitch('s%d' % (domain * 3 + 3, ))
         net.addLink(s1, s2)
         net.addLink(s1, s3)
-        h1 = net.addHost('h%d' % (domain * 2 + 1, ))
-        h2 = net.addHost('h%d' % (domain * 2 + 2, ))
+        h1 = net.addHost('h%d' % (domain * 2 + 1, ),mac="00:00:00:00:00:01",ip="10.0.0.1/24")
+        h2 = net.addHost('h%d' % (domain * 2 + 2, ),mac="00:00:00:00:00:02",ip="10.0.0.2/24")
         net.addLink(s2, h1)
         net.addLink(s3, h2)
         switches.append(s1)

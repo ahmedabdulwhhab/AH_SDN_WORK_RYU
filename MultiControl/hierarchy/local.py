@@ -1,3 +1,24 @@
+
+
+# Ahmed Abdulwhhab
+# clear ; sudo ryu-manager   local.py /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --verbose --observe-links --ofp-tcp-listen-port 6635
+ #clear ; sudo ryu-manager   local.py   --observe-links --ofp-tcp-listen-port 6634
+ #clear ; sudo ryu-manager   local.py   --observe-links --ofp-tcp-listen-port 6633
+#sudo ovs-ofctl -O openflow13 dump-flows s1
+#sudo ovs-ofctl -O openflow13 dump-flows s2
+#kill process on port
+"""
+
+
+To list any process listening to the port 10807:
+
+sudo lsof -i:10807
+To kill any process listening to the port 10807:
+
+
+sudo  kill -9 $(sudo lsof -t -i:10807)
+sudo lsof -i:10807      #test again
+"""
 # -*- coding: utf-8 -*-
 import logging
 import networkx as nx
@@ -8,7 +29,10 @@ from ryu.topology.switches import LLDPPacket
 from ryu.lib.packet import packet, ethernet
 from ryu.controller import ofp_event
 from ryu.controller.handler import set_ev_cls
-from ryu.controller.handler import MAIN_DISPATCHER
+from ryu.controller.handler import MAIN_DISPATCHER, CONFIG_DISPATCHER
+from ryu.lib.packet import packet
+from ryu.lib.packet import ethernet
+from ryu.lib.packet import ether_types
 
 import local_lib
 
@@ -27,7 +51,7 @@ class LocalControllerApp(app_manager.RyuApp):
     def __init__(self, *args, **kwargs):
         super(LocalControllerApp, self).__init__(*args, **kwargs)
         self.local_lib = kwargs['local_lib']
-        # self.local_lib = local_lib.LocalControllerLib('127.0.0.1', 10807)
+        #self.local_lib = local_lib.LocalControllerLib('127.0.0.1', 10807)
         self.local_lib.start_serve('127.0.0.1', 10807)
         self.global_port = {}
         self.route_list = []
@@ -37,35 +61,57 @@ class LocalControllerApp(app_manager.RyuApp):
     def packet_in_handler(self, ev):
         msg = ev.msg
         datapath = msg.datapath
+        ###########################################################
+                # If you hit this you might want to increase
+        # the "miss_send_length" of your switch
+        if ev.msg.msg_len < ev.msg.total_len:
+            self.logger.debug("packet truncated: only %s of %s bytes",
+                              ev.msg.msg_len, ev.msg.total_len)
+        msg = ev.msg
+        datapath = msg.datapath
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+        in_port = msg.match['in_port']
 
-        try:
-            # src: from other switch
-            src_dpid, src_port_no = LLDPPacket.lldp_parse(msg.data)
-            # dst: this switch
-            dst_dpid, dst_port_no = datapath.id, msg.match['in_port']
+        pkt = packet.Packet(msg.data)
+        eth = pkt.get_protocols(ethernet.ethernet)[0]
 
-            if src_dpid > 1024 or dst_dpid > 1024:
-                # hack: ignote illegal switch
+
+        ###########################################################
+        if eth.ethertype == ether_types.ETH_TYPE_LLDP:        
+            print("Inside Packet ,LLDPPacket is received")
+            try:
+                # src: from other switch
+                src_dpid, src_port_no = LLDPPacket.lldp_parse(msg.data)
+
+                # dst: this switch
+                dst_dpid, dst_port_no = datapath.id, msg.match['in_port']
+                print("src_dpid is ",src_dpid," dst_dpid is ",dst_dpid)    
+                if src_dpid > 1024 or dst_dpid > 1024:
+                    # hack: ignote illegal switch
+                    print(" src_dpid > 1024 or dst_dpid > 1024:")
+                    return
+    
+                switch = api.get_switch(self, src_dpid)
+                print(" api.get_switch(self, src_dpid) = ",api.get_switch(self, src_dpid))
+                # not this topology switch
+                if len(switch) != 0:
+                    print("len(switch) !=0 so i will return")
+                    return
+    
+                # send cross domain link add
+                self.local_lib.send_cross_domain_link(dst_dpid, dst_port_no, src_dpid, src_port_no)
+    
+                # add global port
+                self.global_port.setdefault(dst_dpid, [])
+                self.global_port[dst_dpid].append(dst_port_no)
+                print("at line 107 I will return")
                 return
-
-            switch = api.get_switch(self, src_dpid)
-
-            # not this topology switch
-            if len(switch) != 0:
-                return
-
-            # send cross domain link add
-            self.local_lib.send_cross_domain_link(dst_dpid, dst_port_no, src_dpid, src_port_no)
-
-            # add global port
-            self.global_port.setdefault(dst_dpid, [])
-            self.global_port[dst_dpid].append(dst_port_no)
-
-            return
-        except LLDPPacket.LLDPUnknownFormat:
-            # This handler can receive all the packtes which can be
-            # not-LLDP packet. Ignore it silently
-            pass
+            except LLDPPacket.LLDPUnknownFormat:
+                # This handler can receive all the packtes which can be
+                # not-LLDP packet. Ignore it silently
+                print("exception error")
+                pass
 
         # non-LLDP
         # local routing
@@ -74,7 +120,7 @@ class LocalControllerApp(app_manager.RyuApp):
         eth = pkt.get_protocols(ethernet.ethernet)[0]
         src = eth.src
         dst = eth.dst
-
+        print("localy.py ; msg from ",eth.src, " is going to ",eth.dst)
         if dst not in self.local_lib.hosts:
             # can't find host in local topology
             # ask global and let this msg queued
@@ -84,6 +130,7 @@ class LocalControllerApp(app_manager.RyuApp):
             if dst == 'ff:ff:ff:ff:ff:ff':
                 self._flood_packet(msg)
                 return
+            print("local.py ; self.local_lib.hosts ",    self.local_lib.hosts)
             self.route_list.append((dst, msg))
             self.local_lib.get_route(dst)
             return
@@ -163,9 +210,10 @@ class LocalControllerApp(app_manager.RyuApp):
         match = parser.OFPMatch(in_port=in_port, eth_dst=dst)
 
         if msg.buffer_id != ofproto.OFP_NO_BUFFER:
-            self._add_flow(datapath, 1, match, actions, msg.buffer_id)
+            self._add_flow(datapath, 1, match, actions, msg.buffer_id,idle=10,hard=20)
         else:
-            self._add_flow(datapath, 1, match, actions)
+            self._add_flow(datapath, 1, match, actions,idle=10,hard=20)
+
 
     def _packet_out_to(self, msg, dst_dpid, dst_out_port):
         dp = msg.datapath
@@ -195,7 +243,7 @@ class LocalControllerApp(app_manager.RyuApp):
             out_port = self._get_out_port(path[0], path[1])
             self._packet_out(msg, out_port)
 
-    def _add_flow(self, datapath, priority, match, actions, buffer_id=None):
+    def _add_flow(self, datapath, priority, match, actions, buffer_id=None, idle=0, hard=0):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
 
@@ -203,10 +251,12 @@ class LocalControllerApp(app_manager.RyuApp):
                                              actions)]
         if buffer_id:
             mod = parser.OFPFlowMod(datapath=datapath, buffer_id=buffer_id,
+                                    idle_timeout=idle, hard_timeout=hard,
                                     priority=priority, match=match,
                                     instructions=inst)
         else:
             mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
+                                    idle_timeout=idle, hard_timeout=hard,
                                     match=match, instructions=inst)
         datapath.send_msg(mod)
 
@@ -250,17 +300,41 @@ class LocalControllerApp(app_manager.RyuApp):
     def ask_dpid_handler(self, ev):
         dpid = ev.dpid
         switch = api.get_switch(self, dpid)
-
+        print("at Line 264")
         if len(switch) != 0:
             self.local_lib.response_dpid(dpid)
+            print("at Line 267")
 
     @set_ev_cls(local_lib.EventAskHost, MAIN_DISPATCHER)
     def ask_host_handler(self, ev):
         host_mac = ev.host
-
+        print("at Line 272")
         if host_mac in self.local_lib.hosts:
             self.local_lib.response_host(host_mac)
 
     @set_ev_cls(local_lib.EventHostDiscovery, MAIN_DISPATCHER)
     def host_discovery_handler(self, ev):
         LOG.debug('Discover host %s on %s, port %d', ev.host, ev.dpid, ev.port)
+
+
+##########################
+    @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER) #create miss flow entry then send it
+    def _switch_features_handler(self, ev):
+        print ("switch_features_handler is called")
+        datapath = ev.msg.datapath
+        print ("switch_features_handler is called for ",datapath.id)
+        datapath = ev.msg.datapath
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        # install table-miss flow entry
+        #
+        # We specify NO BUFFER to max_len of the output action due to
+        # OVS bug. At this moment, if we specify a lesser number, e.g.,
+        # 128, OVS will send Packet-In with invalid buffer_id and
+        # truncated packet data. In that case, we cannot output packets
+        # correctly.  The bug has been fixed in OVS v2.1.0.
+        match = parser.OFPMatch()
+        actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
+                                          ofproto.OFPCML_NO_BUFFER)]
+        #self._add_flow(datapath, 0, match, actions)
