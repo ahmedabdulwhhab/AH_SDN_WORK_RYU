@@ -337,4 +337,4 @@ class LocalControllerApp(app_manager.RyuApp):
         match = parser.OFPMatch()
         actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
                                           ofproto.OFPCML_NO_BUFFER)]
-        #self._add_flow(datapath, 0, match, actions)
+        self._add_flow(datapath, 0, match, actions)
