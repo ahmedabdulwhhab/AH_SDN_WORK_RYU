@@ -105,7 +105,7 @@ class LocalControllerApp(app_manager.RyuApp):
                 # add global port
                 self.global_port.setdefault(dst_dpid, [])
                 self.global_port[dst_dpid].append(dst_port_no)
-                print("at line 107 I will return")
+                print("at line 108 I will return")
                 return
             except LLDPPacket.LLDPUnknownFormat:
                 # This handler can receive all the packtes which can be

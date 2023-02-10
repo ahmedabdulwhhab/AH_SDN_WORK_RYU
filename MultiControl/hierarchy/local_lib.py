@@ -210,6 +210,7 @@ class LocalControllerLib(app_manager.RyuApp):
     def send(self, msg):
         print("local_lib.py ; i will send msg ",msg)
         if self.send_q != None:
+            print("local_lib is ready to send msg")
             self.send_q.put(msg)
 
     def send_cross_domain_link(self, local_dpid, local_port, out_dpid, out_port):

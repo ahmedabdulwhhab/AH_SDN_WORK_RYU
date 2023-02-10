@@ -235,7 +235,7 @@ class GlobalAgent(object):
         while self.is_active:
             try:
                 _buf = self.socket.recv(128)
-
+                print("at line 238 rec is ",_buf)
                 if len(_buf) == 0:
                     LOG.info('connection fail, close')
                     self.is_active = False
