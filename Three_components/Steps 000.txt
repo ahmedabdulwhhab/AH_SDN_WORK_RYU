@@ -1,0 +1,15 @@
+
+
+
+
+from mininet 
+set gateway
+h3 ip route add default via 172.16.20.1
+
+
+curl -X PUT http://192.168.1.8:8082/firewall/module/enable/0000000000000001
+
+curl -X POST -d '{"nw_src": "10.0.0.1/32", "nw_dst": "10.0.1.2/32", "nw_proto": "ICMP"}' http://192.168.1.8:8082/firewall/rules/0000000000000001
+
+curl -X POST -d '{"nw_src": "10.0.0.2/32", "nw_dst": "10.0.0.2/32", "nw_proto": "ICMP"}' http://192.168.1.8:8082/firewall/rules/0000000000000001
+
