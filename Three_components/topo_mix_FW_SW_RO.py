@@ -43,8 +43,7 @@ class MyTopo(Topo):
 
         net.build()
         c1.start()
-        c2.start()
-        c3.start()
+
         sw_1.start([c1])
         sw_2.start([c1])
         ro_1.start([c1])
