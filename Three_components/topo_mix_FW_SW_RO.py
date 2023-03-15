@@ -18,10 +18,10 @@ class MyTopo(Topo):
         c2 = net.addController('c2', controller=RemoteController, ip="127.0.0.1", port=6633)
         c3 = net.addController('c3', controller=RemoteController, ip="127.0.0.1", port=6634)
 
-        h1 = net.addHost( 'h1', ip='10.0.0.1/24', mac='00:00:00:00:00:01' )
-        h2 = net.addHost( 'h2', ip='10.0.0.2/24', mac='00:00:00:00:00:02' )
-        h3 = net.addHost( 'h3', ip='10.0.1.3/8', mac='00:00:00:00:00:03' )
-        h4 = net.addHost( 'h4', ip='10.0.1.4/8', mac='00:00:00:00:00:04' )
+        h1 = net.addHost( 'h1', ip='10.0.0.2/24', mac='00:00:00:00:00:01' )
+        h2 = net.addHost( 'h2', ip='10.0.0.3/24', mac='00:00:00:00:00:02' )
+        h3 = net.addHost( 'h3', ip='100.0.0.2/8', mac='00:00:00:00:00:03' )
+        h4 = net.addHost( 'h4', ip='100.0.0.3/8', mac='00:00:00:00:00:04' )
 
         # For 2 host 2 switch Topology
 
