@@ -1,5 +1,5 @@
 ryu controller
- clear ; sudo ryu-manager   simple_switch_13_custom.py rest_router_custom.py rest_firewall_custom.py  /home/ubuntu/sdn/sources/flowmanager/flowmanager.py   --observe-links --ofp-tcp-listen-port 6632 --wsapi-port 8085
+ clear ; sudo ryu-manager   ryu.app.ofctl_rest simple_switch_13_custom.py rest_router_custom.py rest_firewall_custom.py  /home/ubuntu/sdn/sources/flowmanager/flowmanager.py   --observe-links --ofp-tcp-listen-port 6632 --wsapi-port 8085
 ##############################
  h1 ifconfig
 h1-eth0   Link encap:Ethernet  HWaddr 00:00:00:00:00:01
@@ -59,16 +59,36 @@ PING 100.0.0.1 (100.0.0.1) 56(84) bytes of data.
 rtt min/avg/max/mdev = 10.683/13.895/18.093/3.107 ms
 
 ##################################
+#firewall 0000000000000031
 
+curl -X PUT http://192.168.1.8:8085/firewall/module/enable/0000000000000031
 
-curl -X PUT http://192.168.1.8:8082/firewall/module/enable/0000000000000001
+#curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/32", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+curl -X POST -d '{"nw_src": "10.0.0.2", "nw_dst": "100.0.0.3", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "100.0.0.1/8", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "100.0.0.1/8", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
 
-curl -X POST -d '{"nw_src": "10.0.0.1/32", "nw_dst": "10.0.1.2/32", "nw_proto": "ICMP"}' http://192.168.1.8:8082/firewall/rules/0000000000000001
-
-curl -X POST -d '{"nw_src": "10.0.0.2/32", "nw_dst": "10.0.0.2/32", "nw_proto": "ICMP"}' http://192.168.1.8:8082/firewall/rules/0000000000000001
+curl -X POST -d '{"nw_src": "10.0.0.2/24", "nw_dst": "10.0.0.2/8", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
 
 #firewall
+to enable ping from h1/h2 to router port 10.0.0.1
+ curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+ 
+ 
+ to enable ping from h1/h2 to router port 100.0.0.1
+ curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "100.0.0.1", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+ curl -X POST -d '{"nw_src": "100.0.0.1", "nw_dst": "10.0.0.1/24", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
 
+
+
+ to enable ping from h1 to router port 100.0.0.2
+ curl -X POST -d '{"nw_src": "10.0.0.2", "nw_dst": "100.0.0.2", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+ curl -X POST -d '{"nw_src": "100.0.0.2", "nw_dst": "10.0.0.2", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+ 
+ 
+ to enable ping from h2 to router port 100.0.0.2
+ curl -X POST -d '{"nw_src": "10.0.0.3", "nw_dst": "100.0.0.3", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
+ curl -X POST -d '{"nw_src": "100.0.0.3", "nw_dst": "10.0.0.3", "nw_proto": "ICMP"}' http://192.168.1.8:8085/firewall/rules/0000000000000031
 
 
 

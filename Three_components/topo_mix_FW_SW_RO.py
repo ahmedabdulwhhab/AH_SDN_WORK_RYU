@@ -14,9 +14,8 @@ class MyTopo(Topo):
     def emptyNet():
         net = Mininet(controller=RemoteController, switch=OVSKernelSwitch)
 
-        c1 = net.addController('c1', controller=RemoteController, ip="192.168.0.106", port=6632)
-        c2 = net.addController('c2', controller=RemoteController, ip="127.0.0.1", port=6633)
-        c3 = net.addController('c3', controller=RemoteController, ip="127.0.0.1", port=6634)
+        c1 = net.addController('c1', controller=RemoteController, ip="192.168.1.8", port=6632)
+        
 
         h1 = net.addHost( 'h1', ip='10.0.0.2/24', mac='00:00:00:00:00:01' )
         h2 = net.addHost( 'h2', ip='10.0.0.3/24', mac='00:00:00:00:00:02' )
@@ -48,8 +47,12 @@ class MyTopo(Topo):
         c3.start()
         sw_1.start([c1])
         sw_2.start([c1])
-        ro_1.start([c2])
-        fw_1.start([c3])
+        ro_1.start([c1])
+        fw_1.start([c1])
+        h1.cmd('ip route add default via 10.0.0.1')
+        h2.cmd('ip route add default via 10.0.0.1')
+        h3.cmd('ip route add default via 100.0.0.1')
+        h4.cmd('ip route add default via 100.0.0.1')
 
 
         net.start()
