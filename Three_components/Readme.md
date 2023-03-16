@@ -11,6 +11,6 @@ for this link on youtube for more
 https://youtu.be/gIoki9wpsqw
     <br>
     h1 can ping h2 h3 <br>
-    h2 can ping h1 h43 <br>
-    h3 can ping h1 h43 <br>
-    h4 can ping h2 h33 <br>
+    h2 can ping h1 h4 <br>
+    h3 can ping h1 h4 <br>
+    h4 can ping h2 h3 <br>
