@@ -1,0 +1,193 @@
+0:00:00.000,0:00:15.031
+In the Name of Allah we are staring
+Al-salam Alekom 
+Peace be upon you
+
+0:00:15.031,0:00:35.027
+Let us talk about simple topology, consists of 4 hosts, two layer 2 simple switch, single router, single firewall.
+
+0:00:35.027,0:00:50.024
+sw_1 and sw_2 are layer 2. datapath id (unique) are 1 and 2
+
+0:00:50.024,0:01:10.020
+ro_1 is router datapath id (unique) is 21 in hexadecimal
+
+0:01:10.020,0:01:25.017
+fw_1 is firewall datapath id (unique) is 31 in hexadecimal
+
+0:01:25.017,0:01:40.014
+identify class of each ip.
+host 1 and host 2 are in same class 10.0.0.2, 10.0.0.3 /24 for mask
+host 3 and host 4 are in same class 100.0.0.2, 100.0.0.3 /8 for mask
+
+0:01:40.014,0:01:45.013
+sw_1 and sw_2 are layer 2. datapath id (unique) are 1 and 2
+
+0:01:45.013,0:01:50.012
+ro_1 is router datapath id (unique) is 21 in hexadecimal
+
+0:01:55.011,0:02:00.010
+fw_1 is firewall datapath id (unique) is 31 in hexadecimal
+
+0:02:00.010,0:02:04.009
+in order to run single ryu-manager session, I select fixed values for datapath id
+
+0:02:04.009,0:02:10.008
+controller which ryu will run on has ip 192.168.1 at port 6632
+
+0:02:10.008,0:02:13.007
+we have to modify official copy of rest_firewall, rest_router and simple switch layer 2.
+
+0:02:13.007,0:02:15.007
+as we have two networks, we must define gateway for each host.
+h1,h2 gateway is 10.0.0.1
+h3,h4 gateway is 100.0.0.1
+
+0:02:15.007,0:02:17.007
+our requirements are host1 can ping both h2, h3.
+also our requirements are host2 can ping both h1, h4.
+
+0:02:17.007,0:02:20.006
+our topology 2 hosts ---> simple switch ---> firewall ---> router ---> simp switch ---> h3,4
+
+0:02:20.006,0:02:25.005
+three putty terminals.
+sudo mn -c; sudo python 3 topo_1.python
+
+0:02:25.005,0:02:30.004
+clear ; sudo ryu-manager   ryu.app.ofctl_rest simple_switch_13_custom.py rest_router_custom.py rest_firewall_custom.py  /home/ubuntu/sdn/sources/flowmanager/flowmanager.py   --observe-links --ofp-tcp-listen-port 6632 --wsapi-port 8085
+
+0:02:30.004,0:02:33.003
+sh conf.sh
+-------------
+
+0:02:33.003,0:02:40.003
+for ryu-manager
+ryu.app.ofctl_rest 
+simple_switch_13_custom.py 
+rest_router_custom.py 
+rest_firewall_custom.py 
+flowmanager/flowmanager.py
+--ofp-tcp-listen-port 6632 
+--wsapi-port 8085
+
+0:02:37.003,0:02:41.002
+In the name of Allah we are starting
+once you run controller
+take a look for flow table
+
+0:02:41.002,0:02:44.002
+switch 1,2  will have two roles (one for miss flow rule, other for flowmanager)
+
+0:02:44.002,0:03:48.002
+switch 33 will have configuration of firewall (controller, controller, drop , normal)
+
+0:03:48.002,0:04:00.002
+switch 49 will have configuration of router (controller drop, normal, controller)
+
+0:04:00.002,0:04:20.002
+let us run conf.sh through shell to see results.
+after that we will run line by line as step by step
+
+0:04:20.002,0:04:55.002
+in breif
+21 is router we need to add two ip addresses for both sides.
+firewall needs to enables
+
+0:04:55.002,0:05:10.002
+firewall lines is enable newtork id 10.0.0.x to communicate to route via firewall
+
+0:05:10.002,0:05:40.500
+sh conf.sh
+not found 33: has no importance.
+neglect it
+
+0:05:40.500,0:06:10.500
+h1 can ping h2,h3
+h2 can ping h1, h4
+h3 to h2, h4
+h4 to h2 ,h3
+
+0:06:10.500,0:06:15.000
+let us start again
+sudo mn -c; sudo python3 topo_1.py
+
+0:06:15.000,0:06:25.000
+step by step
+21 in hexadecimal.
+
+0:06:25.500,0:06:40.000
+note 
+src,dst 10.0.0.0/ 255.255.255.0 output is normal
+some roles will be added after adding ip for router
+same network can ping each other. as both in same network but firewall is located before router.
+
+0:06:40.000,0:06:55.500
+same line 100.0.0.1/8 for other router port
+100.0.0.1/255.0.0.0
+
+0:06:55.500,0:07:05.000
+enable for firewall
+drop line was removed from roles after enable firewall
+
+0:07:05.000,0:07:17.500
+enable h1/h2 to be able to ping gateway
+h1 ,h2 , router to firewall is in same network class
+
+0:07:17.500,0:07:27.750
+10.0.0.0/255.255.255.0 output is normal now
+h1 can ping router now
+
+0:10:55.000,0:11:05.000
+let us enable h1,h2 to ping other router port 100.0.0.1
+let h1 ping 100.0.0.1
+
+0:11:05.000,0:11:35.000
+confirm src and dst to allow icmp
+so 
+'{"nw_src": "10.0.0.1/24", "nw_dst": "100.0.0.1", 
+'{"nw_src": "100.0.0.1", "nw_dst": "10.0.0.1/24", 
+now h1, h2 can ping 100.0.0.1
+
+0:11:35.250,0:11:56.000
+let us allow h1 to ping h3
+'{"nw_src": "10.0.0.2", "nw_dst": "100.0.0.2",
+'{"nw_src": "100.0.0.2", "nw_dst": "10.0.0.2",
+we don't add "/" as we specify single address to connect
+
+0:11:56.500,0:12:16.750
+All praise and Thanks To Allah
+the rest is 
+let us allow h2 to ping h4
+'{"nw_src": "10.0.0.3", "nw_dst": "100.0.0.3",
+'{"nw_src": "100.0.0.3", "nw_dst": "10.0.0.3",
+we don't add "/" as we specify single address to connect
+before this line block occurs
+
+0:12:16.014,0:12:26.014
+pingall
+
+0:12:26.014,0:12:30.012
+the modification for official router / firewall/ simple switch
+is
+
+0:12:30.012,0:12:45.009
+let us search by ahmed in file rest_firewall_custom.py
+if(dp.id != 49):
+	returm
+
+0:12:45.009,0:13:10.006
+	if datapath id not equal 49 leave without registering or adding any role
+
+0:13:10.010,0:13:25.007
+let us search by ahmed in file simple_switch_custom.py
+if(dp.id >3):
+	return
+
+0:13:25.007,0:13:40.004
+if datapath id  is greater than 3 leave without registering or adding any role
+
+0:13:40.004,0:13:55.001
+let us search by ahmed in file rest_router_custom.py
+if(dp.id != 33):
+	return
