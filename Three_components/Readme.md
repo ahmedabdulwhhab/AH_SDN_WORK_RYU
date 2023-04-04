@@ -1,5 +1,5 @@
 <br>
-In The Name of Allah, <br>
+In The Name of Allah , we are starting, <br>
 in this project, two simple switches layer 2 are configured (datapath id is 1 and 2) <br>
 router datapath id is 33 (hex 21) <br>
 <firewall datapath id is 49 (hex 31) <br>
