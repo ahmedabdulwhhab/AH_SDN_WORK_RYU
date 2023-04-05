@@ -39,7 +39,7 @@ class SimpleSwitch13(app_manager.RyuApp):
         datapath = ev.msg.datapath
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
-        if(datapath.id > 4):      #Ahemd Abdulwhhab
+        if(datapath.id > 6):      #Ahemd Abdulwhhab
             return
         # install table-miss flow entry
         #
@@ -89,7 +89,7 @@ class SimpleSwitch13(app_manager.RyuApp):
             return
         dst = eth.dst
         src = eth.src
-        if(datapath.id > 4):      #Ahemd Abdulwhhab
+        if(datapath.id > 6):      #Ahemd Abdulwhhab
             return
         dpid = format(datapath.id, "d").zfill(16)
         self.mac_to_port.setdefault(dpid, {})
