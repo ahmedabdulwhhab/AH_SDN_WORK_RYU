@@ -1,5 +1,5 @@
 ryu controller
- clear ; sudo ryu-manager   simple_switch_13_custom.py rest_router_custom.py rest_firewall_custom.py  /home/ubuntu/sdn/sources/flowmanager/flowmanager.py   --observe-links --ofp-tcp-listen-port 6632 --wsapi-port 8085
+ryu-manager   ryu.app.ofctl_rest stp_custom.py rest_router_custom.py rest_firewall_custom.py    --observe-links --ofp-tcp-listen-port 6633 --wsapi-port 8086
 ##############################
  h1 ifconfig
  inet 192.168.10.5  netmask 255.255.255.0  broadcast 192.168.10.255
