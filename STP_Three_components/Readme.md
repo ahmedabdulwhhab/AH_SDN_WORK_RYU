@@ -13,7 +13,7 @@ clear ; sudo ryu-manager   stp_custom.py simple_switch_13_custom.py rest_router_
 
 
 
-<video>
+<br>
   https://youtu.be/BnibijGTgTQ
 
 
