@@ -1,0 +1,99 @@
+https://john.soban.ski/how-to-install-opendaylight-as-a-service-on-ubuntu.html
+https://www.brianlinkletter.com/2016/02/using-the-opendaylight-sdn-controller-with-the-mininet-network-emulator/#:~:text=To%20run%20OpenDaylight%2C%20run%20the%20karaf%20command%20inside,distribution-karaf-0.4.0-Beryllium%20brian%40odl%3A~%24.%2Fbin%2Fkaraf%20Now%20the%20OpenDaylight%20controller%20is%20running.
+
+
+sudo apt-get update
+sudo apt-get -y install unzip vim wget
+sudo apt-get -y install openjdk-8-jre
+sudo update-alternatives --config java				#error
+java --version					#Error also
+
+sudo apt update
+sudo apt install default-jre
+java --version
+Result is
+	 java --version
+openjdk 11.0.18 2023-01-17
+OpenJDK Runtime Environment (build 11.0.18+10-post-Ubuntu-0ubuntu120.04.1)
+OpenJDK 64-Bit Server VM (build 11.0.18+10-post-Ubuntu-0ubuntu120.04.1, mixed mode, sharing)
+ubuntu@ubuntu:~$
+
+
+for me
+ls /usr/lib/jvm/java-8-openjdk-amd64/jre/
+show following results
+ASSEMBLY_EXCEPTION  THIRD_PARTY_README  bin  lib  man
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
+
+##### to download karaf 0.9.1
+
+wget https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/karaf/0.9.1/karaf-0.9.1.zip
+
+
+
+sudo mkdir /usr/local/karaf
+
+ls
+
+sudo mv karaf-0.9.1.zip /usr/local/karaf
+
+sudo unzip /usr/local/karaf/karaf-0.9.1.zip -d /usr/local/karaf/
+
+ubuntu@ubuntu:/usr/local/karaf/karaf-0.9.1$ sudo -E ./bin/karaf                Apache Karaf starting up. Press Enter to open the shell now...
+100% [========================================================================]
+
+Karaf started in 1s. Bundle stats: 13 active, 13 total
+
+
+ubuntu@ubuntu:/usr/local/karaf/karaf-0.9.1$ sudo -E ./bin/karaf                karaf: JAVA_HOME is not valid: /usr/lib/jvm/java-7-openjdk-amd64/
+
+  cd /usr/local/karaf/karaf-0.9.1/
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ && sudo -E ./bin/karaf -clear
+
+ubuntu@ubuntu:/usr/local/karaf/karaf-0.9.1$ sudo -E ./bin/karaf
+
+
+sdn@odl:/usr/local/karaf/karaf-0.9.1$ sudo -E karaf	
+
+ls
+
+
+##### to download distribution-karaf/0.4.0-Beryllium/distribution-karaf-0.4.0-Beryllium  other version of karaf
+
+sudo wget https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.4.0-Beryllium/distribution-karaf-0.4.0-Beryllium.tar.gz
+
+sudo apt-get update
+sudo apt-get install default-jre-headless
+
+sudo vim ~/.bashrc
+Add the following line to the bashrc file:
+
+ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+Then run the file:
+
+source ~/.bashrc
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ ; sudo ./bin/karaf clear
+http://192.168.0.107:8181/index.html
+
+feature:install odl-restconf odl-l2switch-switch odl-mdsal-apidocs odl-dlux-all
+////////////////////////// to run after decompression
+
+cd ..
+cd ..
+cd usr
+cd local
+cd karaf
+cd karaf-0.9.1
+cd bin
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown OpenDaylight.
+
+opendaylight-user@root> feature:install odl-restconf odl-l2switch-switch odl-mdsal-apidocs odl-dlux-all
+
+feature:list | grep dlux

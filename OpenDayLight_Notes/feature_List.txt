@@ -1,0 +1,9 @@
+
+sudo apt-get install maven git openjdk-8-jre openjdk-8-jdk unzip
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+
+feature:install odl-openflowplugin-app-topology odl-bgpcep-topology-api odl-controller-model-topology odl-openflowplugin-app-topology-manager
+
+
+

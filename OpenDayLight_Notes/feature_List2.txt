@@ -1,0 +1,617 @@
+
+
+opendaylight-user@root>feature:list
+Name                                          | Version          | Installed | Repository                                  | Description                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+odl-openflowplugin-all-li                     | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: All
+odl-openflowplugin-southbound-li              | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: Li southBound A
+odl-openflowplugin-flow-services-li           | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: Flow Services
+odl-openflowplugin-nsf-services-li            | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: OpenflowPlugin :: NSF :: Services
+odl-openflowplugin-nsf-model-li               | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: OpenflowPlugin :: NSF :: Model
+odl-openflowplugin-flow-services-rest-li      | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: Flow Services :
+odl-openflowplugin-flow-services-ui-li        | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: Flow Services :
+odl-openflowplugin-drop-test-li               | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: Drop Test
+odl-openflowplugin-app-table-miss-enforcer-li | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: Application - t
+odl-openflowplugin-app-config-pusher-li       | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: app - default c
+odl-openflowplugin-app-lldp-speaker-li        | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: app lldp-speake
+odl-openflowplugin-app-bulk-o-matic-li        | 0.2.0-Beryllium  |           | openflowplugin-li-0.2.0-Beryllium           | OpenDaylight :: Openflow Plugin :: app bulk flow o
+odl-didm-ovs-all                              | 0.2.0-Beryllium  |           | odl-didm-ovs-0.2.0-Beryllium                | OpenDaylight :: DIDM Mininet reference driver
+odl-didm-ovs-impl                             | 0.2.0-Beryllium  |           | odl-didm-ovs-0.2.0-Beryllium                | OpenDaylight :: DIDM :: ovs :: Implementation
+odl-tcpmd5-all                                | 1.2.0-Beryllium  |           | odl-tcpmd5-1.2.0-Beryllium                  |                                    
+odl-tcpmd5-base                               | 1.2.0-Beryllium  |           | odl-tcpmd5-1.2.0-Beryllium                  |                                    
+odl-tcpmd5-netty                              | 1.2.0-Beryllium  |           | odl-tcpmd5-1.2.0-Beryllium                  |                                    
+odl-tcpmd5-nio                                | 1.2.0-Beryllium  |           | odl-tcpmd5-1.2.0-Beryllium                  |                                    
+framework-security                            | 3.0.3            |           | standard-3.0.3                              | OSGi Security for Karaf            
+standard                                      | 3.0.3            | x         | standard-3.0.3                              | Karaf standard feature             
+aries-annotation                              | 3.0.3            |           | standard-3.0.3                              | Aries Annotations                  
+wrapper                                       | 3.0.3            |           | standard-3.0.3                              | Provide OS integration             
+service-wrapper                               | 3.0.3            |           | standard-3.0.3                              | Provide OS integration (alias to wrapper feature)
+obr                                           | 3.0.3            |           | standard-3.0.3                              | Provide OSGi Bundle Repository (OBR) support
+config                                        | 3.0.3            | x         | standard-3.0.3                              | Provide OSGi ConfigAdmin support   
+region                                        | 3.0.3            | x         | standard-3.0.3                              | Provide Region Support             
+package                                       | 3.0.3            | x         | standard-3.0.3                              | Package commands and mbeans        
+http                                          | 3.0.3            | x         | standard-3.0.3                              | Implementation of the OSGI HTTP Service
+http-whiteboard                               | 3.0.3            |           | standard-3.0.3                              | Provide HTTP Whiteboard pattern support
+war                                           | 3.0.3            | x         | standard-3.0.3                              | Turn Karaf as a full WebContainer  
+jetty                                         | 8.1.15.v20140411 |           | standard-3.0.3                              |                                    
+kar                                           | 3.0.3            | x         | standard-3.0.3                              | Provide KAR (KARaf archive) support
+webconsole                                    | 3.0.3            |           | standard-3.0.3                              | Base support of the Karaf WebConsole
+ssh                                           | 3.0.3            | x         | standard-3.0.3                              | Provide a SSHd server on Karaf     
+management                                    | 3.0.3            | x         | standard-3.0.3                              | Provide a JMX MBeanServer and a set of MBeans in K
+scheduler                                     | 3.0.3            |           | standard-3.0.3                              | Provide a scheduler service in Karaf to fire event
+eventadmin                                    | 3.0.3            |           | standard-3.0.3                              | OSGi Event Admin service specification for event-b
+jasypt-encryption                             | 3.0.3            |           | standard-3.0.3                              | Advanced encryption support for Karaf security
+scr                                           | 3.0.3            |           | standard-3.0.3                              | Declarative Service support        
+blueprint-web                                 | 3.0.3            |           | standard-3.0.3                              | Provides an OSGI-aware Servlet ContextListener for
+odl-lacp-plugin                               | 1.1.0-Beryllium  |           | lacp-1.1.0-Beryllium                        | Opendaylight :: LACP :: Plugin     
+odl-lacp-rest                                 | 1.1.0-Beryllium  |           | lacp-1.1.0-Beryllium                        | Opendaylight :: LACP :: Plugin :: Rest
+odl-lacp-ui                                   | 1.1.0-Beryllium  |           | lacp-1.1.0-Beryllium                        | Opendaylight :: LACP :: Plugin :: UI
+odl-l2switch-all                              | 0.3.0-Beryllium  |           | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: All    
+odl-l2switch-switch                           | 0.3.0-Beryllium  | x         | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: Switch 
+odl-l2switch-switch-rest                      | 0.3.0-Beryllium  |           | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: Switch 
+odl-l2switch-switch-ui                        | 0.3.0-Beryllium  |           | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: Switch 
+odl-l2switch-hosttracker                      | 0.3.0-Beryllium  | x         | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: HostTracker
+odl-l2switch-addresstracker                   | 0.3.0-Beryllium  | x         | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: AddressTracker
+odl-l2switch-arphandler                       | 0.3.0-Beryllium  | x         | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: ArpHandler
+odl-l2switch-loopremover                      | 0.3.0-Beryllium  | x         | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: LoopRemover
+odl-l2switch-packethandler                    | 0.3.0-Beryllium  | x         | l2switch-0.3.0-Beryllium                    | OpenDaylight :: L2Switch :: PacketHandler
+cxf-specs                                     | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-jaxb                                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-abdera                                    | 3.0.2            |           | cxf-3.0.2                                   |                                    
+wss4j                                         | 2.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-core                                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-wsdl                                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-policy                                 | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-addr                                   | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-rm                                     | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-mex                                    | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-security                               | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-rt-security                               | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-http                                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-http-jetty                                | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-http-async                                | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-http-netty-client                         | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-http-netty-server                         | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bindings-soap                             | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-jaxws                                     | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-jaxrs                                     | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-rs-security-xml                           | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-rs-security-sso-saml                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-rs-security-cors                          | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-rs-security-oauth                         | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-rs-security-oauth2                        | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-databinding-aegis                         | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-databinding-jibx                          | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-databinding-jaxb                          | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-databinding-xmlbeans                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-features-clustering                       | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bindings-corba                            | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bindings-coloc                            | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bindings-object                           | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-transports-local                          | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-transports-jms                            | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-transports-udp                            | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-transports-websocket-client               | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-transports-websocket-server               | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-javascript                                | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-frontend-javascript                       | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-xjc-runtime                               | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-tools                                     | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf                                           | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-sts                                       | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-wsn-api                                   | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-wsn                                       | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-discovery-api                          | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-ws-discovery                              | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bean-validation-core                      | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bean-validation                           | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-bean-validation-java6                     | 3.0.2            |           | cxf-3.0.2                                   |                                    
+cxf-management-web                            | 3.0.2            |           | cxf-3.0.2                                   |                                    
+odl-aaa-api                                   | 0.3.0-Beryllium  | x         | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: APIs        
+odl-tsdr-hsqldb-all                           | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: With hsqldb Persistence an
+odl-tsdr-openflow-statistics-collector        | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: Openflow Statistics Collec
+odl-tsdr-netflow-statistics-collector         | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: Netflow Statistics Collect
+odl-tsdr-controller-metrics-collector         | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: Controller Metrics Collect
+odl-tsdr-snmp-data-collector                  | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: SNMP Data Collector
+odl-tsdr-syslog-collector                     | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: Syslog Collector
+odl-tsdr-core                                 | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: Core       
+odl-hbaseclient                               | 0.94.15          |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: HBase Client
+odl-tsdr-hbase                                | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: HBase Persistence
+odl-tsdr-cassandra                            | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: Cassandra Persistence
+odl-tsdr-hsqldb                               | 1.1.0-Beryllium  |           | odl-tsdr-1.1.0-Beryllium                    | OpenDaylight :: TSDR :: HSQLDB Persistence
+odl-mdsal-binding                             | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: Binding  
+odl-mdsal-dom                                 | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: DOM      
+odl-mdsal-common                              | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: DOM Broker
+odl-mdsal-dom-api                             | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: DOM API & SPI
+odl-mdsal-dom-broker                          | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: DOM Broker
+odl-mdsal-binding-base                        | 2.0.0-Beryllium  | x         | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: Binding Base Concepts
+odl-mdsal-binding-runtime                     | 2.0.0-Beryllium  | x         | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: Binding Generator
+odl-mdsal-binding-api                         | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: Binding Base Concepts
+odl-mdsal-binding-dom-adapter                 | 2.0.0-Beryllium  |           | odl-yangtools-2.0.0-Beryllium               | OpenDaylight :: MD-SAL :: Binding Generator
+odl-protocol-framework                        | 0.7.0-Beryllium  |           | odl-protocol-framework-0.7.0-Beryllium      | OpenDaylight :: Protocol Framework 
+odl-openflowplugin-all                        | 0.2.0-Beryllium  |           | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: All
+odl-openflowplugin-southbound                 | 0.2.0-Beryllium  | x         | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: SouthBound
+odl-openflowplugin-flow-services              | 0.2.0-Beryllium  | x         | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: Flow Services
+odl-openflowplugin-nsf-services               | 0.2.0-Beryllium  | x         | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: OpenflowPlugin :: NSF :: Services
+odl-openflowplugin-nsf-model                  | 0.2.0-Beryllium  | x         | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: OpenflowPlugin :: NSF :: Model
+odl-openflowplugin-flow-services-rest         | 0.2.0-Beryllium  |           | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: Flow Services :
+odl-openflowplugin-flow-services-ui           | 0.2.0-Beryllium  |           | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: Flow Services :
+odl-openflowplugin-drop-test                  | 0.2.0-Beryllium  |           | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: Drop Test
+odl-openflowplugin-app-table-miss-enforcer    | 0.2.0-Beryllium  |           | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: Application - t
+odl-openflowplugin-app-config-pusher          | 0.2.0-Beryllium  | x         | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: app - default c
+odl-openflowplugin-app-lldp-speaker           | 0.2.0-Beryllium  | x         | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: app lldp-speake
+odl-openflowplugin-app-bulk-o-matic           | 0.2.0-Beryllium  |           | openflowplugin-0.2.0-Beryllium              | OpenDaylight :: Openflow Plugin :: app bulk flow o
+odl-netide-api                                | 0.1.0-Beryllium  |           | odl-netide-0.1.0-Beryllium                  | OpenDaylight :: netide :: api      
+odl-netide-impl                               | 0.1.0-Beryllium  |           | odl-netide-0.1.0-Beryllium                  | OpenDaylight :: netide :: impl     
+odl-netide-rest                               | 0.1.0-Beryllium  |           | odl-netide-0.1.0-Beryllium                  | OpenDaylight :: Netide :: REST     
+odl-snmp4sdn-all                              | 0.3.0-Beryllium  |           | odl-snmp4sdn                                | OpenDaylight :: SNMP4SDN :: All    
+odl-snmp4sdn-snmp4sdn                         | 0.3.0-Beryllium  |           | odl-snmp4sdn                                | OpenDaylight :: SNMP4SDN :: Plugin 
+odl-bgpcep-dependencies                       | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-data-change-counter                | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-openflowplugin-nxm-extensions-li          | 0.2.0-Beryllium  |           | openflowplugin-extension-li-0.2.0-Beryllium | OpenDaylight :: Openflow Plugin :: Nicira Extensio
+pax-cdi                                       | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Provide CDI support                
+pax-cdi-1.1                                   | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Provide CDI 1.1 support            
+pax-cdi-1.2                                   | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Provide CDI 1.2 support            
+pax-cdi-weld                                  | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Weld CDI support                   
+pax-cdi-1.1-weld                              | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Weld CDI 1.1 support               
+pax-cdi-1.2-weld                              | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Weld CDI 1.2 support               
+pax-cdi-openwebbeans                          | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | OpenWebBeans CDI support           
+pax-cdi-web                                   | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Web CDI support                    
+pax-cdi-1.1-web                               | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Web CDI 1.1 support                
+pax-cdi-1.2-web                               | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Web CDI 1.2 support                
+pax-cdi-web-weld                              | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Weld Web CDI support               
+pax-cdi-1.1-web-weld                          | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Weld Web CDI 1.1 support           
+pax-cdi-1.2-web-weld                          | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | Weld Web CDI 1.2 support           
+pax-cdi-web-openwebbeans                      | 0.11.0           |           | org.ops4j.pax.cdi-0.11.0                    | OpenWebBeans Web CDI support       
+deltaspike-core                               | 1.2.1            |           | org.ops4j.pax.cdi-0.11.0                    | Apache Deltaspike core support     
+deltaspike-jpa                                | 1.2.1            |           | org.ops4j.pax.cdi-0.11.0                    | Apache Deltaspike jpa support      
+deltaspike-partial-bean                       | 1.2.1            |           | org.ops4j.pax.cdi-0.11.0                    | Apache Deltaspike partial bean support
+deltaspike-data                               | 1.2.1            |           | org.ops4j.pax.cdi-0.11.0                    | Apache Deltaspike data support     
+odl-aaa-shiro                                 | 0.3.0-Beryllium  | x         | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: Shiro       
+odl-of-config-southbound-api                  | 1.0.0-Beryllium  |           | odl-of-config-southbound-1.0.0-Beryllium    | OpenDaylight :: of-config:: southbound :: api
+odl-of-config-southbound-ofconfigmodels       | 1.0.0-Beryllium  |           | odl-of-config-southbound-1.0.0-Beryllium    | OpenDaylight :: of-config:: southbound :: ofconfig
+odl-of-config-southbound-all                  | 1.0.0-Beryllium  |           | odl-of-config-southbound-1.0.0-Beryllium    | OpenDaylight :: of-config:: southbound
+odl-of-config-southbound-rest                 | 1.0.0-Beryllium  |           | odl-of-config-southbound-1.0.0-Beryllium    | OpenDaylight :: of-config:: southbound :: REST
+odl-bgpcep-bmp                                | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-restconf-all                              | 1.3.0-Beryllium  |           | odl-controller-1.3.0-Beryllium              | OpenDaylight :: Restconf :: All    
+odl-restconf                                  | 1.3.0-Beryllium  | x         | odl-controller-1.3.0-Beryllium              | OpenDaylight :: Restconf           
+odl-restconf-noauth                           | 1.3.0-Beryllium  | x         | odl-controller-1.3.0-Beryllium              | OpenDaylight :: Restconf           
+odl-mdsal-apidocs                             | 1.3.0-Beryllium  | x         | odl-controller-1.3.0-Beryllium              | OpenDaylight :: MDSAL :: APIDOCS   
+odl-netconf-all                               | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: All     
+odl-netconf-api                               | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: API     
+odl-netconf-mapping-api                       | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Mapping API
+odl-netconf-util                              | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 |                                    
+odl-netconf-impl                              | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Impl    
+odl-config-netconf-connector                  | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Connector
+odl-netconf-netty-util                        | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Netty Util
+odl-netconf-client                            | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Client  
+odl-netconf-monitoring                        | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Monitoring
+odl-netconf-notifications-api                 | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Notification :: Api
+odl-netconf-notifications-impl                | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Monitoring :: Impl
+odl-netconf-ssh                               | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf Connector :: SSH
+odl-netconf-tcp                               | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf Connector :: TCP
+odl-netconf-mdsal                             | 1.3.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: Netconf :: Mdsal   
+odl-aaa-netconf-plugin                        | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: AAA :: ODL NETCONF Plugin
+odl-aaa-netconf-plugin-no-cluster             | 1.0.0-Beryllium  |           | odl-netconf-1.0.0-Beryllium                 | OpenDaylight :: AAA :: ODL NETCONF Plugin - NO CLU
+odl-benchmark-api                             | 1.1.0-Beryllium  |           | odl-dsbenchmark-1.1.0-Beryllium             | OpenDaylight :: dsbenchmark :: api 
+odl-dsbenchmark                               | 1.1.0-Beryllium  |           | odl-dsbenchmark-1.1.0-Beryllium             | OpenDaylight :: dsbenchmark ::     
+odl-ntfbenchmark                              | 1.1.0-Beryllium  |           | odl-dsbenchmark-1.1.0-Beryllium             | OpenDaylight :: ntfbenchmark ::    
+odl-mdsal-benchmark                           | 1.1.0-Beryllium  |           | odl-dsbenchmark-1.1.0-Beryllium             | OpenDaylight :: dsbenchmark ::     
+odl-of-config-all                             | 1.0.0-Beryllium  |           | odl-of-config-1.0.0-Beryllium               | OpenDaylight :: of-config :: ALL   
+odl-of-config-rest                            | 1.0.0-Beryllium  |           | odl-of-config-1.0.0-Beryllium               | OpenDaylight :: of-config :: rest  
+odl-aaa-authz                                 | 0.3.0-Beryllium  |           | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: Authorization
+odl-akka-all                                  | 1.6.0-Beryllium  |           | odl-controller-1.6.0-Beryllium              | OpenDaylight :: Akka :: All        
+odl-akka-scala                                | 2.11             | x         | odl-controller-1.6.0-Beryllium              | Scala Runtime for OpenDaylight     
+odl-akka-system                               | 2.3.14           | x         | odl-controller-1.6.0-Beryllium              | Akka Actor Framework System Bundles
+odl-akka-clustering                           | 2.3.14           | x         | odl-controller-1.6.0-Beryllium              | Akka Clustering                    
+odl-akka-leveldb                              | 0.7              | x         | odl-controller-1.6.0-Beryllium              | LevelDB                            
+odl-akka-persistence                          | 2.3.14           | x         | odl-controller-1.6.0-Beryllium              | Akka Persistence                   
+odl-bgpcep-rsvp                               | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-rsvp-dependencies                  | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-ovsdb-hwvtepsouthbound-api                | 1.2.1-Beryllium  |           | odl-ovsdb-hwvtepsouthbound-1.2.1-Beryllium  | OpenDaylight :: hwvtepsouthbound :: api
+odl-ovsdb-hwvtepsouthbound                    | 1.2.1-Beryllium  |           | odl-ovsdb-hwvtepsouthbound-1.2.1-Beryllium  | OpenDaylight :: hwvtepsouthbound   
+odl-ovsdb-hwvtepsouthbound-rest               | 1.2.1-Beryllium  |           | odl-ovsdb-hwvtepsouthbound-1.2.1-Beryllium  | OpenDaylight :: hwvtepsouthbound :: REST
+odl-ovsdb-hwvtepsouthbound-ui                 | 1.2.1-Beryllium  |           | odl-ovsdb-hwvtepsouthbound-1.2.1-Beryllium  | OpenDaylight :: hwvtepsouthbound :: UI
+odl-ovsdb-hwvtepsouthbound-test               | 1.2.1-Beryllium  |           | odl-ovsdb-hwvtepsouthbound-1.2.1-Beryllium  | OpenDaylight :: hwvtepsouthbound :: test
+cellar-core                                   | 3.0.3            |           | karaf-cellar-3.0.3                          | Karaf clustering core              
+hazelcast                                     | 3.4.2            |           | karaf-cellar-3.0.3                          | In memory data grid                
+cellar-hazelcast                              | 3.0.3            |           | karaf-cellar-3.0.3                          | Cellar implementation based on Hazelcast
+cellar-config                                 | 3.0.3            |           | karaf-cellar-3.0.3                          | ConfigAdmin cluster support        
+cellar-features                               | 3.0.3            |           | karaf-cellar-3.0.3                          | Karaf features cluster support     
+cellar-bundle                                 | 3.0.3            |           | karaf-cellar-3.0.3                          | Bundle cluster support             
+cellar-shell                                  | 3.0.3            |           | karaf-cellar-3.0.3                          | Cellar shell support               
+cellar                                        | 3.0.3            |           | karaf-cellar-3.0.3                          | Karaf clustering                   
+cellar-dosgi                                  | 3.0.3            |           | karaf-cellar-3.0.3                          | DOSGi support                      
+cellar-obr                                    | 3.0.3            |           | karaf-cellar-3.0.3                          | OBR cluster support                
+cellar-eventadmin                             | 3.0.3            |           | karaf-cellar-3.0.3                          | OSGi events broadcasting in clusters
+cellar-cloud                                  | 3.0.3            |           | karaf-cellar-3.0.3                          | Cloud blobstore support in clusters
+cellar-kubernetes                             | 3.0.3            |           | karaf-cellar-3.0.3                          | Cellar kubernetes support in clusters
+cellar-webconsole                             | 3.0.3            |           | karaf-cellar-3.0.3                          | Cellar plugin for Karaf WebConsole 
+odl-sfc-model                                 | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: Model       
+odl-sfc-provider                              | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: Provider    
+odl-sfc-provider-rest                         | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: Provider    
+odl-sfc-netconf                               | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: Netconf            
+odl-sfc-ovs                                   | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: OpenvSwitch        
+odl-sfc-scf-openflow                          | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc-scf-openflow   
+odl-sfcofl2                                   | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfcofl2            
+odl-sfclisp                                   | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfclisp :: all     
+odl-sfc-sb-rest                               | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc-sb-rest        
+odl-sfc-ui                                    | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: UI          
+odl-sfc-bootstrap                             | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: Provider    
+odl-sfc-test-consumer                         | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: Test :: Consumer
+odl-sfc-vnfm-tacker                           | 0.2.0-Beryllium  |           | odl-sfc-0.2.0-Beryllium                     | OpenDaylight :: sfc :: Vnfm :: Tacker
+odl-didm-util                                 | 0.2.0-Beryllium  |           | odl-didm-0.2.0-Beryllium                    | OpenDaylight :: didm-util :: Util  
+odl-didm-all                                  | 0.2.0-Beryllium  |           | odl-didm-0.2.0-Beryllium                    | OpenDaylight :: Device Identification and Driver M
+odl-didm-identification                       | 0.2.0-Beryllium  |           | odl-didm-0.2.0-Beryllium                    | OpenDaylight :: Device Identification and Driver M
+odl-didm-drivers                              | 0.2.0-Beryllium  |           | odl-didm-0.2.0-Beryllium                    | OpenDaylight :: Device Identification and Driver M
+odl-usc-agent                                 | 1.1.0-Beryllium  |           | odl-usc-1.1.0-Beryllium                     | OpenDaylight :: USC :: Agent       
+odl-usc-api                                   | 1.1.0-Beryllium  |           | odl-usc-1.1.0-Beryllium                     | OpenDaylight :: USC :: API         
+odl-usc-channel                               | 1.1.0-Beryllium  |           | odl-usc-1.1.0-Beryllium                     | OpenDaylight :: USC :: Channel     
+odl-usc-channel-rest                          | 1.1.0-Beryllium  |           | odl-usc-1.1.0-Beryllium                     | OpenDaylight :: USC :: Channel :: REST
+odl-usc-channel-ui                            | 1.1.0-Beryllium  |           | odl-usc-1.1.0-Beryllium                     | OpenDaylight :: USC :: Channel :: UI
+odl-config-persister-all                      | 0.4.0-Beryllium  |           | odl-config-persister-0.4.0-Beryllium        | OpenDaylight :: Config Persister:: All
+odl-config-persister                          | 0.4.0-Beryllium  | x         | odl-config-persister-0.4.0-Beryllium        | OpenDaylight :: Config Persister   
+odl-config-startup                            | 0.4.0-Beryllium  | x         | odl-config-persister-0.4.0-Beryllium        | OpenDaylight :: Config Persister:: Config Startup
+odl-config-manager-facade-xml                 | 0.4.0-Beryllium  |           | odl-config-persister-0.4.0-Beryllium        | Opendaylight :: Config Persister:: Mapping for Con
+odl-ovsdb-all                                 | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: OVSDB :: all       
+odl-ovsdb-schema-openvswitch                  | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OVSDB :: Schema :: Open_vSwitch    
+odl-ovsdb-schema-hardwarevtep                 | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OVSDB :: Schema :: hardware_vtep   
+odl-ovsdb-openstack                           | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: OVSDB :: OpenStack Network Virtual
+odl-ovsdb-openstack-clusteraware              | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: OVSDB :: OpenStack Network Virtual
+odl-ovsdb-ui                                  | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: OVSDB :: DLUX Integration Plugin
+odl-netvirt-api                               | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: netvirt :: api     
+odl-netvirt-rest                              | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: netvirt :: REST    
+odl-netvirt-ui                                | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: netvirt :: UI      
+odl-netvirt-hwgw                              | 1.2.1-Beryllium  |           | ovsdb-1.2.1-Beryllium                       | OpenDaylight :: netvirt :: Hardware Gateway
+odl-bgpcep-pcep-all                           | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep                               | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-dependencies                  | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-api                           | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-impl                          | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-programming-api                    | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-programming-impl                   | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-topology                      | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-stateful07                    | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-topology-provider             | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-tunnel-provider               | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-segment-routing               | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-pcep-auto-bandwidth                | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-snmp-plugin                               | 1.1.0-Beryllium  |           | odl-snmp-1.1.0-Beryllium                    | OpenDaylight :: snmp-plugin :: SNMP
+odl-openflowjava-all                          | 0.0.0            |           | odl-openflowjava-0.7.0-Beryllium            | OpenDaylight :: Openflow Java :: All
+odl-openflowjava-protocol                     | 0.7.0-Beryllium  | x         | odl-openflowjava-0.7.0-Beryllium            | OpenDaylight :: Openflow Java :: Protocol
+odl-sdni-api                                  | 0.7.0-Beryllium  |           | odl-sdninterfaceapp-1.6.0-Beryllium         | OpenDaylight :: sdninterfaceapp :: api
+odl-sdni-aggregator                           | 0.7.0-Beryllium  |           | odl-sdninterfaceapp-1.6.0-Beryllium         | OpenDaylight :: sdninterfaceapp :: impl
+odl-sdni-wrapper                              | 0.7.0-Beryllium  |           | odl-sdninterfaceapp-1.6.0-Beryllium         | OpenDaylight :: sdninterfaceapp :: wrapper
+odl-sdninterfaceapp-all                       | 1.6.0-Beryllium  |           | odl-sdninterfaceapp-1.6.0-Beryllium         | OpenDaylight :: sdninterfaceapp :: all
+odl-topoprocessing-framework                  | 0.1.0-Beryllium  |           | odl-topoprocessing-0.1.0-Beryllium          | OpenDaylight :: Topology Processing Framework :: F
+odl-topoprocessing-mlmt                       | 0.1.0-Beryllium  |           | odl-topoprocessing-0.1.0-Beryllium          | OpenDaylight :: Topology Processing Framework :: M
+odl-topoprocessing-network-topology           | 0.1.0-Beryllium  |           | odl-topoprocessing-0.1.0-Beryllium          | OpenDaylight :: Topology Processing Framework :: N
+odl-topoprocessing-inventory                  | 0.1.0-Beryllium  |           | odl-topoprocessing-0.1.0-Beryllium          | OpenDaylight :: Topology Processing Framework :: I
+odl-topoprocessing-i2rs                       | 0.1.0-Beryllium  |           | odl-topoprocessing-0.1.0-Beryllium          | OpenDaylight :: Topology Processing Framework :: I
+odl-topoprocessing-inventory-rendering        | 0.1.0-Beryllium  |           | odl-topoprocessing-0.1.0-Beryllium          | OpenDaylight :: Topology Processing Framework :: I
+odl-ttp-all                                   | 0.2.0-Beryllium  |           | odl-ttp-0.2.0-Beryllium                     | OpenDaylight :: ttp :: All         
+odl-ttp-model                                 | 0.2.0-Beryllium  |           | odl-ttp-0.2.0-Beryllium                     | OpenDaylight :: ttp :: Model       
+odl-ttp-model-rest                            | 0.2.0-Beryllium  |           | odl-ttp-0.2.0-Beryllium                     | OpenDaylight :: ttp :: Model       
+jclouds-guice                                 | 1.8.1            |           | jclouds-1.8.1                               | Jclouds - Google Guice             
+jclouds                                       | 1.8.1            |           | jclouds-1.8.1                               | jclouds                            
+jclouds-blobstore                             | 1.8.1            |           | jclouds-1.8.1                               | jclouds Blobstore                  
+jclouds-compute                               | 1.8.1            |           | jclouds-1.8.1                               | jclouds Compute                    
+jclouds-management                            | 1.8.1            |           | jclouds-1.8.1                               | jclouds Management                 
+jclouds-api-filesystem                        | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - FileSystem         
+jclouds-api-elasticstack                      | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - Elasticstack       
+jclouds-api-vcloud                            | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - Vcloud             
+jclouds-api-byon                              | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - Byon               
+jclouds-api-swift                             | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - Swift              
+jclouds-api-openstack-nova                    | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - OpenStack Nova     
+jclouds-api-openstack-keystone                | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - OpenStack Keystone 
+jclouds-api-openstack-cinder                  | 1.8.1            |           | jclouds-1.8.1                               | jclouds - API - OpenStack Cinder   
+jclouds-api-s3                                | 1.8.1            |           | jclouds-1.8.1                               | S3 API                             
+jclouds-api-sqs                               | 1.8.1            |           | jclouds-1.8.1                               | SQS API                            
+jclouds-api-ec2                               | 1.8.1            |           | jclouds-1.8.1                               | EC2 API                            
+jclouds-api-cloudstack                        | 1.8.1            |           | jclouds-1.8.1                               | Cloudstack API                     
+jclouds-api-rackspace-cloudidentity           | 1.8.1            |           | jclouds-1.8.1                               | Rackspace Cloud Identity API       
+jclouds-api-rackspace-clouddns                | 1.8.1            |           | jclouds-1.8.1                               | Rackspace Cloud DNS API            
+jclouds-api-chef                              | 1.8.1            |           | jclouds-1.8.1                               | Jclouds - API - Chef               
+jclouds-api-sts                               | 1.8.1            |           | jclouds-1.8.1                               | Jclouds - API - STS                
+jclouds-api-route53                           | 1.8.1            |           | jclouds-1.8.1                               | Jclouds - API - Route53            
+jclouds-aws-cloudwatch                        | 1.8.1            |           | jclouds-1.8.1                               | Amazon Web Service - Cloudwatch    
+jclouds-aws-ec2                               | 1.8.1            |           | jclouds-1.8.1                               | Amazon Web Service - EC2           
+jclouds-aws-route53                           | 1.8.1            |           | jclouds-1.8.1                               | Amazon Web Service - Route 53      
+jclouds-aws-s3                                | 1.8.1            |           | jclouds-1.8.1                               | Amazon Web Service - S3            
+jclouds-aws-sqs                               | 1.8.1            |           | jclouds-1.8.1                               | Amazon Web Service - SQS           
+jclouds-aws-sts                               | 1.8.1            |           | jclouds-1.8.1                               | Amazon Web Service - STS           
+jclouds-azureblob                             | 1.8.1            |           | jclouds-1.8.1                               | Azureblob                          
+jclouds-cloudfiles-uk                         | 1.8.1            |           | jclouds-1.8.1                               | Cloudfiles UK                      
+jclouds-cloudfiles-us                         | 1.8.1            |           | jclouds-1.8.1                               | Cloudfiles US                      
+jclouds-dynect                                | 1.8.1            |           | jclouds-1.8.1                               | DynECT Managed DNS                 
+jclouds-rackspace-cloudloadbalancers-us       | 1.8.1            |           | jclouds-1.8.1                               | Cloud Load Balancers US            
+jclouds-rackspace-cloudloadbalancers-uk       | 1.8.1            |           | jclouds-1.8.1                               | Cloud Load Balancers UK            
+jclouds-cloudserver-uk                        | 1.8.1            |           | jclouds-1.8.1                               | Cloudservers UK                    
+jclouds-cloudserver-us                        | 1.8.1            |           | jclouds-1.8.1                               | Cloudservers US                    
+jclouds-rackspace-cloudservers-us             | 1.8.1            |           | jclouds-1.8.1                               | Rackspace Cloudservers US          
+jclouds-rackspace-cloudservers-uk             | 1.8.1            |           | jclouds-1.8.1                               | Rackspace Cloudservers UK          
+jclouds-rackspace-clouddns-us                 | 1.8.1            |           | jclouds-1.8.1                               | Racksapce Cloud DNS US             
+jclouds-rackspace-clouddns-uk                 | 1.8.1            |           | jclouds-1.8.1                               | Racksapce Cloud DNS UK             
+jclouds-rackspace-cloudblockstorage-us        | 1.8.1            |           | jclouds-1.8.1                               | Racksapce Cloud Block Storage US   
+jclouds-rackspace-cloudblockstorage-uk        | 1.8.1            |           | jclouds-1.8.1                               | Racksapce Cloud Block Storage UK   
+jclouds-elastichosts-lon-b                    | 1.8.1            |           | jclouds-1.8.1                               | Elastichosts Bluesquare London     
+jclouds-elastichosts-lon-p                    | 1.8.1            |           | jclouds-1.8.1                               | Elastichosts Peer1 London          
+jclouds-elastichosts-sat-p                    | 1.8.1            |           | jclouds-1.8.1                               | Elastichosts Peer1 San Antonio     
+jclouds-elastichosts-lax-p                    | 1.8.1            |           | jclouds-1.8.1                               | Elastichosts Peer1 Los Angeles     
+jclouds-elastichosts-tor-p                    | 1.8.1            |           | jclouds-1.8.1                               | Elastichosts Peer1 Toronto         
+jclouds-gogrid                                | 1.8.1            |           | jclouds-1.8.1                               | GoGrid                             
+jclouds-go2cloud-jhb1                         | 1.8.1            |           | jclouds-1.8.1                               | Go2Cloud implementation targeted to Johannesburg1
+jclouds-glesys                                | 1.8.1            |           | jclouds-1.8.1                               | GleSYS                             
+jclouds-hpcloud-objectstorage                 | 1.8.1            |           | jclouds-1.8.1                               | HP Cloud Object Storage            
+jclouds-hpcloud-compute                       | 1.8.1            |           | jclouds-1.8.1                               | HP Cloud Compute                   
+jclouds-openhosting-east1                     | 1.8.1            |           | jclouds-1.8.1                               | Open Hosting for East1             
+jclouds-serverlove-z1-man                     | 1.8.1            |           | jclouds-1.8.1                               | Serverlove implementation targeted to Manchester
+jclouds-skalicloud-sdg-my                     | 1.8.1            |           | jclouds-1.8.1                               | SkaliCloud implementation targeted to Malaysia
+jclouds-softlayer                             | 1.8.1            |           | jclouds-1.8.1                               | Components to access SoftLayer     
+jclouds-digitalocean                          | 1.8.1            |           | jclouds-1.8.1                               | Components to access DigitalOcean  
+jclouds-services                              | 1.8.1            |           | jclouds-1.8.1                               | OSGi Service Factories for jclouds 
+jclouds-commands                              | 1.8.1            |           | jclouds-1.8.1                               | Karaf Commands for jclouds         
+jclouds-chef                                  | 1.8.1            |           | jclouds-1.8.1                               | jclouds Chef Services and Commands 
+jclouds-url-handler                           | 1.8.1            |           | jclouds-1.8.1                               | Url Handler for jclouds Blobs      
+odl-packetcable-policy-server-all             | 1.3.0-Beryllium  |           | odl-packetcable-1.3.0-Beryllium             | OpenDaylight :: packetcable :: policy :: All
+odl-packetcable-policy-model                  | 1.3.0-Beryllium  |           | odl-packetcable-1.3.0-Beryllium             | OpenDaylight :: packetcable :: policy :: Model
+odl-packetcable-policy-server                 | 1.3.0-Beryllium  |           | odl-packetcable-1.3.0-Beryllium             | OpenDaylight :: packetcable :: policy :: Provider
+odl-messaging4transport-api                   | 1.0.0-Beryllium  |           | odl-messaging4transport-1.0.0-Beryllium     | OpenDaylight :: messaging4transport :: api
+odl-messaging4transport                       | 1.0.0-Beryllium  |           | odl-messaging4transport-1.0.0-Beryllium     | OpenDaylight :: messaging4transport
+odl-yangtools-yang-data                       | 0.8.0-Beryllium  | x         | odl-yangtools-0.8.0-Beryllium               | OpenDaylight :: Yangtools :: Data Binding
+odl-yangtools-common                          | 0.8.0-Beryllium  | x         | odl-yangtools-0.8.0-Beryllium               | OpenDaylight :: Yangtools :: Common
+odl-yangtools-yang-parser                     | 0.8.0-Beryllium  | x         | odl-yangtools-0.8.0-Beryllium               | OpenDaylight :: Yangtools :: YANG Parser
+odl-snbi-all                                  | 1.2.0-Beryllium  |           | odl-snbi-1.2.0-Beryllium                    | OpenDaylight :: snbi :: All        
+odl-snbi-southplugin                          | 1.2.0-Beryllium  |           | odl-snbi-1.2.0-Beryllium                    | OpenDaylight :: SNBI :: SouthPlugin
+odl-snbi-shellplugin                          | 1.2.0-Beryllium  |           | odl-snbi-1.2.0-Beryllium                    | OpenDaylight :: SNBI :: ShellPlugin
+odl-snbi-dlux                                 | 1.2.0-Beryllium  |           | odl-snbi-1.2.0-Beryllium                    | OpenDaylight :: SNBI :: Dlux       
+odl-openflowplugin-nxm-extensions             | 0.2.0-Beryllium  |           | openflowplugin-extension-0.2.0-Beryllium    | OpenDaylight :: Openflow Plugin :: Nicira Extensio
+pax-jetty                                     | 8.1.15.v20140411 | x         | org.ops4j.pax.web-3.1.4                     | Provide Jetty engine support       
+pax-tomcat                                    | 7.0.27.1         |           | org.ops4j.pax.web-3.1.4                     | Provide Tomcat engine support      
+pax-http                                      | 3.1.4            | x         | org.ops4j.pax.web-3.1.4                     | Implementation of the OSGI HTTP Service
+pax-http-whiteboard                           | 3.1.4            | x         | org.ops4j.pax.web-3.1.4                     | Provide HTTP Whiteboard pattern support
+pax-war                                       | 3.1.4            | x         | org.ops4j.pax.web-3.1.4                     | Provide support of a full WebContainer
+odl-yangpush-api                              | 1.0.0-Beryllium  |           | odl-yangpush-1.0.0-Beryllium                | OpenDaylight :: yangpush :: api    
+odl-yangpush                                  | 1.0.0-Beryllium  |           | odl-yangpush-1.0.0-Beryllium                | OpenDaylight :: yangpush           
+odl-yangpush-rest                             | 1.0.0-Beryllium  |           | odl-yangpush-1.0.0-Beryllium                | OpenDaylight :: yangpush :: REST   
+odl-yangpush-ui                               | 1.0.0-Beryllium  |           | odl-yangpush-1.0.0-Beryllium                | OpenDaylight :: yangpush :: UI     
+odl-lispflowmapping-msmr                      | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: Map-Server/Ma
+odl-lispflowmapping-mappingservice            | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: Mapping Servi
+odl-lispflowmapping-mappingservice-shell      | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: Mappingservic
+odl-lispflowmapping-inmemorydb                | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: In Memory DB
+odl-lispflowmapping-southbound                | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: Southbound Pl
+odl-lispflowmapping-neutron                   | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: Neutron Integ
+odl-lispflowmapping-ui                        | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: User Interfac
+odl-lispflowmapping-models                    | 1.3.0-Beryllium  |           | odl-lispflowmapping-1.3.0-Beryllium         | OpenDaylight :: LISP Flow Mapping :: Models
+odl-aaa-authn-no-cluster                      | 0.3.0-Beryllium  |           | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: Authentication - NO CLUSTER
+odl-aaa-authn                                 | 0.3.0-Beryllium  | x         | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: Authentication - NO CLUSTER
+odl-aaa-authn-mdsal-cluster                   | 0.3.0-Beryllium  |           | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: Authentication :: MD-SAL
+odl-aaa-keystone-plugin                       | 0.3.0-Beryllium  |           | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: Keystone Plugin - NO CLUSTE
+odl-aaa-sssd-plugin                           | 0.3.0-Beryllium  |           | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: SSSD Federation Plugin
+odl-aaa-authn-sssd-no-cluster                 | 0.3.0-Beryllium  |           | odl-aaa-0.3.0-Beryllium                     | OpenDaylight :: AAA :: SSSD Federation - NO CLUSTE
+odl-ovsdb-library                             | 1.2.1-Beryllium  |           | odl-ovsdb-library-1.2.1-Beryllium           | OpenDaylight :: library            
+spring-dm                                     | 1.2.1            |           | spring-3.0.3                                | Spring DM support                  
+spring-dm-web                                 | 1.2.1            |           | spring-3.0.3                                | Spring DM Web support              
+spring                                        | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x support               
+spring-aspects                                | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x AOP support           
+spring-instrument                             | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x Instrument support    
+spring-jdbc                                   | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x JDBC support          
+spring-jms                                    | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x JMS support           
+spring-struts                                 | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x Struts support        
+spring-test                                   | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x Test support          
+spring-orm                                    | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x ORM support           
+spring-oxm                                    | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x OXM support           
+spring-tx                                     | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x Transaction (TX) support
+spring-web                                    | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x Web support           
+spring-web-portlet                            | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring 3.1.x Web Portlet support   
+spring                                        | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x support               
+spring-aspects                                | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x AOP support           
+spring-instrument                             | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x Instrument support    
+spring-jdbc                                   | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x JDBC support          
+spring-jms                                    | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x JMS support           
+spring-struts                                 | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x Struts support        
+spring-test                                   | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x Test support          
+spring-orm                                    | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x ORM support           
+spring-oxm                                    | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x OXM support           
+spring-tx                                     | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x Transaction (TX) support
+spring-web                                    | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x Web support           
+spring-web-portlet                            | 3.2.11.RELEASE_1 |           | spring-3.0.3                                | Spring 3.2.x Web Portlet support   
+spring                                        | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x support               
+spring-aspects                                | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x AOP support           
+spring-instrument                             | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x Instrument support    
+spring-jdbc                                   | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x JDBC support          
+spring-jms                                    | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x JMS support           
+spring-test                                   | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x Test support          
+spring-orm                                    | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x ORM support           
+spring-oxm                                    | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x OXM support           
+spring-tx                                     | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x Transaction (TX) support
+spring-web                                    | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x Web support           
+spring-web-portlet                            | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x Web Portlet support   
+spring-websocket                              | 4.0.7.RELEASE_1  |           | spring-3.0.3                                | Spring 4.0.x WebSocket support     
+spring                                        | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x support               
+spring-aspects                                | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x AOP support           
+spring-instrument                             | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x Instrument support    
+spring-jdbc                                   | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x JDBC support          
+spring-jms                                    | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x JMS support           
+spring-test                                   | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x Test support          
+spring-orm                                    | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x ORM support           
+spring-oxm                                    | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x OXM support           
+spring-tx                                     | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x Transaction (TX) support
+spring-web                                    | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x Web support           
+spring-web-portlet                            | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x Web Portlet support   
+spring-websocket                              | 4.1.2.RELEASE_1  |           | spring-3.0.3                                | Spring 4.1.x WebSocket support     
+spring-security                               | 3.1.4.RELEASE    |           | spring-3.0.3                                | Spring Security 3.1.x support      
+gemini-blueprint                              | 1.0.0.RELEASE    |           | spring-3.0.3                                | Gemini Blueprint Extender          
+odl-netty                                     | 4.0.33.Final     | x         | odlparent-1.6.0-Beryllium                   | OpenDaylight :: Netty              
+odl-guava                                     | 18.0             |           | odlparent-1.6.0-Beryllium                   | OpenDaylight :: Guava              
+odl-lmax                                      | 3.3.2            | x         | odlparent-1.6.0-Beryllium                   | OpenDaylight :: LMAX Disruptor     
+odl-faas-base                                 | 1.0.0-Beryllium  |           | odl-faas-1.0.0-Beryllium                    | OpenDaylight :: faas :: base       
+odl-faas-all                                  | 1.0.0-Beryllium  |           | odl-faas-1.0.0-Beryllium                    | OpenDaylight :: faas :: Starts All Faas features
+odl-faas-vxlan-fabric                         | 1.0.0-Beryllium  |           | odl-faas-1.0.0-Beryllium                    | OpenDaylight :: faas :: vxlan fabric
+odl-faas-vxlan-ovs-adapter                    | 1.0.0-Beryllium  |           | odl-faas-1.0.0-Beryllium                    | OpenDaylight :: faas :: vxlan fabric ovs adapter
+odl-faas-uln-mapper                           | 1.0.0-Beryllium  |           | odl-faas-1.0.0-Beryllium                    | OpenDaylight :: faas :: vxlan fabric
+odl-faas-fabricmgr                            | 1.0.0-Beryllium  |           | odl-faas-1.0.0-Beryllium                    | OpenDaylight :: faas :: vxlan fabric
+odl-onem2m-api                                | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: api      
+odl-onem2m-core                               | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: core     
+odl-onem2m-notifier                           | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: notifier 
+odl-onem2m-coap                               | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: CoAP     
+odl-onem2m-http                               | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: HTTP     
+odl-onem2m-mqtt                               | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: MQTT     
+odl-onem2m-core-rest                          | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: core :: REST
+odl-onem2m-ui                                 | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: onem2m :: UI       
+odl-iotdm-onem2m                              | 0.1.0-Beryllium  |           | odl-iotdm-0.1.0-Beryllium                   | OpenDaylight :: iotdm :: OneM2M    
+odl-alto-release                              | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: Release    
+odl-alto-core                                 | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: Core       
+odl-alto-basic                                | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: Basic      
+odl-alto-extension                            | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: Extension  
+odl-alto-standard-types                       | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: standard-types
+odl-alto-resourcepool                         | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: resourcepool
+odl-alto-northbound                           | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: northbound 
+odl-alto-standard-service-models              | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: standard-service-model
+odl-alto-standard-northbound-route            | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: standard-northbound-route
+odl-alto-standard-resource-translator         | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: standard-resource-translat
+odl-alto-simpleird                            | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: Simple IRD 
+odl-alto-manual-maps                          | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: manual-maps
+odl-alto-hosttracker                          | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: hosttracker
+odl-alto-nonstandard-types                    | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: nonstandard-types
+odl-alto-nonstandard-service-models           | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: nonstandard-service-models
+odl-alto-nonstandard-northbound-route         | 0.2.0-Beryllium  |           | odl-alto-release-0.2.0-Beryllium            | OpenDaylight :: alto :: nonstandard-northbound-rou
+odl-config-all                                | 0.4.0-Beryllium  |           | odl-config-0.4.0-Beryllium                  | OpenDaylight :: Config :: All      
+odl-config-api                                | 0.4.0-Beryllium  | x         | odl-config-0.4.0-Beryllium                  | OpenDaylight :: Config :: API      
+odl-config-netty-config-api                   | 0.4.0-Beryllium  | x         | odl-config-0.4.0-Beryllium                  | OpenDaylight :: Config :: Netty Config API
+odl-config-core                               | 0.4.0-Beryllium  | x         | odl-config-0.4.0-Beryllium                  | OpenDaylight :: Config :: Core     
+odl-config-manager                            | 0.4.0-Beryllium  | x         | odl-config-0.4.0-Beryllium                  | OpenDaylight :: Config :: Manager  
+odl-vtn-manager                               | 0.4.0-Beryllium  |           | vtn-manager-0.4.0-Beryllium                 | OpenDaylight :: VTN Manager :: Java API
+odl-vtn-manager-rest                          | 0.4.0-Beryllium  |           | vtn-manager-0.4.0-Beryllium                 | OpenDaylight :: VTN Manager :: REST API
+odl-vtn-manager-neutron                       | 0.4.0-Beryllium  |           | vtn-manager-0.4.0-Beryllium                 | OpenDaylight :: VTN Manager :: Neutron Interface
+odl-usecplugin-api                            | 1.0.0-Beryllium  |           | odl-usecplugin-1.0.0-Beryllium              | OpenDaylight :: usecplugin :: api  
+odl-usecplugin                                | 1.0.0-Beryllium  |           | odl-usecplugin-1.0.0-Beryllium              | OpenDaylight :: usecplugin         
+odl-usecplugin-rest                           | 1.0.0-Beryllium  |           | odl-usecplugin-1.0.0-Beryllium              | OpenDaylight :: usecplugin :: REST 
+odl-usecplugin-ui                             | 1.0.0-Beryllium  |           | odl-usecplugin-1.0.0-Beryllium              | OpenDaylight :: usecplugin :: UI   
+odl-capwap-api                                | 0.2.0-Beryllium  |           | odl-capwap-0.2.0-Beryllium                  | OpenDaylight :: CAPWAP :: API      
+odl-capwap-impl                               | 0.2.0-Beryllium  |           | odl-capwap-0.2.0-Beryllium                  | OpenDaylight :: CAPWAP :: Impl     
+odl-capwap-ac-rest                            | 0.2.0-Beryllium  |           | odl-capwap-0.2.0-Beryllium                  | OpenDaylight :: CAPWAP :: AccessController :: REST
+odl-dlux-all                                  | 0.3.0-Beryllium  | x         | odl-dlux-0.3.0-Beryllium                    | Opendaylight dlux all features     
+odl-dlux-core                                 | 0.3.0-Beryllium  | x         | odl-dlux-0.3.0-Beryllium                    | Opendaylight dlux minimal feature  
+odl-dlux-node                                 | 0.3.0-Beryllium  | x         | odl-dlux-0.3.0-Beryllium                    | Enable nodes in Opendaylight dlux  
+odl-dlux-yangui                               | 0.3.0-Beryllium  | x         | odl-dlux-0.3.0-Beryllium                    | Enable Yang UI in Opendaylight dlux
+odl-dlux-yangvisualizer                       | 0.3.0-Beryllium  | x         | odl-dlux-0.3.0-Beryllium                    | Enable Yang visualizer in Opendaylight dlux
+odl-vpnservice-api                            | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: api  
+odl-vpnservice-impl                           | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: impl 
+odl-vpnservice-impl-rest                      | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: impl :: REST
+odl-vpnservice-impl-ui                        | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: impl :: UI
+odl-vpnservice-core                           | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: core 
+odl-vpnservice-openstack                      | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: openstack
+odl-vpnservice-intent                         | 0.2.0-Beryllium  |           | odl-vpnservice-0.2.0-Beryllium              | OpenDaylight :: vpnservice :: intent
+odl-centinel-api                              | 0.1.0-Beryllium  |           | odl-centinel-0.1.0-Beryllium                | OpenDaylight :: centinel :: api    
+odl-centinel-core                             | 0.1.0-Beryllium  |           | odl-centinel-0.1.0-Beryllium                | OpenDaylight :: centinel           
+odl-centinel-laas                             | 0.1.0-Beryllium  |           | odl-centinel-0.1.0-Beryllium                | OpenDaylight :: centinel :: laas   
+odl-centinel-streamhandler                    | 0.1.0-Beryllium  |           | odl-centinel-0.1.0-Beryllium                | OpenDaylight :: centinel :: stream-handler
+odl-centinel-ui                               | 0.1.0-Beryllium  |           | odl-centinel-0.1.0-Beryllium                | OpenDaylight :: centinel :: UI     
+odl-centinel-all                              | 0.1.0-Beryllium  |           | odl-centinel-0.1.0-Beryllium                | OpenDaylight :: centinel :: stream-handler
+odl-bgpcep-bgp-all                            | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp                                | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-openconfig                     | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-dependencies                   | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-inet                           | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-parser                         | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-rib-api                        | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-linkstate                      | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-flowspec                       | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-labeled-unicast                | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-rib-impl                       | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-bgpcep-bgp-topology                       | 0.5.0-Beryllium  |           | odl-bgpcep-0.5.0-Beryllium                  |                                    
+odl-didm-hp-all                               | 0.2.0-Beryllium  |           | odl-didm-hP-0.2.0-Beryllium                 | OpenDaylight :: DIDM :: HP :: All  
+odl-didm-hp-impl                              | 0.2.0-Beryllium  |           | odl-didm-hP-0.2.0-Beryllium                 | OpenDaylight :: DIDM :: HP :: Implementation
+fabric8-kubernetes-api                        | 2.0.20           |           | fabric8-karaf-features-2.0.20               | Fabric8 Kubernetes API feature     
+odl-netconf-connector-all                     | 1.0.0-Beryllium  |           | odl-controller-1.0.0-Beryllium              | OpenDaylight :: Netconf Connector :: All
+odl-message-bus                               | 1.0.0-Beryllium  |           | odl-controller-1.0.0-Beryllium              |                                    
+odl-netconf-connector                         | 1.0.0-Beryllium  |           | odl-controller-1.0.0-Beryllium              | OpenDaylight :: Netconf Connector :: Netconf Conne
+odl-netconf-connector-ssh                     | 1.0.0-Beryllium  |           | odl-controller-1.0.0-Beryllium              | OpenDaylight :: Netconf Connector :: Netconf Conne
+odl-netconf-topology                          | 1.0.0-Beryllium  |           | odl-controller-1.0.0-Beryllium              | OpenDaylight :: Netconf Topology :: Netconf Connec
+odl-netconf-clustered-topology                | 1.0.0-Beryllium  |           | odl-controller-1.0.0-Beryllium              | OpenDaylight :: Clustered Netconf Topology :: Netc
+odl-nic-core-hazelcast                        | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Core
+odl-nic-core-mdsal                            | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Core
+odl-nic-console                               | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: CLI
+odl-nic-renderer-vtn                          | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: VTN
+odl-nic-renderer-gbp                          | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Grou
+odl-nic-renderer-of                           | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Open
+odl-nic-renderer-nemo                         | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: NEMO
+odl-nic-pipeline-manager                      | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Open
+odl-nic-listeners                             | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: List
+odl-nic-neutron-integration                   | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Neut
+odl-nic-intent-statemachine                   | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Inte
+odl-nic-graph                                 | 1.1.0-Beryllium  |           | odl-nic-1.1.0-Beryllium                     | OpenDaylight :: Network Intent Composition :: Inte
+odl-nemo-api                                  | 1.0.0-Beryllium  |           | odl-nemo-1.0.0-Beryllium                    | OpenDaylight :: NEMO :: API        
+odl-nemo-engine                               | 1.0.0-Beryllium  |           | odl-nemo-1.0.0-Beryllium                    | OpenDaylight :: NEMO :: Engine     
+odl-nemo-engine-rest                          | 1.0.0-Beryllium  |           | odl-nemo-1.0.0-Beryllium                    | OpenDaylight :: NEMO :: Engine :: REST
+odl-nemo-openflow-renderer                    | 1.0.0-Beryllium  |           | odl-nemo-1.0.0-Beryllium                    | OpenDaylight :: NEMO :: OpenFlow Renderer
+odl-nemo-cli-renderer                         | 1.0.0-Beryllium  |           | odl-nemo-1.0.0-Beryllium                    | OpenDaylight :: NEMO :: CLI Renderer
+odl-nemo-engine-ui                            | 1.0.0-Beryllium  |           | odl-nemo-1.0.0-Beryllium                    | OpenDaylight :: NEMO :: Engine :: UI
+transaction                                   | 1.0.0            |           | enterprise-3.0.3                            | OSGi Transaction Manager           
+transaction                                   | 1.0.1            |           | enterprise-3.0.3                            | OSGi Transaction Manager           
+transaction                                   | 1.1.1            |           | enterprise-3.0.3                            | OSGi Transaction Manager           
+connector                                     | 2.2.2            |           | enterprise-3.0.3                            | OSGi support for JCA Connector 1.5 
+connector                                     | 3.1.1            |           | enterprise-3.0.3                            | OSGi Support for JCA Connector 1.6 
+jpa                                           | 2.0.0            |           | enterprise-3.0.3                            | OSGi Persistence Container         
+jpa                                           | 2.1.0            |           | enterprise-3.0.3                            | OSGi Persistence Container         
+openjpa                                       | 2.2.2            |           | enterprise-3.0.3                            | Apache OpenJPA 2.2.x persistence engine support
+openjpa                                       | 2.3.0            |           | enterprise-3.0.3                            | Apache OpenJPA 2.3.x persistence engine support
+hibernate                                     | 3.3.2.GA         |           | enterprise-3.0.3                            | Hibernate 3.x JPA persistence engine support
+hibernate                                     | 4.2.15.Final     |           | enterprise-3.0.3                            | Hibernate 4.2.x JPA persistence engine support
+hibernate-envers                              | 4.2.15.Final     |           | enterprise-3.0.3                            | Hibernate Envers 4.2.x             
+hibernate                                     | 4.3.6.Final      |           | enterprise-3.0.3                            | Hibernate 4.3.x JPA persistence engine support
+hibernate-envers                              | 4.3.6.Final      |           | enterprise-3.0.3                            | Hibernate Envers 4.3.x             
+hibernate-validator                           | 5.0.3.Final      |           | enterprise-3.0.3                            | Hibernate Validator support        
+jndi                                          | 3.0.3            |           | enterprise-3.0.3                            | OSGi Service Registry JNDI access  
+jdbc                                          | 3.0.3            |           | enterprise-3.0.3                            | JDBC service and commands          
+jms                                           | 3.0.3            |           | enterprise-3.0.3                            | JMS service and commands           
+openwebbeans                                  | 0.11.0           |           | enterprise-3.0.3                            | Alias to the pax-cdi-openwebbeans feature
+weld                                          | 0.11.0           |           | enterprise-3.0.3                            | Alias to the pax-cdi-weld feature  
+application-without-isolation                 | 1.0.0            |           | enterprise-3.0.3                            | Provide EBA archive support        
+odl-groupbasedpolicy-base                     | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: Base Copmonent
+odl-groupbasedpolicy-ofoverlay                | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: OpenFlow Overl
+odl-groupbasedpolicy-ovssfc                   | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: OpenFlow Overl
+odl-groupbasedpolicy-faas                     | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: Fabric As A Se
+odl-groupbasedpolicy-iovisor                  | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: IOVisor Render
+odl-groupbasedpolicy-netconf                  | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: NETCONF Render
+odl-groupbasedpolicy-neutronmapper            | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: Neutron Mapper
+odl-groupbasedpolicy-uibackend                | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: UI Backend pro
+odl-groupbasedpolicy-ui                       | 0.3.0-Beryllium  |           | odl-groupbasedpolicy-0.3.0-Beryllium        | OpenDaylight :: groupbasedpolicy :: DLUX UI
+odl-unimgr-api                                | 0.0.1-Beryllium  |           | odl-unimgr-0.0.1-Beryllium                  | OpenDaylight :: UniMgr :: api      
+odl-unimgr                                    | 0.0.1-Beryllium  |           | odl-unimgr-0.0.1-Beryllium                  | OpenDaylight :: UniMgr             
+odl-unimgr-console                            | 0.0.1-Beryllium  |           | odl-unimgr-0.0.1-Beryllium                  | OpenDaylight :: UniMgr :: CLI      
+odl-unimgr-rest                               | 0.0.1-Beryllium  |           | odl-unimgr-0.0.1-Beryllium                  | OpenDaylight :: UniMgr :: REST     
+odl-unimgr-ui                                 | 0.0.1-Beryllium  |           | odl-unimgr-0.0.1-Beryllium                  | OpenDaylight :: UniMgr :: UI       
+odl-mdsal-all                                 | 1.3.0-Beryllium  |           | odl-mdsal-1.3.0-Beryllium                   | OpenDaylight :: MDSAL :: All       
+odl-mdsal-common                              | 1.3.0-Beryllium  | x         | odl-mdsal-1.3.0-Beryllium                   | OpenDaylight :: Config :: All      
+odl-mdsal-broker-local                        | 1.3.0-Beryllium  | x         | odl-mdsal-1.3.0-Beryllium                   | OpenDaylight :: MDSAL :: Broker    
+odl-toaster                                   | 1.3.0-Beryllium  |           | odl-mdsal-1.3.0-Beryllium                   | OpenDaylight :: Toaster            
+odl-mdsal-xsql                                | 1.3.0-Beryllium  |           | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-mdsal-clustering-commons                  | 1.3.0-Beryllium  | x         | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-mdsal-distributed-datastore               | 1.3.0-Beryllium  | x         | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-mdsal-remoterpc-connector                 | 1.3.0-Beryllium  | x         | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-mdsal-broker                              | 1.3.0-Beryllium  | x         | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-mdsal-clustering                          | 1.3.0-Beryllium  |           | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-clustering-test-app                       | 1.3.0-Beryllium  |           | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-message-bus-collector                     | 1.3.0-Beryllium  |           | odl-mdsal-1.3.0-Beryllium                   |                                    
+odl-neutron-service                           | 0.6.0-Beryllium  |           | odl-neutron-0.6.0-Beryllium                 | OpenDaylight :: Neutron :: API     
+odl-neutron-northbound-api                    | 0.6.0-Beryllium  |           | odl-neutron-0.6.0-Beryllium                 | OpenDaylight :: Neutron :: Northbound
+odl-neutron-spi                               | 0.6.0-Beryllium  |           | odl-neutron-0.6.0-Beryllium                 | OpenDaylight :: Neutron :: API     
+odl-neutron-transcriber                       | 0.6.0-Beryllium  |           | odl-neutron-0.6.0-Beryllium                 | OpenDaylight :: Neutron :: Implementation
+odl-ovsdb-sfc-api                             | 1.2.1-Beryllium  |           | odl-ovsdb-sfc-1.2.1-Beryllium               | OpenDaylight :: ovsdb-sfc :: api   
+odl-ovsdb-sfc                                 | 1.2.1-Beryllium  |           | odl-ovsdb-sfc-1.2.1-Beryllium               | OpenDaylight :: ovsdb-sfc          
+odl-ovsdb-sfc-rest                            | 1.2.1-Beryllium  |           | odl-ovsdb-sfc-1.2.1-Beryllium               | OpenDaylight :: ovsdb-sfc :: REST  
+odl-ovsdb-sfc-ui                              | 1.2.1-Beryllium  |           | odl-ovsdb-sfc-1.2.1-Beryllium               | OpenDaylight :: ovsdb-sfc :: UI    
+odl-ovsdb-southbound-api                      | 1.2.1-Beryllium  |           | odl-ovsdb-southbound-1.2.1-Beryllium        | OpenDaylight :: southbound :: api  
+odl-ovsdb-southbound-impl                     | 1.2.1-Beryllium  |           | odl-ovsdb-southbound-1.2.1-Beryllium        | OpenDaylight :: southbound :: impl 
+odl-ovsdb-southbound-impl-rest                | 1.2.1-Beryllium  |           | odl-ovsdb-southbound-1.2.1-Beryllium        | OpenDaylight :: southbound :: impl :: REST
+odl-ovsdb-southbound-impl-ui                  | 1.2.1-Beryllium  |           | odl-ovsdb-southbound-1.2.1-Beryllium        | OpenDaylight :: southbound :: impl :: UI
+odl-ovsdb-southbound-test                     | 1.2.1-Beryllium  |           | odl-ovsdb-southbound-1.2.1-Beryllium        | OpenDaylight :: southbound :: test 
+odl-sxp-all                                   | 1.2.0-Beryllium  |           | odl-sxp-1.2.0-Beryllium                     | OpenDaylight :: Sxp :: All         
+odl-sxp-api                                   | 1.2.0-Beryllium  |           | odl-sxp-1.2.0-Beryllium                     | OpenDaylight :: Sxp :: Api         
+odl-sxp-core                                  | 1.2.0-Beryllium  |           | odl-sxp-1.2.0-Beryllium                     | OpenDaylight :: Sxp :: Core        
+odl-sxp-controller                            | 1.2.0-Beryllium  |           | odl-sxp-1.2.0-Beryllium                     | OpenDaylight :: Sxp :: Controller  
+odl-mdsal-models                              | 0.8.0-Beryllium  | x         | odl-mdsal-models-0.8.0-Beryllium            | OpenDaylight :: MD-SAL :: Models   
+odl-config-netty                              | 0.4.0-Beryllium  | x         | odl-config-persister-0.4.0-Beryllium        | OpenDaylight :: Config-Netty       
+opendaylight-user@root>

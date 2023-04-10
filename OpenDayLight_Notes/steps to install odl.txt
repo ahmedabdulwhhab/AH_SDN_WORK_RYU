@@ -1,0 +1,42 @@
+https://john.soban.ski/how-to-install-opendaylight-as-a-service-on-ubuntu.html
+
+
+
+sudo apt-get update
+sudo apt-get -y install unzip vim wget
+sudo apt-get -y install openjdk-8-jre
+sudo update-alternatives --config java
+
+wget https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/karaf/0.9.1/karaf-0.9.1.zip
+
+
+
+sudo mkdir /usr/local/karaf
+
+ls
+
+sudo mv karaf-0.9.1.zip /usr/local/karaf
+
+sudo unzip /usr/local/karaf/karaf-0.9.1.zip -d /usr/local/karaf/
+
+
+sdn@odl:/usr/local/karaf/karaf-0.9.1$ sudo -E karaf	
+
+ls
+////////////////////////// to run after decompression
+
+cd ..
+cd ..
+cd usr
+cd local
+cd karaf
+cd karaf-0.9.1
+cd bin
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown OpenDaylight.
+
+opendaylight-user@root>
+
+feature:list | grep dlux
