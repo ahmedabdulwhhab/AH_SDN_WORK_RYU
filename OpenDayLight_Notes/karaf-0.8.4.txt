@@ -1,0 +1,647 @@
+https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/karaf/0.8.4/
+
+sudo chmod 667 shared_folder
+
+
+sudo apt-get update
+sudo apt-get install maven git openjdk-8-jre openjdk-8-jdk unzip
+
+
+
+sudo apt-get -y install unzip vim wget
+sudo apt install default-jre
+java --version
+Result is
+	 java --version
+openjdk 11.0.18 2023-01-17
+OpenJDK Runtime Environment (build 11.0.18+10-post-Ubuntu-0ubuntu120.04.1)
+OpenJDK 64-Bit Server VM (build 11.0.18+10-post-Ubuntu-0ubuntu120.04.1, mixed mode, sharing)
+ubuntu@ubuntu:~$
+
+
+for me
+ls /usr/lib/jvm/java-8-openjdk-amd64/jre/
+show following results
+ASSEMBLY_EXCEPTION  THIRD_PARTY_README  bin  lib  man
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
+
+
+sudo mv karaf-0.8.4.zip /usr/local/karaf
+
+sudo unzip /usr/local/karaf/karaf-0.8.4.zip -d /usr/local/karaf/
+
+################################################################
+Configuration impact
+Below log4j configuration changes should be added in etc/org.ops4j.pax.logging.cfg file for logging openflowplugin events into a separate file.
+
+
+
+log4j2.logger.ofp.name = OfEventLog
+log4j2.logger.ofp.level = DEBUG
+log4j2.logger.ofp.additivity = false
+log4j2.logger.ofp.appenderRef.OfEventRollingFile.ref = OfEventRollingFile
+
+log4j2.appender.ofp.type = RollingRandomAccessFile
+log4j2.appender.ofp.name = OfEventRollingFile
+log4j2.appender.ofp.fileName = \${karaf.data}/events/openflow/openflow.log
+log4j2.appender.ofp.filePattern = \${karaf.data}/events/openflow/openflow.log.%i
+log4j2.appender.ofp.append = true
+log4j2.appender.ofp.layout.type = PatternLayout
+log4j2.appender.ofp.layout.pattern = %d{ISO8601} | %m%n
+log4j2.appender.ofp.policies.type = Policies
+log4j2.appender.ofp.policies.size.type = SizeBasedTriggeringPolicy
+log4j2.appender.ofp.policies.size.size = 10MB
+log4j2.appender.ofp.strategy.type = DefaultRolloverStrategy
+log4j2.appender.ofp.strategy.max = 10
+log4j2.appender.ofp.strategy.fileIndex = min
+################################################################
+sudo vim ~/.bashrc
+Add the following line to the bashrc file:
+
+ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+Then run the file:
+
+source ~/.bashrc
+################################################################
+
+ubuntu@ubuntu:~/sdn/source/karaf/karaf-0.8.4$ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ && sudo -E ./bin/karaf
+Apache Karaf starting up. Press Enter to open the shell now...
+100% [========================================================================]
+
+Karaf started in 2s. Bundle stats: 13 active, 13 total
+                                                                                
+    ________                       ________                .__  .__       .__     __
+    \_____  \ ______   ____   ____ \______ \ _____  ___.__.|  | |__| ____ |  |___/  |_
+     /   |   \\____ \_/ __ \ /    \ |    |  \\__  \<   |  ||  | |  |/ ___\|  |  \   __\
+    /    |    \  |_> >  ___/|   |  \|    `   \/ __ \\___  ||  |_|  / /_/  >   Y  \  |
+    \_______  /   __/ \___  >___|  /_______  (____  / ____||____/__\___  /|___|  /__|
+            \/|__|        \/     \/        \/     \/\/            /_____/      \/
+                                                                                
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown OpenDaylight.
+
+opendaylight-user@root>feature:list
+Name                                             │ Version          │ Required │ State       │ Repository                                       │ Description
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+odl-aaa-netconf-plugin-no-cluster                │ 1.4.4            │          │ Uninstalled │ odl-aaa-netconf-plugin-no-cluster                │ OpenDaylight :: AAA :: ODL NETCONF Plugin - NO CL
+odl-aaa-cert                                     │ 0.7.4            │          │ Uninstalled │ odl-aaa-0.7.4                                    │ ODL :: aaa :: odl-aaa-cert
+features-restconf                                │ 1.7.4            │          │ Uninstalled │ features-restconf                                │ features-restconf
+odl-controller-mdsal-common                      │ 1.7.4            │          │ Uninstalled │ odl-controller-mdsal-common                      │ OpenDaylight :: MDSAL :: Common
+serviceutils-features                            │ 0.1.4            │          │ Uninstalled │ serviceutils-features                            │ ODL :: serviceutils :: serviceutils-features
+odl-alto-auto-maps                               │ 0.6.4            │          │ Uninstalled │ odl-alto-auto-maps                               │ OpenDaylight :: alto :: Auto Maps
+odl-netconf-connector-ssh                        │ 1.4.4            │          │ Uninstalled │ odl-netconf-connector-ssh                        │ !!!DEPRECATED!!! OpenDaylight :: Netconf Connecto
+southbound-features                              │ 1.6.4            │          │ Uninstalled │ southbound-features                              │ ODL :: ovsdb :: southbound-features
+odl-netconf-client                               │ 1.4.4            │          │ Uninstalled │ odl-netconf-client                               │ odl-netconf-client
+odl-yangtools-data                               │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-data                               │ OpenDaylight :: Yangtools :: Data Reference Imple
+odl-openflowplugin-app-notifications             │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-notifications             │ OpenDaylight :: Openflow Plugin :: Application -
+odl-bgpcep-extras-dependencies                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-extras-dependencies                   │ OpenDaylight :: Extras :: Dependencies
+odl-extras-all                                   │ 1.10.4           │          │ Uninstalled │ odl-extras-all                                   │ OpenDaylight :: Extras :: All
+odl-sfc-ui                                       │ 0.7.4            │          │ Uninstalled │ odl-sfc-ui                                       │ ODL :: sfc :: odl-sfc-ui
+odl-openflowplugin-onf-extensions                │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-onf-extensions                │ OpenDaylight :: Openflow Plugin :: ONF Extensions
+odl-openflowplugin-app-forwardingrules-sync      │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-forwardingrules-sync      │ OpenDaylight :: Openflow Plugin :: Application -
+pax-jdbc-spec                                    │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides OSGi JDBC Service spec
+pax-jdbc                                         │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Service support
+pax-jdbc-config                                  │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Config support
+pax-jdbc-db2                                     │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC DB2 DataSourceFactory
+pax-jdbc-teradata                                │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Teradata DataSourceFactory
+pax-jdbc-derby                                   │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Derbi Embedded DataSourceFactory
+pax-jdbc-derbyclient                             │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Derbi Client DataSourceFactory
+pax-jdbc-h2                                      │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC H2 DataSourceFactory
+pax-jdbc-hsqldb                                  │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC HSQLDB DataSourceFactory
+pax-jdbc-mariadb                                 │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Mariadb DataSourceFactory
+pax-jdbc-mysql                                   │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC MySQL DataSourceFactory
+pax-jdbc-oracle                                  │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Oracle DataSourceFactory
+pax-jdbc-postgresql                              │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC PostgreSQL DataSourceFactory
+pax-jdbc-sqlite                                  │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC SQLite DataSourceFactory
+pax-jdbc-mssql                                   │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC MSSQL DataSourceFactory
+pax-jdbc-jtds                                    │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC jTDS DataSourceFactory
+pax-jdbc-pool-dbcp2                              │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Pooling DataSourceFactory
+pax-jdbc-pool-c3p0                               │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Pooling using C3P0
+pax-jdbc-pool-hikaricp                           │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Pooling DataSourceFactory using Hik
+pax-jdbc-pool-aries                              │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Pooling DataSourceFactory using Ari
+pax-jdbc-pool-narayana                           │ 1.1.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.1.0                         │ Provides JDBC Pooling DataSourceFactory using Nar
+odl-netconf-notifications-api                    │ 1.4.4            │          │ Uninstalled │ odl-netconf-notifications-api                    │ OpenDaylight :: Netconf :: Notification :: Api
+odl-yangtools-export                             │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-export                             │ OpenDaylight :: Yangtools :: Export
+odl-bgpcep-bgp-config-example                    │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-0.9.4                                 │ OpenDaylight :: Configuration Example Files
+odl-groupbasedpolicy-ui                          │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-ui                          │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-ui
+odl-nemo-engine-ui                               │ 1.4.4            │          │ Uninstalled │ odl-nemo-engine-ui                               │ OpenDaylight :: NEMO :: Engine :: UI
+odl-yangtools-util                               │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-util                               │ OpenDaylight :: Yangtools :: Utilities
+odl-bgpcep-bgp                                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp                                   │ OpenDaylight :: BGP
+features-mdsal-trace                             │ 1.7.4            │          │ Uninstalled │ features-mdsal-trace                             │ OpenDaylight :: TracingBroker
+odl-bier-channel                                 │ 0.3.4            │          │ Uninstalled │ odl-bier-channel                                 │ OpenDaylight :: bier :: channel
+odl-groupbasedpolicy-iovisor                     │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-iovisor                     │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-i
+odl-akka-leveldb-0.7                             │ 3.1.4            │          │ Uninstalled │ odl-akka-leveldb-0.7                             │ LevelDB
+odl-ovsdb-hwvtepsouthbound-test                  │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-hwvtepsouthbound-test                  │ ODL :: ovsdb :: odl-ovsdb-hwvtepsouthbound-test
+odl-nemo-api                                     │ 1.4.4            │          │ Uninstalled │ odl-nemo-api                                     │ OpenDaylight :: NEMO :: API
+odl-tsdr-netflow-statistics-collector            │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ OpenDaylight :: TSDR :: Netflow Statistics Collec
+odl-config-netconf-connector                     │ 1.4.4            │          │ Uninstalled │ odl-config-netconf-connector                     │ OpenDaylight :: Netconf :: Connector
+odl-infrautils-metrics                           │ 1.3.4            │          │ Uninstalled │ odl-infrautils-1.3.4                             │ OpenDaylight :: Infrautils :: Metrics
+odl-bgpcep-pcep-cli                              │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-cli                              │ OpenDaylight :: PCEP :: Topology Cli
+odl-groupbasedpolicy-ip-sgt-distribution-service │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-ip-sgt-distribution-service │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-i
+odl-bgpcep-rsvp-api                              │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-rsvp-api                              │ OpenDaylight :: RSVP :: API
+odl-ovsdb-southbound-api                         │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-southbound-api                         │ ODL :: ovsdb :: odl-ovsdb-southbound-api
+odl-openflowjava-protocol                        │ 0.6.4            │          │ Uninstalled │ odl-openflowjava-0.6.4                           │ ODL :: openflowjava :: odl-openflowjava-protocol
+odl-akka-scala-2.12                              │ 3.1.4            │          │ Uninstalled │ odl-akka-scala-2.12                              │ Scala Runtime for OpenDaylight
+odl-karaf-feat-war                               │ 3.1.4            │          │ Uninstalled │ odl-karaf-feat-war                               │ ODL :: odlparent :: odl-karaf-feat-war
+odl-tsdr-hsqldb-all                              │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ ODL :: tsdr :: hsqldb all
+odl-bgpcep-pcep-stateful07                       │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-stateful07                       │ OpenDaylight :: PCEP :: Stateful 07
+odl-mdsal-broker                                 │ 1.7.4            │          │ Uninstalled │ odl-mdsal-1.7.4                                  │ odl-mdsal-broker
+odl-mdsal-models                                 │ 0.12.4           │          │ Uninstalled │ odl-mdsal-models                                 │ OpenDaylight :: MD-SAL :: Models
+odl-akka-clustering-2.5                          │ 3.1.4            │          │ Uninstalled │ odl-akka-clustering-2.5                          │ Akka Clustering
+odl-sxp-routing                                  │ 1.6.4            │          │ Uninstalled │ odl-sxp-routing                                  │ Feature :: OpenDaylight :: Sxp :: Cluster routing
+odl-l2switch-all                                 │ 0.7.4            │          │ Uninstalled │ odl-l2switch-all                                 │ OpenDaylight :: L2Switch :: All
+odl-mdsal-binding-base                           │ 2.4.4            │          │ Uninstalled │ odl-mdsal-binding-base                           │ OpenDaylight :: MD-SAL :: Binding Base Concepts
+odl-lispflowmapping-models                       │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-models                       │ ODL :: lispflowmapping :: odl-lispflowmapping-mod
+odl-infrautils-counters                          │ 1.3.4            │          │ Uninstalled │ odl-infrautils-1.3.4                             │ OpenDaylight :: Infrautils :: Counters
+odl-neutron-hostconfig-vpp                       │ 0.10.4           │          │ Uninstalled │ odl-neutron-hostconfig-vpp                       │ OpenDaylight :: Neutron :: Hostconfig :: VPP
+features-akka                                    │ 3.1.4            │          │ Uninstalled │ features-akka                                    │ ODL :: odlparent :: features-akka
+odl-jung-2.1                                     │ 3.1.4            │          │ Uninstalled │ odl-jung-2.1                                     │ OpenDaylight :: JUNG
+usc-features                                     │ 1.5.4            │          │ Uninstalled │ usc-features                                     │ ODL :: usc :: usc-features
+odl-netconf-mapping-api                          │ 1.4.4            │          │ Uninstalled │ odl-netconf-mapping-api                          │ OpenDaylight :: Netconf :: Mapping API
+odl-mdsal-binding-runtime                        │ 2.4.4            │          │ Uninstalled │ odl-mdsal-binding-runtime                        │ OpenDaylight :: MD-SAL :: Binding Generator
+odl-usc-channel-ui                               │ 1.5.4            │          │ Uninstalled │ odl-usc-channel-ui                               │ ODL :: usc :: odl-usc-channel-ui
+odl-alto-iupd                                    │ 0.6.4            │          │ Uninstalled │ odl-alto-iupd                                    │ OpenDaylight :: alto :: Incremental update
+odl-benchmark-api                                │ 1.5.4            │          │ Uninstalled │ odl-benchmark-api                                │ OpenDaylight :: Benchmark :: API
+odl-restconf-all                                 │ 1.7.4            │          │ Uninstalled │ odl-restconf-all                                 │ OpenDaylight :: Restconf :: All
+odl-lispflowmapping-inmemorydb                   │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-inmemorydb                   │ ODL :: lispflowmapping :: odl-lispflowmapping-inm
+odl-sfc-shell                                    │ 0.7.4            │          │ Uninstalled │ odl-sfc-shell                                    │ ODL :: sfc :: odl-sfc-shell
+odl-openflowplugin-app-arbitratorreconciliation  │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-arbitratorreconciliation  │ OpenDaylight :: Openflow Plugin :: Application -
+features-openflowplugin                          │ 0.6.4            │          │ Uninstalled │ features-openflowplugin                          │ features-openflowplugin
+pax-cdi                                          │ 1.0.0.RC2        │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Provide CDI support
+pax-cdi-weld                                     │ 1.0.0.RC2        │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Weld CDI 1.2 support
+pax-cdi-openwebbeans                             │ 1.0.0.RC2        │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ OpenWebBeans CDI support
+pax-cdi-web                                      │ 1.0.0.RC2        │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Web CDI support
+pax-cdi-web-weld                                 │ 1.0.0.RC2        │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Weld Web CDI support
+pax-cdi-web-openwebbeans                         │ 1.0.0.RC2        │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ OpenWebBeans Web CDI support
+deltaspike-core                                  │ 1.4.2            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Apache Deltaspike core support
+deltaspike-jpa                                   │ 1.4.2            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Apache Deltaspike jpa support
+deltaspike-proxy                                 │ 1.4.2            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Apache Deltaspike proxy support
+deltaspike-partial-bean                          │ 1.4.2            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Apache Deltaspike partial bean support
+deltaspike-data                                  │ 1.4.2            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0.RC2                      │ Apache Deltaspike data support
+odl-groupbasedpolicy-sxp-ep-provider             │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-sxp-ep-provider             │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-s
+features-tsdr                                    │ 1.5.4            │          │ Uninstalled │ features-tsdr                                    │ ODL :: tsdr :: features-tsdr
+odl-yangtools-common                             │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-common                             │ OpenDaylight :: Yangtools :: Common definitions
+odl-nemo-engine-rest                             │ 1.4.4            │          │ Uninstalled │ odl-nemo-engine-rest                             │ OpenDaylight :: NEMO :: Engine :: REST
+odl-netconf-util                                 │ 1.4.4            │          │ Uninstalled │ odl-netconf-1.4.4                                │ odl-netconf-util
+odl-sfc-vpp-renderer                             │ 0.7.4            │          │ Uninstalled │ odl-sfc-vpp-renderer                             │ ODL :: sfc :: odl-sfc-vpp-renderer
+odl-bgpcep-bgp-path-selection-mode               │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-path-selection-mode               │ OpenDaylight :: BGP :: Path Selection
+odl-bgpcep-pcep-base-parser                      │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-base-parser                      │ OpenDaylight :: PCEP :: Base Parser
+odl-snmp4sdn-snmp4sdn                            │ 0.7.4            │          │ Uninstalled │ odl-snmp4sdn-snmp4sdn                            │ OpenDaylight :: SNMP4SDN :: SNMP4SDN Plugin
+odl-ovsdb-utils                                  │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-utils                                  │ ODL :: ovsdb :: odl-ovsdb-utils
+features-bgp                                     │ 0.9.4            │          │ Uninstalled │ features-bgp                                     │ features-bgp
+odl-bier-oam                                     │ 0.3.4            │          │ Uninstalled │ odl-bier-oam                                     │ OpenDaylight :: bier :: oam
+odl-daexim                                       │ 1.3.4            │          │ Uninstalled │ odl-daexim-1.3.4                                 │ OpenDaylight :: daexim (Karaf feature)
+odl-bgpcep-pcep-topology                         │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-topology                         │ OpenDaylight :: PCEP :: Topology
+odl-l2switch-packethandler                       │ 0.7.4            │          │ Uninstalled │ odl-l2switch-packethandler                       │ OpenDaylight :: L2Switch :: PacketHandler
+odl-bier-app                                     │ 0.3.4            │          │ Uninstalled │ odl-bier-app                                     │ OpenDaylight :: bier :: bierapp
+features-coe                                     │ 0.3.4            │          │ Uninstalled │ features-coe                                     │ features-coe
+features-dluxapps                                │ 0.7.4            │          │ Uninstalled │ features-dluxapps                                │ ODL :: dluxapps :: features-dluxapps
+odl-mdsal-clustering                             │ 1.7.4            │          │ Uninstalled │ odl-mdsal-clustering                             │ odl-mdsal-clustering
+hibernate-validator                              │ 5.3.4.Final      │          │ Uninstalled │ hibernate-validator-osgi-features                │
+hibernate-validator-paranamer                    │ 5.3.4.Final      │          │ Uninstalled │ hibernate-validator-osgi-features                │
+odl-netconf-ssh                                  │ 1.4.4            │          │ Uninstalled │ odl-netconf-ssh                                  │ OpenDaylight :: Netconf Connector :: SSH
+odl-netconf-topology                             │ 1.4.4            │          │ Uninstalled │ odl-netconf-topology                             │ OpenDaylight :: Netconf Topology :: Netconf Conne
+odl-bgpcep-bgp-evpn                              │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-evpn                              │ OpenDaylight :: BGP :: Evpn
+odl-bgpcep-concepts                              │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-concepts                              │ OpenDaylight :: BGPCEP :: Concepts
+odl-bgpcep-protocols-config-loader               │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-protocols-config-loader               │ OpenDaylight :: BGPCEP :: Protocols Config Loader
+features-mdsal-benchmark                         │ 1.5.4            │          │ Uninstalled │ features-mdsal-benchmark                         │ features-mdsal-benchmark
+odl-mdsal-eos-binding                            │ 2.4.4            │          │ Uninstalled │ odl-mdsal-eos-binding                            │ OpenDaylight :: MD-SAL :: EOS :: Binding
+odl-clustering-test-app                          │ 1.7.4            │          │ Uninstalled │ odl-clustering-test-app                          │ odl-clustering-test-app
+odl-of-config-southbound-rest                    │ 1.4.4            │          │ Uninstalled │ odl-of-config-southbound-rest                    │ OpenDaylight :: of-config:: southbound :: REST
+odl-alto-multicost                               │ 0.6.4            │          │ Uninstalled │ odl-alto-multicost                               │ OpenDaylight :: alto :: Mutlicost Support
+odl-openflowplugin-app-southbound-cli            │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-southbound-cli            │ OpenDaylight :: Openflow Plugin :: Application -
+features-aaa                                     │ 0.7.4            │          │ Uninstalled │ features-aaa                                     │ ODL :: aaa :: features-aaa
+odl-groupbasedpolicy-ofoverlay                   │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-ofoverlay                   │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-o
+odl-neutron-northbound-api                       │ 0.10.4           │          │ Uninstalled │ odl-neutron-northbound-api-0.10.4                │ OpenDaylight :: Neutron :: Northbound
+odl-restconf-nb-rfc8040-noauth                   │ 1.7.4            │          │ Uninstalled │ odl-restconf-nb-rfc8040-noauth                   │ OpenDaylight :: RESTCONF :: RFC8040
+odl-usc-channel                                  │ 1.5.4            │          │ Uninstalled │ odl-usc-1.5.4                                    │ ODL :: usc :: odl-usc-channel
+odl-config-manager-facade-xml                    │ 0.8.4            │          │ Uninstalled │ odl-config-manager-facade-xml                    │ Opendaylight :: Config Persister:: Mapping for Co
+odl-config-netty-config-api                      │ 0.8.4            │          │ Uninstalled │ odl-controller-0.8.4                             │ odl-config-netty-config-api
+features-lispflowmapping                         │ 1.7.4            │          │ Uninstalled │ features-lispflowmapping                         │ ODL :: lispflowmapping :: features-lispflowmapping
+odl-p4plugin-runtime                             │ 0.1.4            │          │ Uninstalled │ odl-p4plugin-runtime                             │ OpenDaylight :: p4plugin :: runtime
+odl-lispflowmapping-mappingservice               │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-mappingservice               │ ODL :: lispflowmapping :: odl-lispflowmapping-map
+odl-packetcable-policy-server                    │ 1.7.4            │          │ Uninstalled │ odl-packetcable-policy-server                    │ OpenDaylight :: packetcable :: policy :: Provider
+odl-l2switch-switch                              │ 0.7.4            │          │ Uninstalled │ odl-l2switch-switch                              │ OpenDaylight :: L2Switch :: Switch
+features4-sfc                                    │ 0.7.4            │          │ Uninstalled │ features4-sfc                                    │ ODL :: sfc :: features4-sfc
+odl-alto-manual-maps                             │ 0.6.4            │          │ Uninstalled │ odl-alto-0.6.4                                   │ OpenDaylight :: alto :: Manual Maps
+features-dlux                                    │ 0.7.4            │          │ Uninstalled │ features-dlux                                    │ features-dlux
+odl-daexim-all                                   │ 1.3.4            │          │ Uninstalled │ odl-daexim-all                                   │ OpenDaylight :: Daexim :: All
+odl-mdsal-dom-api                                │ 2.4.4            │          │ Uninstalled │ odl-mdsal-dom-api                                │ OpenDaylight :: MD-SAL :: DOM API and SPI
+odl-neutron-transcriber                          │ 0.10.4           │          │ Uninstalled │ odl-neutron-transcriber                          │ OpenDaylight :: Neutron :: Implementation
+odl-mdsal-distributed-datastore                  │ 1.7.4            │          │ Uninstalled │ odl-mdsal-distributed-datastore                  │ odl-mdsal-distributed-datastore
+odl-infrautils-caches-sample                     │ 1.3.4            │          │ Uninstalled │ odl-infrautils-caches-sample                     │ OpenDaylight :: Infrautils :: Caches Sample
+odl-usc-api                                      │ 1.5.4            │          │ Uninstalled │ odl-usc-api                                      │ ODL :: usc :: odl-usc-api
+odl-bgpcep-pcep-topology-provider                │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-topology-provider                │ OpenDaylight :: PCEP :: Topology Provider
+odl-sfc-netconf                                  │ 0.7.4            │          │ Uninstalled │ odl-sfc-netconf                                  │ ODL :: sfc :: odl-sfc-netconf
+odl-ntfbenchmark                                 │ 1.5.4            │          │ Uninstalled │ odl-ntfbenchmark                                 │ OpenDaylight :: ntfbenchmark
+odl-yangtools-parser-api                         │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-parser-api                         │ OpenDaylight :: Yangtools :: Parser API
+odl-karaf-feat-jdbc                              │ 3.1.4            │          │ Uninstalled │ odl-karaf-feat-jdbc                              │ ODL :: odlparent :: odl-karaf-feat-jdbc
+odl-infrautils-inject                            │ 1.3.4            │          │ Uninstalled │ odl-infrautils-inject                            │ OpenDaylight :: Infrautils :: @Inject
+features-odlparent                               │ 3.1.4            │          │ Uninstalled │ features-odlparent                               │ ODL :: odlparent :: features-odlparent
+odl-sfc-provider                                 │ 0.7.4            │          │ Uninstalled │ odl-sfc-provider                                 │ ODL :: sfc :: odl-sfc-provider
+odl-openflowplugin-app-lldp-speaker              │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-lldp-speaker              │ OpenDaylight :: Openflow Plugin :: Application -
+odl-aaa-jersey-1                                 │ 0.7.4            │          │ Uninstalled │ odl-aaa-jersey-1                                 │ ODL :: aaa :: odl-aaa-jersey-1
+odl-l2switch-switch-ui                           │ 0.7.4            │          │ Uninstalled │ odl-l2switch-switch-ui                           │ OpenDaylight :: L2Switch :: Switch UI
+odl-sxp-api                                      │ 1.6.4            │          │ Uninstalled │ odl-sxp-api                                      │ Feature :: OpenDaylight :: Sxp :: Api
+odl-sfc-ovs                                      │ 0.7.4            │          │ Uninstalled │ odl-sfc-ovs                                      │ ODL :: sfc :: odl-sfc-ovs
+odl-bgpcep-pcep                                  │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep                                  │ OpenDaylight :: PCEP
+odl-akka-persistence-2.5                         │ 3.1.4            │          │ Uninstalled │ odl-akka-persistence-2.5                         │ Akka Persistence
+odl-sfc-model                                    │ 0.7.4            │          │ Uninstalled │ odl-sfc-model                                    │ ODL :: sfc :: odl-sfc-model
+odl-infrautils-all                               │ 1.3.4            │          │ Uninstalled │ odl-infrautils-all                               │ OpenDaylight :: Infrautils :: All
+odl-lispflowmapping-southbound                   │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-southbound                   │ ODL :: lispflowmapping :: odl-lispflowmapping-sou
+odl-netconf-mdsal                                │ 1.7.4            │          │ Uninstalled │ odl-netconf-mdsal                                │ OpenDaylight :: Netconf :: Mdsal
+odl-ovsdb-southbound-test                        │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-southbound-1.6.4                       │ ODL :: ovsdb :: odl-ovsdb-southbound-test
+odl-infrautils-ready                             │ 1.3.4            │          │ Uninstalled │ odl-infrautils-ready                             │ OpenDaylight :: Infrautils :: Ready
+odl-l2switch-addresstracker                      │ 0.7.4            │          │ Uninstalled │ odl-l2switch-addresstracker                      │ OpenDaylight :: L2Switch :: AddressTracker
+odl-l2switch-loopremover                         │ 0.7.4            │          │ Uninstalled │ odl-l2switch-loopremover                         │ OpenDaylight :: L2Switch :: LoopRemover
+odl-bier-all                                     │ 0.3.4            │          │ Uninstalled │ odl-bier-all                                     │ OpenDaylight :: Bier :: All
+odl-dluxapps-yangutils                           │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangutils                           │ ODL :: dluxapps :: odl-dluxapps-yangutils
+odl-netvirt-openstack                            │ 0.6.4            │          │ Uninstalled │ odl-netvirt-openstack                            │ OpenDaylight :: NetVirt :: OpenStack
+odl-sfc-sb-rest                                  │ 0.7.4            │          │ Uninstalled │ odl-sfc-sb-rest                                  │ ODL :: sfc :: odl-sfc-sb-rest
+features-l2switch                                │ 0.7.4            │          │ Uninstalled │ features-l2switch                                │ features-l2switch
+odl-bier-std-driver                              │ 0.3.4            │          │ Uninstalled │ odl-bier-std-driver                              │ OpenDaylight :: bier :: std :: driver
+jrobot-remote-server                             │ 3.5.0            │          │ Uninstalled │ jrobot-3.5.0                                     │ RobotFramework  :: Remote library server
+odl-openflowplugin-drop-test                     │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-drop-test                     │ OpenDaylight :: Openflow Plugin :: Drop Test
+features-pcep                                    │ 0.9.4            │          │ Uninstalled │ features-pcep                                    │ features-pcep
+odl-aaa-netconf-plugin                           │ 1.4.4            │          │ Uninstalled │ odl-aaa-netconf-plugin                           │ OpenDaylight :: AAA :: ODL NETCONF Plugin
+odl-config-api                                   │ 0.8.4            │          │ Uninstalled │ odl-config-api                                   │ odl-config-api
+odl-bgpcep-bgp-flowspec                          │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-flowspec                          │ OpenDaylight :: BGP :: Flowspec
+odl-usc-agent                                    │ 1.5.4            │          │ Uninstalled │ odl-usc-agent                                    │ ODL :: usc :: odl-usc-agent
+odl-jersey-1                                     │ 3.1.4            │          │ Uninstalled │ odl-jersey-1                                     │ OpenDaylight :: Jersey 1.x
+odl-lispflowmapping-mappingservice-shell         │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-mappingservice-shell         │ ODL :: lispflowmapping :: odl-lispflowmapping-map
+features-sxp                                     │ 1.6.4            │          │ Uninstalled │ features-sxp                                     │ ODL :: sxp :: features-sxp
+odl-yangtools-parser                             │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-parser                             │ OpenDaylight :: Yangtools :: Parser
+infrautils-features                              │ 1.3.4            │          │ Uninstalled │ infrautils-features                              │ ODL :: infrautils :: infrautils-features
+odl-dluxapps-nodes                               │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-nodes                               │ ODL :: dluxapps :: odl-dluxapps-nodes
+odl-netconf-impl                                 │ 1.4.4            │          │ Uninstalled │ odl-netconf-impl                                 │ OpenDaylight :: Netconf :: Impl
+odl-ovsdb-southbound-impl-rest                   │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-southbound-impl-rest                   │ ODL :: ovsdb :: odl-ovsdb-southbound-impl-rest
+odl-aaa-encryption-service                       │ 0.7.4            │          │ Uninstalled │ odl-aaa-0.7.4                                    │ ODL :: aaa :: odl-aaa-encryption-service
+odl-netvirt-coe                                  │ 0.6.4            │          │ Uninstalled │ odl-netvirt-coe                                  │ OpenDaylight :: NetVirt :: Coe
+odl-snmp-plugin                                  │ 1.5.4            │          │ Uninstalled │ odl-snmp-1.5.4                                   │ OpenDaylight :: snmp-plugin :: SNMP
+odl-nemo-cli-renderer                            │ 1.4.4            │          │ Uninstalled │ odl-nemo-1.4.4                                   │ OpenDaylight :: NEMO :: CLI Renderer
+odl-openflowplugin-app-bulk-o-matic              │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-bulk-o-matic              │ OpenDaylight :: Openflow Plugin :: Application -
+odl-bgpcep-bmp-api                               │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bmp-api                               │ OpenDaylight :: BMP :: API
+odl-sfc-genius                                   │ 0.7.4            │          │ Uninstalled │ odl-sfc-genius                                   │ ODL :: sfc :: odl-sfc-genius
+odl-netconf-all                                  │ 1.4.4            │          │ Uninstalled │ odl-netconf-all                                  │ OpenDaylight :: Netconf :: All
+odl-infrautils-diagstatus                        │ 1.3.4            │          │ Uninstalled │ odl-infrautils-diagstatus                        │ OpenDaylight :: Infrautils :: DiagStatus
+odl-bier-adapter                                 │ 0.3.4            │          │ Uninstalled │ odl-bier-adapter                                 │ OpenDaylight :: bier :: adapter
+odl-packetcable-policy-model                     │ 1.7.4            │          │ Uninstalled │ odl-packetcable-policy-model                     │ OpenDaylight :: packetcable :: policy :: Model
+vbd-features                                     │ 1.3.4            │          │ Uninstalled │ vbd-features                                     │ vbd-features
+odl-bgpcep-rsvp                                  │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-rsvp                                  │ OpenDaylight :: RSVP
+odl-openflowplugin-nsf-model                     │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-nsf-model                     │ OpenDaylight :: OpenflowPlugin :: NSF :: Model
+odl-openflowplugin-southbound                    │ 0.6.4            │          │ Uninstalled │ openflowplugin-0.6.4                             │ OpenDaylight :: Openflow Plugin :: Li southbound
+odl-alto-standard-service-models                 │ 0.6.4            │          │ Uninstalled │ odl-alto-standard-service-models                 │ OpenDaylight :: alto :: Standard Service Model
+odl-ovsdb-southbound-impl                        │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-southbound-impl                        │ ODL :: ovsdb :: odl-ovsdb-southbound-impl
+odl-mdsal-apidocs                                │ 1.7.4            │          │ Uninstalled │ odl-mdsal-apidocs                                │ OpenDaylight :: MDSAL :: APIDOCS
+odl-mdsal-eos-common                             │ 2.4.4            │          │ Uninstalled │ odl-mdsal-eos-common                             │ OpenDaylight :: MD-SAL :: EOS :: Common
+odl-bgpcep-bgp-rib-impl                          │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-rib-impl                          │ OpenDaylight :: BGP :: RIB Impl
+odl-vbd                                          │ 1.3.4            │          │ Uninstalled │ odl-vbd-1.3.4                                    │ OpenDaylight :: vbd
+odl-sfc-pot-netconf-renderer                     │ 0.7.4            │          │ Uninstalled │ odl-sfc-pot-netconf-renderer                     │ ODL :: sfc :: odl-sfc-pot-netconf-renderer
+odl-guava-23                                     │ 3.1.4            │          │ Uninstalled │ odl-guava-23                                     │ OpenDaylight :: Guava 23
+odl-bgpcep-bgp-l3vpn                             │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-l3vpn                             │ OpenDaylight :: BGP :: L3Vpn
+features-snmp                                    │ 1.5.4            │          │ Uninstalled │ features-snmp                                    │ features-snmp
+odl-yangtools-codec                              │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-codec                              │ OpenDaylight :: Yangtools :: Data Codecs
+odl-bgpcep-bgp-rib-api                           │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-rib-api                           │ OpenDaylight :: BGP :: RIB Api
+features-netconf-connector                       │ 1.4.4            │          │ Uninstalled │ features-netconf-connector                       │ features-netconf-connector
+odl-nemo-engine                                  │ 1.4.4            │          │ Uninstalled │ odl-nemo-1.4.4                                   │ OpenDaylight :: NEMO :: Engine
+odl-sfc-scf-vpp                                  │ 0.7.4            │          │ Uninstalled │ odl-sfc-scf-vpp                                  │ ODL :: sfc :: odl-sfc-scf-vpp
+odl-tsdr-hbase                                   │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ OpenDaylight :: TSDR :: HBase Persistence
+odl-bgpcep-pcep-topology-stats                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-topology-stats                   │ OpenDaylight :: PCEP :: Topology Stats
+odl-alto-standard-types                          │ 0.6.4            │          │ Uninstalled │ odl-alto-standard-types                          │ OpenDaylight :: alto :: Standard Types
+odl-genius-fcaps-application                     │ 0.4.4            │          │ Uninstalled │ odl-genius-fcaps-application                     │ OpenDaylight :: genius :: fcapsapp
+odl-tsdr-restconf-collector                      │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ OpenDaylight :: TSDR :: Restconf Collector
+odl-coe-api                                      │ 0.3.4            │          │ Uninstalled │ odl-coe-api                                      │ OpenDaylight :: coe :: API
+odl-sfc-ios-xe-renderer                          │ 0.7.4            │          │ Uninstalled │ odl-sfc-ios-xe-renderer                          │ ODL :: sfc :: odl-sfc-ios-xe-renderer
+odl-mdsal-singleton-common                       │ 2.4.4            │          │ Uninstalled │ odl-mdsal-singleton-common                       │ OpenDaylight :: MD-SAL :: Singleton :: Common
+odl-alto-simpleird                               │ 0.6.4            │          │ Uninstalled │ odl-alto-simpleird                               │ OpenDaylight :: alto :: Simple IRD
+odl-bgpcep-bgp-parser-api                        │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-parser-api                        │ OpenDaylight :: BGP :: Parser :: API
+odl-alto-resourcepool                            │ 0.6.4            │          │ Uninstalled │ odl-alto-resourcepool                            │ OpenDaylight :: alto :: Resourcepool
+odl-karaf-feat-jetty                             │ 3.1.4            │          │ Uninstalled │ odl-karaf-feat-jetty                             │ ODL :: odlparent :: odl-karaf-feat-jetty
+odl-sfc-vnfm-tacker                              │ 0.7.4            │          │ Uninstalled │ odl-sfc-0.7.4                                    │ ODL :: sfc :: odl-sfc-vnfm-tacker
+odl-netconf-monitoring                           │ 1.4.4            │          │ Uninstalled │ odl-netconf-monitoring                           │ OpenDaylight :: Netconf :: Monitoring
+8da8bcd0-dacc-440e-bd40-cf2f893c2284             │ 0.0.0            │ x        │ Started     │ ab0765b3-b81e-49f3-8c88-70d91797c11a             │
+odl-mdsal-dom                                    │ 2.4.4            │          │ Uninstalled │ odl-mdsal-dom                                    │ OpenDaylight :: MD-SAL :: DOM
+odl-config-persister                             │ 0.8.4            │          │ Uninstalled │ odl-config-persister                             │ OpenDaylight :: Config Persister
+odl-dluxapps-yangman                             │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangman                             │ ODL :: dluxapps :: odl-dluxapps-yangman
+odl-dluxapps-yangui                              │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangui                              │ ODL :: dluxapps :: odl-dluxapps-yangui
+odl-of-config-southbound-api                     │ 1.4.4            │          │ Uninstalled │ odl-of-config-southbound-api                     │ OpenDaylight :: of-config:: southbound :: api
+odl-genius-rest                                  │ 0.4.4            │          │ Uninstalled │ odl-genius-rest                                  │ OpenDaylight :: genius :: REST
+odl-neutron-spi                                  │ 0.10.4           │          │ Uninstalled │ odl-neutron-spi                                  │ OpenDaylight :: Neutron :: API
+odl-aaa-api                                      │ 0.7.4            │          │ Uninstalled │ odl-aaa-api                                      │ ODL :: aaa :: odl-aaa-api
+odl-netconf-api                                  │ 1.4.4            │          │ Uninstalled │ odl-netconf-api                                  │ OpenDaylight :: Netconf :: API
+features-bmp                                     │ 0.9.4            │          │ Uninstalled │ features-bmp                                     │ features-bmp
+odl-serviceutils-srm                             │ 0.1.4            │          │ Uninstalled │ odl-serviceutils-srm                             │ OpenDaylight :: serviceutils :: SRM
+odl-bgpcep-topology-api                          │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-topology-api                          │ OpenDaylight :: BGPCEP :: Topology :: Api
+odl-mdsal-benchmark                              │ 1.5.4            │          │ Uninstalled │ odl-mdsal-benchmark                              │ OpenDaylight :: MD-SAL :: benchmark
+odl-openflowplugin-nxm-extensions                │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-nxm-extensions                │ OpenDaylight :: Openflow Plugin :: Nicira Extensi
+odl-groupbasedpolicy-vpp                         │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-vpp                         │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-v
+odl-ovsdb-library                                │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-library-1.6.4                          │ ODL :: ovsdb :: odl-ovsdb-library
+odl-mdsal-binding                                │ 2.4.4            │          │ Uninstalled │ odl-mdsal-binding                                │ OpenDaylight :: MD-SAL :: Binding
+odl-dlux-core                                    │ 0.7.4            │          │ Uninstalled │ odl-dlux-0.7.4                                   │ Opendaylight dlux minimal feature
+odl-l2switch-arphandler                          │ 0.7.4            │          │ Uninstalled │ odl-l2switch-arphandler                          │ OpenDaylight :: L2Switch :: ArpHandler
+odl-infrautils-counters-sample                   │ 1.3.4            │          │ Uninstalled │ odl-infrautils-counters-sample                   │ OpenDaylight :: Infrautils :: Counters Sample
+features4-packetcable-policy                     │ 1.7.4            │          │ Uninstalled │ features4-packetcable-policy                     │ features4-packetcable-policy
+odl-alto-core                                    │ 0.6.4            │          │ Uninstalled │ odl-alto-core                                    │ OpenDaylight :: alto :: Core
+features-neutron-service                         │ 0.10.4           │          │ Uninstalled │ features-neutron-service                         │ features-neutron-service
+odl-of-config-all                                │ 1.4.4            │          │ Uninstalled │ odl-of-config-all                                │ OpenDaylight :: of-config :: ALL
+odl-vbd-ui                                       │ 1.3.4            │          │ Uninstalled │ odl-vbd-ui                                       │ OpenDaylight :: vbd :: UI
+features-groupbasedpolicy                        │ 0.7.4            │          │ Uninstalled │ features-groupbasedpolicy                        │ ODL :: groupbasedpolicy :: features-groupbasedpol
+odl-openflowplugin-flow-services-rest            │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-flow-services-rest            │ OpenDaylight :: Openflow Plugin :: Flow Services
+features-rsvp                                    │ 0.9.4            │          │ Uninstalled │ features-rsvp                                    │ features-rsvp
+odl-bgpcep-pcep-impl                             │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-impl                             │ OpenDaylight :: PCEP :: Impl
+odl-netvirt-api                                  │ 0.6.4            │          │ Uninstalled │ odl-netvirt-api                                  │ OpenDaylight :: NetVirt :: api
+odl-neutron-service                              │ 0.10.4           │          │ Uninstalled │ odl-neutron-service                              │ OpenDaylight :: Neutron :: Service
+odl-bgpcep-programming-impl                      │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-programming-impl                      │ OpenDaylight :: PCEP :: Programming Impl
+odl-sxp-core                                     │ 1.6.4            │          │ Uninstalled │ odl-sxp-core                                     │ Feature :: OpenDaylight :: Sxp :: Core
+odl-alto-northbound                              │ 0.6.4            │          │ Uninstalled │ odl-alto-northbound                              │ OpenDaylight :: alto :: Northbound
+odl-restconf                                     │ 1.7.4            │          │ Uninstalled │ odl-restconf                                     │ OpenDaylight :: Restconf
+odl-infrautils-jobcoordinator                    │ 1.3.4            │          │ Uninstalled │ odl-infrautils-jobcoordinator                    │ OpenDaylight :: Infrautils :: JobCoordinator
+odl-bgpcep-bgp-openconfig                        │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-openconfig                        │ OpenDaylight :: BGP :: Openconfig
+odl-bgpcep-bgp-inet                              │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-inet                              │ OpenDaylight :: BGP :: Inet
+odl-netconf-connector                            │ 1.4.4            │          │ Uninstalled │ odl-netconf-connector                            │ OpenDaylight :: Netconf Connector :: Netconf Conn
+odl-bgpcep-bmp-config-loader                     │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bmp-config-loader                     │ OpenDaylight :: BGPCEP :: BMP Config Loader
+odl-bgpcep-pcep-auto-bandwidth                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-auto-bandwidth                   │ OpenDaylight :: PCEP :: Auto Bandwidth
+odl-toaster                                      │ 1.7.4            │          │ Uninstalled │ odl-toaster                                      │ OpenDaylight :: Toaster
+odl-mdsal-model-inventory                        │ 1.7.4            │          │ Uninstalled │ odl-mdsal-model-inventory                        │ OpenDaylight :: MD-SAL :: Inventory Model
+odl-bgpcep-topology-config-loader                │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-topology-config-loader                │ OpenDaylight :: BGPCEP :: Topology Config Loader
+features-bgpcep-extras                           │ 0.9.4            │          │ Uninstalled │ features-bgpcep-extras                           │ features-bgpcep-extras
+odl-p4plugin-netconf-adapter                     │ 0.1.4            │          │ Uninstalled │ odl-p4plugin-netconf-adapter                     │ OpenDaylight :: p4plugin :: netconf :: adapter
+odl-sfc-openflow-renderer                        │ 0.7.4            │          │ Uninstalled │ odl-sfc-openflow-renderer                        │ ODL :: sfc :: odl-sfc-openflow-renderer
+odl-config-netty                                 │ 0.8.4            │          │ Uninstalled │ odl-config-persister-0.8.4                       │ OpenDaylight :: Config-Netty
+odl-bgpcep-bgp-topology                          │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-topology                          │ OpenDaylight :: BGP :: Topology
+odl-akka-system-2.5                              │ 3.1.4            │          │ Uninstalled │ odl-akka-system-2.5                              │ Akka Actor Framework System Bundles
+odl-packetcable-policy-server-all                │ 1.7.4            │          │ Uninstalled │ odl-packetcable-policy-server-all                │ OpenDaylight :: packetcable :: policy :: All
+odl-neutron-hostconfig-ovs                       │ 0.10.4           │          │ Uninstalled │ odl-neutron-hostconfig-ovs                       │ OpenDaylight :: Neutron :: Hostconfig :: OVS
+odl-bier-te-pce                                  │ 0.3.4            │          │ Uninstalled │ odl-bier-te-pce                                  │ OpenDaylight :: bier :: te :: pce
+odl-mdsal-broker-local                           │ 1.7.4            │          │ Uninstalled │ odl-mdsal-1.7.4                                  │ OpenDaylight :: MDSAL :: Broker
+odl-l2switch-hosttracker                         │ 0.7.4            │          │ Uninstalled │ odl-l2switch-hosttracker                         │ OpenDaylight :: L2Switch :: HostTracker
+odl-netconf-clustered-topology                   │ 1.4.4            │          │ Uninstalled │ odl-netconf-clustered-topology                   │ OpenDaylight :: Clustered Netconf Topology :: Net
+odl-of-config-southbound-ofconfigmodels          │ 1.4.4            │          │ Uninstalled │ odl-of-config-southbound-ofconfigmodels          │ OpenDaylight :: of-config:: southbound :: ofconfi
+odl-sfc-scf-openflow                             │ 0.7.4            │          │ Uninstalled │ odl-sfc-scf-openflow                             │ ODL :: sfc :: odl-sfc-scf-openflow
+jsonrpc-features                                 │ 1.3.6            │          │ Uninstalled │ jsonrpc-features                                 │ JSON-RPC :: Feature
+odl-netvirt-sfc                                  │ 0.6.4            │          │ Uninstalled │ odl-netvirt-sfc                                  │ OpenDaylight :: NetVirt :: SFC
+odl-mdsal-dom-broker                             │ 2.4.4            │          │ Uninstalled │ odl-mdsal-dom-broker                             │ OpenDaylight :: MD-SAL :: DOM Broker
+odl-tsdr-core                                    │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ OpenDaylight :: TSDR :: Core
+odl-apache-sshd                                  │ 3.1.4            │          │ Uninstalled │ odl-apache-sshd                                  │ OpenDaylight :: Apache SSHD
+odl-openflowplugin-libraries                     │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-libraries                     │ OpenDaylight :: Openflow Plugin :: Libraries
+odl-sfc-pot                                      │ 0.7.4            │          │ Uninstalled │ odl-sfc-pot                                      │ ODL :: sfc :: odl-sfc-pot
+odl-alto-release                                 │ 0.6.4            │          │ Uninstalled │ odl-alto-release                                 │ OpenDaylight :: alto :: Release
+odl-mdsal-eos-dom                                │ 2.4.4            │          │ Uninstalled │ odl-mdsal-eos-dom                                │ OpenDaylight :: MD-SAL :: EOS :: DOM
+odl-netty-4                                      │ 3.1.4            │          │ Uninstalled │ odl-netty-4                                      │ OpenDaylight :: Netty
+odl-ovsdb-hwvtepsouthbound-ui                    │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-hwvtepsouthbound-ui                    │ ODL :: ovsdb :: odl-ovsdb-hwvtepsouthbound-ui
+odl-restconf-nb-rfc8040-all                      │ 1.7.4            │          │ Uninstalled │ odl-restconf-nb-rfc8040-all                      │ OpenDaylight :: Restconf NB - RFC8040:: All
+odl-openflowplugin-app-table-miss-enforcer       │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-table-miss-enforcer       │ OpenDaylight :: Openflow Plugin :: Application -
+odl-mdsal-common                                 │ 2.4.4            │          │ Uninstalled │ odl-mdsal-common                                 │ OpenDaylight :: MD-SAL :: Common
+odl-javassist-3                                  │ 3.1.4            │          │ Uninstalled │ odl-javassist-3                                  │ OpenDaylight :: Javassist
+odl-tsdr-elasticsearch                           │ 1.5.4            │          │ Uninstalled │ odl-odl-sdni-aggregator-1.5.4                    │ OpenDaylight :: TSDR :: ElasticSearch Persistence
+hibernate-orm                                    │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                                   │ Combines all Hibernate core dependencies and requ
+hibernate-envers                                 │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                                   │ Feature for easily adding Envers support to hiber
+hibernate-infinispan                             │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                                   │ Feature for easily adding Infinispan-based cachin
+hibernate-ehcache                                │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                                   │ Feature for easily adding Ehcache-based caching s
+framework-security                               │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ OSGi Security for Karaf
+service-security                                 │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Services Security for Karaf
+aries-proxy                                      │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Aries Proxy
+aries-blueprint                                  │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Aries Blueprint
+feature                                          │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Features Support
+shell                                            │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Karaf Shell
+shell-compat                                     │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Karaf Shell Compatibility
+deployer                                         │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Karaf Deployer
+wrapper                                          │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Provide OS integration
+service-wrapper                                  │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Provide OS integration (alias to wrapper feature)
+obr                                              │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Provide OSGi Bundle Repository (OBR) support
+bundle                                           │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide Bundle support
+config                                           │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide OSGi ConfigAdmin support
+diagnostic                                       │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide Diagnostic support
+instance                                         │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide Instance support
+jaas                                             │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide JAAS support
+log                                              │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide Log support
+package                                          │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Package commands and mbeans
+service                                          │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide Service support
+system                                           │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide System support
+http                                             │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Implementation of the OSGI HTTP Service
+httplite                                         │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Felix Httplite OSGi HTTP Service
+pax-http-service                                 │ 0.0.0            │          │ Uninstalled │ standard-4.1.6                                   │ Pax-Web OSGi HTTP Service
+http-whiteboard                                  │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Provide HTTP Whiteboard pattern support
+war                                              │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Turn Karaf as a full WebContainer
+jetty                                            │ 9.3.21.v20170918 │          │ Uninstalled │ standard-4.1.6                                   │
+jetty                                            │ 8.1.14.v20131031 │          │ Uninstalled │ standard-4.1.6                                   │
+kar                                              │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide KAR (KARaf archive) support
+webconsole                                       │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Base support of the Karaf WebConsole
+ssh                                              │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide a SSHd server on Karaf
+management                                       │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Provide a JMX MBeanServer and a set of MBeans in
+scheduler                                        │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Provide a scheduler service in Karaf to fire even
+eventadmin                                       │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ OSGi Event Admin service specification for event-
+jasypt-encryption                                │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Advanced encryption support for Karaf security
+scr                                              │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Declarative Service support
+blueprint-web                                    │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Provides an OSGI-aware Servlet ContextListener fo
+wrap                                             │ 0.0.0            │          │ Started     │ standard-4.1.6                                   │ Wrap URL handler
+profile                                          │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Profiles support
+jolokia                                          │ 1.5.0            │          │ Uninstalled │ standard-4.1.6                                   │ Jolokia monitoring support
+standard                                         │ 4.1.6            │          │ Started     │ standard-4.1.6                                   │ Wrap feature describing all features part of a st
+minimal                                          │ 4.1.6            │          │ Uninstalled │ standard-4.1.6                                   │ Wrap feature describing all features part of a mi
+odl-infrautils-caches                            │ 1.3.4            │          │ Uninstalled │ odl-infrautils-caches                            │ OpenDaylight :: Infrautils :: Caches
+odl-config-startup                               │ 0.8.4            │          │ Uninstalled │ odl-config-startup                               │ OpenDaylight :: Config Persister:: Config Startup
+odl-sfclisp                                      │ 0.7.4            │          │ Uninstalled │ odl-sfclisp                                      │ ODL :: sfc :: odl-sfclisp
+odl-sfc-statistics                               │ 0.7.4            │          │ Uninstalled │ odl-sfc-statistics                               │ ODL :: sfc :: odl-sfc-statistics
+odl-lispflowmapping-msmr                         │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-msmr                         │ ODL :: lispflowmapping :: odl-lispflowmapping-msmr
+odl-netconf-notifications-impl                   │ 1.4.4            │          │ Uninstalled │ odl-netconf-notifications-impl                   │ OpenDaylight :: Netconf :: Monitoring :: Impl
+odl-bier-models                                  │ 0.3.4            │          │ Uninstalled │ odl-bier-models                                  │ OpenDaylight :: bier :: models
+odl-netconf-console                              │ 1.4.4            │          │ Uninstalled │ odl-netconf-console                              │ OpenDaylight :: Netconf Console + Karaf CLI for n
+odl-alto-basic                                   │ 0.6.4            │          │ Uninstalled │ odl-alto-basic                                   │ OpenDaylight :: alto :: Basic
+odl-triemap                                      │ 1.0.6.5          │          │ Uninstalled │ odl-triemap                                      │ OpenDaylight :: Yangtools :: TrieMap
+odl-groupbasedpolicy-neutronmapper               │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-neutronmapper               │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-n
+odl-tsdr-cassandra                               │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ OpenDaylight :: TSDR :: Cassandra Persistence
+odl-mdsal-all                                    │ 1.7.4            │          │ Uninstalled │ odl-mdsal-all                                    │ odl-mdsal-all
+odl-yanglib                                      │ 1.4.4            │          │ Uninstalled │ odl-netconf-1.4.4                                │ OpenDaylight :: Yanglib
+odl-bgpcep-bgp-linkstate                         │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-linkstate                         │ OpenDaylight :: BGP :: RIB Linkstate
+pax-web-core                                     │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Provide Core pax-web bundles
+pax-jetty                                        │ 9.3.24.v20180605 │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Provide Jetty engine support
+pax-jetty-http2                                  │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Optional additional feature to run Jetty with SPDY
+pax-http-jetty                                   │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │
+pax-http                                         │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Implementation of the OSGI HTTP Service
+pax-http-whiteboard                              │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Provide HTTP Whiteboard pattern support
+pax-war                                          │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Provide support of a full WebContainer
+pax-http-tomcat                                  │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Provide Tomcat support
+pax-war-tomcat                                   │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │
+pax-jsf-support                                  │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │
+pax-jsf-resources-support                        │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │ Provide sharing of resources according to Servlet
+undertow                                         │ 1.3.25.1         │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │
+pax-http-undertow                                │ 6.0.11           │          │ Uninstalled │ org.ops4j.pax.web-6.0.11                         │
+odl-dsbenchmark                                  │ 1.5.4            │          │ Uninstalled │ odl-dsbenchmark                                  │ OpenDaylight :: dsbenchmark
+odl-openflowplugin-app-reconciliation-framework  │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-reconciliation-framework  │ OpenDaylight :: Openflow Plugin :: Application -
+odl-groupbasedpolicy-base                        │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-base                        │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-b
+odl-dluxapps-topology                            │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-topology                            │ ODL :: dluxapps :: odl-dluxapps-topology
+odl-ovsdb-hwvtepsouthbound-rest                  │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-hwvtepsouthbound-rest                  │ ODL :: ovsdb :: odl-ovsdb-hwvtepsouthbound-rest
+odl-config-core                                  │ 0.8.4            │          │ Uninstalled │ odl-config-core                                  │ odl-config-core
+odl-netconf-connector-all                        │ 1.4.4            │          │ Uninstalled │ odl-netconf-connector-all                        │ OpenDaylight :: Netconf Connector :: All
+odl-bgpcep-bgp-openconfig-state                  │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-openconfig-state                  │ OpenDaylight :: BGP :: Config Loader
+odl-mdsal-singleton-dom                          │ 2.4.4            │          │ Uninstalled │ odl-mdsal-singleton-dom                          │ OpenDaylight :: MD-SAL :: Singleton :: DOM
+odl-restconf-noauth                              │ 1.7.4            │          │ Uninstalled │ odl-restconf-noauth                              │ OpenDaylight :: Restconf
+features-index                                   │ 0.8.4            │          │ Uninstalled │ features-index                                   │ ODL :: integration :: features-index
+odl-hbaseclient                                  │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ ODL :: tsdr :: odl-hbaseclient
+odl-aaa-cli                                      │ 0.7.4            │          │ Uninstalled │ odl-aaa-cli                                      │ ODL :: aaa :: odl-aaa-cli
+features-mdsal                                   │ 1.7.4            │          │ Uninstalled │ features-mdsal                                   │ features-mdsal
+netvirt-features                                 │ 0.6.4            │          │ Uninstalled │ netvirt-features                                 │ ODL :: netvirt :: netvirt-features
+odl-p4plugin-all                                 │ 0.1.4            │          │ Uninstalled │ odl-p4plugin-all                                 │ OpenDaylight :: p4plugin :: all
+odl-bgpcep-bgp-cli                               │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-cli                               │ OpenDaylight :: BGP :: Cli
+odl-openflowplugin-app-topology-lldp-discovery   │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-topology-lldp-discovery   │ OpenDaylight :: Openflow Plugin :: Application -
+odl-aaa-shiro                                    │ 0.7.4            │          │ Uninstalled │ odl-aaa-0.7.4                                    │ ODL :: aaa :: odl-aaa-shiro
+odl-infrautils-all-with-samples                  │ 1.3.4            │          │ Uninstalled │ odl-infrautils-all-with-samples                  │ OpenDaylight :: Infrautils :: All with Samples
+odl-groupbasedpolicy-neutron-vpp-mapper          │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-neutron-vpp-mapper          │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-n
+features-distribution                            │ 0.8.4            │          │ Uninstalled │ features-distribution                            │ ODL :: integration :: features-distribution
+odl-bgpcep-pcep-tunnel-provider                  │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-tunnel-provider                  │ OpenDaylight :: PCEP :: Tunnel Provider
+odl-groupbasedpolicy-sxp-ise-adapter             │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-sxp-ise-adapter             │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-s
+odl-akka-all                                     │ 3.1.4            │          │ Uninstalled │ odl-akka-all                                     │ OpenDaylight :: Akka :: All
+odl-mdsal-binding-dom-adapter                    │ 2.4.4            │          │ Uninstalled │ odl-mdsal-binding-dom-adapter                    │ OpenDaylight :: MD-SAL :: DOM Adapter
+odl-ovsdb-southbound-impl-ui                     │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-southbound-impl-ui                     │ ODL :: ovsdb :: odl-ovsdb-southbound-impl-ui
+odl-l2switch-switch-rest                         │ 0.7.4            │          │ Uninstalled │ odl-l2switch-switch-rest                         │ OpenDaylight :: L2Switch :: Switch REST
+features-yanglib                                 │ 1.4.4            │          │ Uninstalled │ features-yanglib                                 │ features-yanglib
+odl-openflowplugin-flow-services                 │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-flow-services                 │ OpenDaylight :: Openflow Plugin :: Flow Services
+odl-message-bus                                  │ 1.4.4            │          │ Uninstalled │ odl-message-bus                                  │ odl-message-bus
+odl-bgpcep-pcep-config-example                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-0.9.4                                 │ OpenDaylight :: Pcep Configuration Example Files
+odl-groupbasedpolicy-ne-location-provider        │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-ne-location-provider        │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-n
+odl-distribution-version                         │ 0.8.4            │          │ Uninstalled │ odl-integration-distribution-0.8.4               │ ODL :: integration :: odl-distribution-version
+odl-mdsal-binding-api                            │ 2.4.4            │          │ Uninstalled │ odl-mdsal-binding-api                            │ OpenDaylight :: MD-SAL :: Binding API
+odl-openflowplugin-app-topology                  │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-topology                  │ OpenDaylight :: Openflow Plugin :: Application -
+odl-bgpcep-config-loader-spi                     │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-config-loader-spi                     │ OpenDaylight :: BGPCEP :: SPI Config Loader
+odl-protocol-framework                           │ 1.1.4            │          │ Uninstalled │ odl-protocol-framework                           │ OpenDaylight :: Protocol Framework
+odl-yangtools-data-api                           │ 2.0.6.5          │          │ Uninstalled │ odl-yangtools-data-api                           │ OpenDaylight :: Yangtools :: Data API
+odl-bier-bierman                                 │ 0.3.4            │          │ Uninstalled │ odl-bier-bierman                                 │ OpenDaylight :: bier :: bierman
+odl-jolokia                                      │ 1.10.4           │          │ Uninstalled │ odl-extras-1.10.4                                │ Jolokia JMX/HTTP bridge
+features-netconf                                 │ 1.4.4            │          │ Uninstalled │ features-netconf                                 │ features-netconf
+odl-tsdr-hsqldb                                  │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ ODL :: tsdr :: HSQLDB
+odl-dluxapps-yangvisualizer                      │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangvisualizer                      │ ODL :: dluxapps :: odl-dluxapps-yangvisualizer
+odl-netconf-netty-util                           │ 1.4.4            │          │ Uninstalled │ odl-netconf-1.4.4                                │ OpenDaylight :: Netconf :: Netty Util
+odl-restconf-nb-rfc8040                          │ 1.7.4            │          │ Uninstalled │ odl-restconf-nb-rfc8040                          │ OpenDaylight :: Restconf NB - RFC8040
+genius-features                                  │ 0.4.4            │          │ Uninstalled │ genius-features                                  │ ODL :: genius :: genius-features
+odl-restconf-common                              │ 1.7.4            │          │ Uninstalled │ odl-netconf-1.7.4                                │ OpenDaylight :: Restconf :: Common
+features-extras                                  │ 1.10.4           │          │ Uninstalled │ features-extras                                  │ features-extras
+odl-sfc-provider-rest                            │ 0.7.4            │          │ Uninstalled │ odl-sfc-provider-rest                            │ ODL :: sfc :: odl-sfc-provider-rest
+odl-serviceutils-tools                           │ 0.1.4            │          │ Uninstalled │ odl-serviceutils-0.1.4                           │ OpenDaylight :: serviceutils :: TOOLS
+odl-bgpcep-bgp-parser                            │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-parser                            │ OpenDaylight :: BGP :: Parser
+odl-netconf-tcp                                  │ 1.4.4            │          │ Uninstalled │ odl-netconf-tcp                                  │ OpenDaylight :: Netconf Connector :: TCP
+odl-sxp-robot                                    │ 1.6.4            │          │ Uninstalled │ odl-sxp-robot                                    │ Feature :: OpenDaylight :: Robot :: CSIT
+transaction-api                                  │ 1.2.0            │          │ Uninstalled │ enterprise-4.1.6                                 │
+transaction-manager-geronimo                     │ 1.3.3            │          │ Uninstalled │ enterprise-4.1.6                                 │ Geronimo Transaction Manager
+transaction-manager-narayana                     │ 5.5.2.Final      │          │ Uninstalled │ enterprise-4.1.6                                 │ Narayana Transaction Manager
+transaction                                      │ 2.0.0            │          │ Uninstalled │ enterprise-4.1.6                                 │ OSGi Transaction Manager
+connector                                        │ 3.1.1            │          │ Uninstalled │ enterprise-4.1.6                                 │ OSGi support for JCA Connector 1.6
+jpa                                              │ 2.6.1            │          │ Uninstalled │ enterprise-4.1.6                                 │ OSGi Persistence Container
+openjpa                                          │ 2.4.2            │          │ Uninstalled │ enterprise-4.1.6                                 │ Apache OpenJPA 2.4.x persistence engine support
+hibernate                                        │ 5.2.9.Final      │          │ Uninstalled │ enterprise-4.1.6                                 │ Hibernate JPA engine support
+eclipselink                                      │ 2.7.1            │          │ Uninstalled │ enterprise-4.1.6                                 │ Eclipselink JPA persistence engine support
+jndi                                             │ 4.1.6            │          │ Uninstalled │ enterprise-4.1.6                                 │ OSGi Service Registry JNDI access
+jdbc                                             │ 4.1.6            │          │ Uninstalled │ enterprise-4.1.6                                 │ JDBC service and commands
+jms                                              │ 4.1.6            │          │ Uninstalled │ enterprise-4.1.6                                 │ JMS service and commands
+application-without-isolation                    │ 1.0.0            │          │ Uninstalled │ enterprise-4.1.6                                 │ Provide EBA archive support
+subsystems                                       │ 2.0.10           │          │ Uninstalled │ enterprise-4.1.6                                 │ Support for OSGi subsystems
+odl-controller-model-topology                    │ 1.7.4            │          │ Uninstalled │ odl-controller-model-topology                    │ OpenDaylight :: MD-SAL :: Topology Model
+odl-bgpcep-bgp-dependencies                      │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-dependencies-0.9.4                │ OpenDaylight :: BGP :: Dependencies
+odl-nemo-openflow-renderer                       │ 1.4.4            │          │ Uninstalled │ odl-nemo-1.4.4                                   │ OpenDaylight :: NEMO :: OpenFlow Renderer
+odl-infrautils-utils                             │ 1.3.4            │          │ Uninstalled │ odl-infrautils-utils                             │ OpenDaylight :: Infrautils :: Utils
+odl-dluxapps-applications                        │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-applications                        │ ODL :: dluxapps :: odl-dluxapps-applications
+odl-bgpcep-config-loader-impl                    │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-config-loader-impl                    │ OpenDaylight :: BGPCEP :: Config Loader Impl
+odl-bgpcep-bgp-benchmark                         │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-benchmark                         │ OpenDaylight :: BGP :: Benchmark
+odl-coe                                          │ 0.3.4            │          │ Uninstalled │ odl-coe                                          │ OpenDaylight :: coe
+odl-config-manager                               │ 0.8.4            │          │ Uninstalled │ odl-config-manager                               │ odl-config-manager
+odl-of-config-southbound-all                     │ 1.4.4            │          │ Uninstalled │ odl-of-config-southbound-1.4.4                   │ OpenDaylight :: of-config:: southbound
+features-p4plugin                                │ 0.1.4            │          │ Uninstalled │ features-p4plugin                                │ ODL :: p4plugin ::features-p4plugin
+odl-bgpcep-pcep-api                              │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-api                              │ OpenDaylight :: PCEP :: Api
+odl-bgpcep-bmp-config-example                    │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-0.9.4                                 │ OpenDaylight :: BMP :: Config files example
+odl-bgpcep-data-change-counter                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-data-change-counter                   │ ODL :: Bgpcep :: odl-bgpcep-data-change-counter
+odl-ovsdb-hwvtepsouthbound                       │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-hwvtepsouthbound                       │ ODL :: ovsdb :: odl-ovsdb-hwvtepsouthbound
+odl-vbd-rest                                     │ 1.3.4            │          │ Uninstalled │ odl-vbd-rest                                     │ OpenDaylight :: vbd :: REST
+daexim-features                                  │ 1.3.4            │          │ Uninstalled │ daexim-features                                  │ ODL :: daexim :: daexim-features
+odl-genius                                       │ 0.4.4            │          │ Uninstalled │ odl-genius-0.4.4                                 │ OpenDaylight :: genius :: Impls
+odl-mdsal-clustering-commons                     │ 1.7.4            │          │ Uninstalled │ odl-controller-1.7.4                             │ odl-mdsal-clustering-commons
+odl-groupbasedpolicy-ios-xe                      │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-ios-xe                      │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-i
+features4-alto                                   │ 0.6.4            │          │ Uninstalled │ features4-alto                                   │ ODL :: alto :: features4-alto
+nemo-features                                    │ 1.4.4            │          │ Uninstalled │ nemo-features                                    │ ODL :: nemo :: nemo-features
+library-features                                 │ 1.6.4            │          │ Uninstalled │ library-features                                 │ ODL :: ovsdb :: library-features
+odl-openflowplugin-app-forwardingrules-manager   │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-forwardingrules-manager   │ OpenDaylight :: Openflow Plugin :: Application -
+odl-openflowplugin-app-config-pusher             │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-config-pusher             │ OpenDaylight :: Openflow Plugin :: Application -
+features-of-config                               │ 1.4.4            │          │ Uninstalled │ features-of-config                               │ features-of-config
+odl-lispflowmapping-ui                           │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-ui                           │ ODL :: lispflowmapping :: odl-lispflowmapping-ui
+odl-genius-fcaps-framework                       │ 0.4.4            │          │ Uninstalled │ odl-genius-fcaps-framework                       │ OpenDaylight :: genius :: fcapsframework
+features-snmp4sdn                                │ 0.7.4            │          │ Uninstalled │ features-snmp4sdn                                │ features-snmp4sdn
+odl-usc-channel-rest                             │ 1.5.4            │          │ Uninstalled │ odl-usc-channel-rest                             │ ODL :: usc :: odl-usc-channel-rest
+odl-bier-service                                 │ 0.3.4            │          │ Uninstalled │ odl-bier-service                                 │ OpenDaylight :: bier :: service
+odl-mdsal-remoterpc-connector                    │ 1.7.4            │          │ Uninstalled │ odl-controller-1.7.4                             │ odl-mdsal-remoterpc-connector
+odl-bgpcep-programming-api                       │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-programming-api                       │ OpenDaylight :: PCEP :: Programming Api
+odl-lispflowmapping-neutron                      │ 1.7.4            │          │ Uninstalled │ odl-lispflowmapping-neutron                      │ ODL :: lispflowmapping :: odl-lispflowmapping-neu
+odl-alto-standard-northbound-route               │ 0.6.4            │          │ Uninstalled │ odl-alto-standard-northbound-route               │ OpenDaylight :: alto :: Standard Northbound Route
+odl-alto-simpleecs                               │ 0.6.4            │          │ Uninstalled │ odl-alto-0.6.4                                   │ OpenDaylight :: alto :: Simple ECS
+odl-config-util                                  │ 0.8.4            │          │ Uninstalled │ odl-controller-0.8.4                             │ odl-config-util
+odl-mdsal-trace                                  │ 1.7.4            │          │ Uninstalled │ odl-mdsal-trace-1.7.4                            │ OpenDaylight :: TracingBroker
+odl-tsdr-syslog-collector                        │ 1.5.4            │          │ Uninstalled │ odl-odl-sdni-aggregator-1.5.4                    │ OpenDaylight :: TSDR :: Syslog Collector
+odl-genius-api                                   │ 0.4.4            │          │ Uninstalled │ odl-genius-api                                   │ OpenDaylight :: genius :: API
+odl-ovsdb-hwvtepsouthbound-api                   │ 1.6.4            │          │ Uninstalled │ odl-ovsdb-hwvtepsouthbound-api                   │ ODL :: ovsdb :: odl-ovsdb-hwvtepsouthbound-api
+odl-netconf-callhome-ssh                         │ 1.4.4            │          │ Uninstalled │ odl-netconf-callhome-ssh                         │ OpenDaylight :: Netconf Connector :: Netconf Call
+odl-bgpcep-pcep-segment-routing                  │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-pcep-segment-routing                  │ OpenDaylight :: PCEP :: Segment Routing
+odl-alto-extension                               │ 0.6.4            │          │ Uninstalled │ odl-alto-extension                               │ OpenDaylight :: alto :: Extension
+odl-bgpcep-bgp-labeled-unicast                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bgp-labeled-unicast                   │ OpenDaylight :: BGP :: Labeled Unicast
+odl-bgpcep-bmp                                   │ 0.9.4            │          │ Uninstalled │ odl-bgpcep-bmp                                   │ OpenDaylight :: BMP
+odl-sxp-controller                               │ 1.6.4            │          │ Uninstalled │ odl-sxp-controller                               │ Feature :: OpenDaylight :: Sxp :: Controller
+odl-tsdr-openflow-statistics-collector           │ 1.5.4            │          │ Uninstalled │ odl-tsdr-1.5.4                                   │ OpenDaylight :: TSDR :: Openflow Statistics Colle
+odl-netvirt-impl                                 │ 0.6.4            │          │ Uninstalled │ odl-netvirt-0.6.4                                │ OpenDaylight :: NetVirt :: impl
+hwvtepsouthbound-features                        │ 1.6.4            │          │ Uninstalled │ hwvtepsouthbound-features                        │ ODL :: ovsdb :: hwvtepsouthbound-features
+odl-alto-rsabs                                   │ 0.6.4            │          │ Uninstalled │ odl-alto-rsabs                                   │ OpenDaylight :: alto :: Routing State Abstraction
+odl-groupbasedpolicy-neutron-and-ofoverlay       │ 0.7.4            │          │ Uninstalled │ odl-groupbasedpolicy-neutron-and-ofoverlay       │ ODL :: groupbasedpolicy :: odl-groupbasedpolicy-n
+odl-config-all                                   │ 0.8.4            │          │ Uninstalled │ odl-config-all                                   │ odl-config-all
+odl-alto-spce                                    │ 0.6.4            │          │ Uninstalled │ odl-alto-0.6.4                                   │ OpenDaylight :: alto :: Simple Path Computation E
+features-openflowplugin-extension                │ 0.6.4            │          │ Uninstalled │ features-openflowplugin-extension                │ features-openflowplugin-extension
+odl-openflowplugin-app-topology-manager          │ 0.6.4            │          │ Uninstalled │ odl-openflowplugin-app-topology-manager          │ OpenDaylight :: Openflow Plugin :: Application -
+odl-message-bus-collector                        │ 1.7.4            │          │ Uninstalled │ odl-mdsal-1.7.4                                  │ odl-message-bus-collector
+odl-lmax-3                                       │ 3.1.4            │          │ Uninstalled │ odl-lmax-3                                       │ OpenDaylight :: LMAX Disruptor
+features-bier                                    │ 0.3.4            │          │ Uninstalled │ features-bier                                    │ ODL :: bier :: features-bier
+opendaylight-user@root>feature:list | grep dlux
+features-dluxapps                                │ 0.7.4            │          │ Uninstalled │ features-dluxapps                                │ ODL :: dluxapps :: features-dluxapps
+features-dlux                                    │ 0.7.4            │          │ Uninstalled │ features-dlux                                    │ features-dlux
+odl-dluxapps-yangutils                           │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangutils                           │ ODL :: dluxapps :: odl-dluxapps-yangutils
+odl-dluxapps-nodes                               │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-nodes                               │ ODL :: dluxapps :: odl-dluxapps-nodes
+odl-dluxapps-yangman                             │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangman                             │ ODL :: dluxapps :: odl-dluxapps-yangman
+odl-dluxapps-yangui                              │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangui                              │ ODL :: dluxapps :: odl-dluxapps-yangui
+odl-dlux-core                                    │ 0.7.4            │          │ Uninstalled │ odl-dlux-0.7.4                                   │ Opendaylight dlux minimal feature
+odl-dluxapps-topology                            │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-topology                            │ ODL :: dluxapps :: odl-dluxapps-topology
+odl-dluxapps-yangvisualizer                      │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-yangvisualizer                      │ ODL :: dluxapps :: odl-dluxapps-yangvisualizer
+odl-dluxapps-applications                        │ 0.7.4            │          │ Uninstalled │ odl-dluxapps-applications                        │ ODL :: dluxapps :: odl-dluxapps-applications
+opendaylight-user@root>
+opendaylight-user@root>logout
+
+
+http://192.168.0.105:8181/index.html
+
+user name admin
+password admin
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ && sudo -E ./bin/karaf clear
+
+
+
+
+feature:install odl-dluxapps-topology
+feature:install odl-dluxapps-applications
+feature:install odl-dluxapps-nodes
+feature:install odl-restconf 
+feature:install odl-l2switch-switch 
+feature:install odl-mdsal-apidocs 
+feature:install odl-dlux-all
+feature:install odl-dlux-core
+
+No feature matching
+
+No feature matching
+
+No feature matching
+feature:install odl-snbi-dlux           odl-dlux-all            odl-dlux-core           odl-dlux-node           odl-dlux-yangui         odl-dlux-yangvisualizer 
+
+
+odl-dlux-core
+odl-dluxapps-nodes
+odl-dluxapps-topology
+odl-dluxapps-yangui
+odl-dluxapps-yangvisualizer
+odl-dluxapps-yangman
