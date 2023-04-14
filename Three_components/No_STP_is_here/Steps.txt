@@ -1,0 +1,324 @@
+
+ #       h1 = self.addHost('Web',ip='192.168.100.5/24',mac='00:00:00:00:00:01')
+ #       h2 = self.addHost('Email',ip='192.168.100.6/24',mac='00:00:00:00:00:02')
+ #       h3 = self.addHost('h3',ip='192.168.30.30/24',mac='00:00:00:00:00:03')
+ #       h4 = self.addHost('h4',ip='192.168.30.40/24',mac='00:00:00:00:00:04')            
+ #3       
+
+
+
+ #       DMZ=self.addSwitch('DMZ',dpid='0000000000000012',cls=OVSSwitch, protocols='OpenFlow13')
+ #       Inside=self.addSwitch('Inside',dpid='0000000000000013',cls=OVSSwitch, protocols='OpenFlow13')
+ #       s1=self.addSwitch('s1',dpid='0000000000000005',cls=OVSSwitch, protocols='OpenFlow13')
+ #       s2=self.addSwitch('s2',dpid='0000000000000006',cls=OVSSwitch, protocols='OpenFlow13')
+ #       R1=self.addSwitch('R1',dpid='0000000000000021',cls=OVSSwitch, protocols='OpenFlow13')
+ #       Internet=self.addSwitch('Internet',dpid='0000000000000022',cls=OVSSwitch, protocols='OpenFlow13')
+ #       F1=self.addSwitch('F1',dpid='0000000000000041',cls=OVSSwitch, protocols='OpenFlow13')
+
+ #       h1.cmd(' ip route add default via 192.168.100.1')
+ #       h2.cmd(' ip route add default via 192.168.100.1')
+ #       h3.cmd(' ip route add default via 192.168.30.1')
+ #       h4.cmd(' ip route add default via 192.168.30.1')
+     
+
+
+
+ 
+#FOR DMZ_L3
+#DPID 0000000000000012
+curl -X POST -d '{"address": "192.168.100.1/24"}' http://localhost:8086/l3sw/0000000000000012
+curl -X POST -d '{"address": "192.168.43.1/24"}' http://localhost:8086/l3sw/0000000000000012
+ curl -X POST -d '{
+    "dpid": 18,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"172.43.10.0/24",
+        "ipv4_src" : "192.168.100.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 1}]      
+        }' http://localhost:8086/stats/flowentry/add
+        
+        
+        
+ curl -X POST -d '{
+    "dpid": 18,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"172.43.10.0/24",
+        "ipv4_dst" : "192.168.100.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 2}]      
+        }' http://localhost:8086/stats/flowentry/add        
+        
+    curl -X POST -d '{
+    "dpid": 18,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.30.0/24",
+        "ipv4_src" : "192.168.100.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 1}]      
+        }' http://localhost:8086/stats/flowentry/add
+        
+        
+        
+ curl -X POST -d '{
+    "dpid": 18,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.30.0/24",
+        "ipv4_dst" : "192.168.100.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 2}]      
+        }' http://localhost:8086/stats/flowentry/add        
+
+        
+#For Inside_L3   
+#DPID 0000000000000013
+curl -X POST -d '{"address": "172.43.10.1/24"}' http://localhost:8086/l3sw/0000000000000013
+curl -X POST -d '{"address": "192.168.30.1/24"}' http://localhost:8086/l3sw/0000000000000013
+
+curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.30.0/24",
+        "ipv4_src" : "192.168.100.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 1}]      
+        }' http://localhost:8086/stats/flowentry/add
+        
+        
+        
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.30.0/24",
+        "ipv4_dst" : "192.168.100.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 2}]      
+        }' http://localhost:8086/stats/flowentry/add        
+        
+    curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.30.0/24",
+        "ipv4_src" : "192.168.43.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 1}]      
+        }' http://localhost:8086/stats/flowentry/add
+        
+        
+        
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.30.0/24",
+        "ipv4_dst" : "192.168.43.0/24"
+        }
+    ,"actions":[{"type":"OUTPUT","port": 2}]      
+        }' http://localhost:8086/stats/flowentry/add
+
+#################update Mac here 
+#mac 03 IP 192.168.30.30 to port 1 of layer 3 switch
+        #h4 = self.addHost('h4',ip='192.168.30.40/24',mac='00:00:00:00:00:04')            
+        
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.100.5",
+        "ipv4_dst" : "192.168.30.30"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:03"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:01"},
+                {"type":"OUTPUT","port": 1}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+
+
+
+   
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.100.5",
+        "ipv4_src" : "192.168.30.30"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:01"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:03"},
+                {"type":"OUTPUT","port": 2}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+
+
+
+#mac 04 IP 192.168.30.40 to port 1 of layer 3 switch
+        #h4 = self.addHost('h4',ip='192.168.30.40/24',mac='00:00:00:00:00:04')            
+         
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.100.6",
+        "ipv4_dst" : "192.168.30.30"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:03"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:02"},
+                {"type":"OUTPUT","port": 1}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+
+
+
+   
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.100.6",
+        "ipv4_src" : "192.168.30.30"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:02"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:03"},
+                {"type":"OUTPUT","port": 2}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+##################################
+
+
+
+#for R1
+#DPID 0000000000000021
+curl -X POST -d '{"address": "123.123.1.1/24"}' http://localhost:8086/router/0000000000000021
+curl -X POST -d '{"address": "8.8.8.1/24"}' http://localhost:8086/router/0000000000000021
+        
+        
+        
+#Internet    =self.addSwitch('Internet',dpid='0000000000000022',cls=OVSSwitch, protocols='OpenFlow13')
+#DPID 0000000000000021
+curl -X POST -d '{"address": "8.8.8.8/24"}' http://localhost:8086/router/0000000000000022
+
+######################
+#for F1 
+#0000000000000041
+
+curl -X PUT http://localhost:8086/firewall/module/enable/0000000000000041
+
+
+#firewall
+
+ curl -X POST -d '{"nw_src": "192.168.100.0/24", "nw_proto": "ICMP"}' http://localhost:8086/firewall/rules/0000000000000041
+ curl -X POST -d '{"nw_src": "192.168.43.0/24", "nw_proto": "ICMP"}' http://localhost:8086/firewall/rules/0000000000000041
+ curl -X POST -d '{"nw_src": "192.168.30.0/24", "nw_proto": "ICMP"}' http://localhost:8086/firewall/rules/0000000000000041
+ curl -X POST -d '{"nw_src": "172.43.10.0/24", "nw_proto": "ICMP"}' http://localhost:8086/firewall/rules/0000000000000041
+ curl -X POST -d '{"nw_src": "123.123.1.1/24", "nw_proto": "ICMP"}' http://localhost:8086/firewall/rules/0000000000000041
+ 
+ 
+ 
+ 
+ #learning modifying packets
+  curl -X POST -d '{
+    "dpid": 5,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 100,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.100.5",
+        "ipv4_dst" : "192.168.100.6"
+        }
+    ,"actions":[
+            {"type": "DEC_NW_TTL"},
+           {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:01"},
+           {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:02"},
+           {"type":"OUTPUT","port": 2},
+           ]      
+        }' http://localhost:8086/stats/flowentry/add
