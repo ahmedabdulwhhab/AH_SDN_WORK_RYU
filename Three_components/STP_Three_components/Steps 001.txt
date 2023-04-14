@@ -1,0 +1,5 @@
+clear; sudo ryu-manager    /home/ubuntu/sdn/sources/flowmanager/flowmanager.py    --observe-links --ofp-tcp-listen-port 6633 --wsapi-port 8086
+good display
+
+
+clear; sudo ryu-manager  simple_switch_13.py  /home/ubuntu/sdn/sources/flowmanager/flowmanager.py    --observe-links --ofp-tcp-listen-port 6633 --wsapi-port 8086
