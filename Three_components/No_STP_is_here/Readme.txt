@@ -106,7 +106,8 @@ as we have two different IP class network, DPID 18 or 0x12, if dst is 192.168.10
 #mac 03 IP 192.168.30.30 to port 1 of layer 3 switch
         #h4 = self.addHost('h4',ip='192.168.30.40/24',mac='00:00:00:00:00:04') 
 at the end point which is s2 while (Email ping h3)
-we have to confirm mac of h3 is mentioned as per below                 {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:03"},
+we have to confirm mac of h3 is mentioned as per below                 {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:03"},out is port 1
+so modifiation is done in DPID 19
 so we update dst mac in packet
         
  curl -X POST -d '{
@@ -131,7 +132,7 @@ so we update dst mac in packet
         }' http://localhost:8086/stats/flowentry/add
 
 
-
+*********************************
    
  curl -X POST -d '{
     "dpid": 19,
@@ -155,7 +156,7 @@ so we update dst mac in packet
         }' http://localhost:8086/stats/flowentry/add
 
 
-
+***********************************************************
 #mac 04 IP 192.168.30.40 to port 1 of layer 3 switch
         #h4 = self.addHost('h4',ip='192.168.30.40/24',mac='00:00:00:00:00:04')            
          
@@ -181,7 +182,7 @@ so we update dst mac in packet
         }' http://localhost:8086/stats/flowentry/add
 
 
-
+**********************************************************
    
  curl -X POST -d '{
     "dpid": 19,
