@@ -1,4 +1,10 @@
 
+
+
+
+# ryu-manager rest_router_custom.py rest_firewall_custom.py ryu.app.ofctl_rest  layer3_sw.py simple_switch_13_custom.py /home/sdn/flowmanager/flowmanager.py --observe-links --ofp-tcp-listen-port 6633 --wsapi-port 8086
+
+
  #       h1 = self.addHost('Web',ip='192.168.100.5/24',mac='00:00:00:00:00:01')
  #       h2 = self.addHost('Email',ip='192.168.100.6/24',mac='00:00:00:00:00:02')
  #       h3 = self.addHost('h3',ip='192.168.30.30/24',mac='00:00:00:00:00:03')
@@ -268,6 +274,107 @@ curl -X POST -d '{
                 {"type":"OUTPUT","port": 2}
     ]      
         }' http://localhost:8086/stats/flowentry/add
+
+########## for h4 mac 04 ip 30.40
+        
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.100.5",
+        "ipv4_dst" : "192.168.30.40"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:04"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:01"},
+                {"type":"OUTPUT","port": 1}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+
+
+
+   
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.100.5",
+        "ipv4_src" : "192.168.30.40"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:01"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:04"},
+                {"type":"OUTPUT","port": 2}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+
+
+
+#mac 04 IP 192.168.30.40 to port 1 of layer 3 switch
+        #h4 = self.addHost('h4',ip='192.168.30.40/24',mac='00:00:00:00:00:04')            
+         
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_src" :"192.168.100.6",
+        "ipv4_dst" : "192.168.30.40"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:04"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:02"},
+                {"type":"OUTPUT","port": 1}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+
+
+
+   
+ curl -X POST -d '{
+    "dpid": 19,
+    "cookie": 1,
+    "cookie_mask": 1,
+    "table_id": 0,
+    "priority": 101,
+    "hard_timeout": 3000,
+    "flags": 1,
+    "match":{
+        "eth_type" : 2048,
+        "ipv4_dst" :"192.168.100.6",
+        "ipv4_src" : "192.168.30.40"
+        }
+    ,"actions":[
+                {"type": "DEC_NW_TTL"},
+                {"type":"SET_FIELD","field":"eth_dst","value":"00:00:00:00:00:02"},
+                {"type":"SET_FIELD","field":"eth_src","value":"00:00:00:00:00:04"},
+                {"type":"OUTPUT","port": 2}
+    ]      
+        }' http://localhost:8086/stats/flowentry/add
+##################################
+
+
+
 ##################################
 
 
