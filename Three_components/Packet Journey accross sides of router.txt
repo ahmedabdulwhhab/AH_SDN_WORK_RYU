@@ -1,0 +1,79 @@
+h1 ping h3     -c3
+10.0.0.2    ping 100.0.0.2 
+
+final steps
+a-1)	h1 contacts his preconfigured gateway and ask him what is your MAC address in ARP message.
+a-2)  	ro_1-eth1 reply by his MAC address (as per below example it is ae:05:25:14:e8:36)
+a-3)  	h1 prepares a packet
+	src ip, mac is h1
+	dst ip is 100.0.0.2
+	dst mac is ro_1-eth1 MAC address
+a-4) ro_1-eth1 detects that it is not his IP address , so he forwards it to other side of it.
+	
+b-1) at the other side
+	ro_1-eth2 contacts his LAN and ask what is MAC address of ip 100.0.0.2 in ARP message.	
+b-2) 	100.0.0.2 reply by his own 00:00:00:00:00:03
+
+
+ARP to gateway
+response from gateway
+ICMP from h1
+router detects unknown MAC for this host.
+router save this packet in his buffer.
+then router sends ARP
+after resonse
+router sends the buffered ICMP after modifying dst mac and put himself as src mac without changing IP src
+h3 prepares a pcaket
+	src is his mac, dst is MSG dst ip
+	dst is ro_1-eth2 mac, dst is h1 ip
+at router side
+	put himself as src mac
+
+next time
+h1 prepares
+	src ip, src mac
+	dst ip , ro_1-eth1 mac
+router forwads it after modifying src mac
+reply comes from h3 by
+		h3 is src ip, src mac
+		h1 is dst ip, ro_1-eth2 as dest mac
+then router put it to other side
+and modify himeself to be source mac.
+		
+
+$ sudo tcpdump -en -i ro_1-eth1
+
+
+05:59:32.120088 00:00:00:00:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Request who-has 10.0.0.1 tell 10.0.0.2, length 28
+05:59:32.131453 ae:05:25:14:e8:36 > 00:00:00:00:00:01, ethertype ARP (0x0806), length 60: Reply 10.0.0.1 is-at ae:05:25:14:e8:36, length 46
+05:59:32.151485 00:00:00:00:00:01 > ae:05:25:14:e8:36, ethertype IPv4 (0x0800), length 98: 10.0.0.2 > 100.0.0.2: ICMP echo request, id 11716, seq 1, length 64
+05:59:32.191611 ae:05:25:14:e8:36 > 00:00:00:00:00:01, ethertype IPv4 (0x0800), length 98: 100.0.0.2 > 10.0.0.2: ICMP echo reply, id 11716, seq 1, length 64
+05:59:32.574672 ae:05:25:14:e8:36 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+05:59:32.834500 52:43:84:74:bf:50 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+05:59:33.116840 00:00:00:00:00:01 > ae:05:25:14:e8:36, ethertype IPv4 (0x0800), length 98: 10.0.0.2 > 100.0.0.2: ICMP echo request, id 11716, seq 2, length 64
+05:59:33.117090 ae:05:25:14:e8:36 > 00:00:00:00:00:01, ethertype IPv4 (0x0800), length 98: 100.0.0.2 > 10.0.0.2: ICMP echo reply, id 11716, seq 2, length 64
+05:59:33.476104 ae:05:25:14:e8:36 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$ sudo tcpdump -en -i ro_1-eth2
+
+05:59:32.161570 66:f8:75:9a:c8:05 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 100.0.0.2 tell 100.0.0.1, length 46
+05:59:32.173132 00:00:00:00:00:03 > 66:f8:75:9a:c8:05, ethertype ARP (0x0806), length 42: Reply 100.0.0.2 is-at 00:00:00:00:00:03, length 28
+05:59:32.185012 66:f8:75:9a:c8:05 > 00:00:00:00:00:03, ethertype IPv4 (0x0800), length 98: 10.0.0.2 > 100.0.0.2: ICMP echo request, id 11716, seq 1, length 64
+05:59:32.191528 00:00:00:00:00:03 > 66:f8:75:9a:c8:05, ethertype IPv4 (0x0800), length 98: 100.0.0.2 > 10.0.0.2: ICMP echo reply, id 11716, seq 1, length 64
+05:59:32.519686 66:f8:75:9a:c8:05 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+05:59:32.782700 ee:6e:8d:6a:9b:c8 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+05:59:33.116969 66:f8:75:9a:c8:05 > 00:00:00:00:00:03, ethertype IPv4 (0x0800), length 98: 10.0.0.2 > 100.0.0.2: ICMP echo request, id 11716, seq 2, length 64
+05:59:33.117085 00:00:00:00:00:03 > 66:f8:75:9a:c8:05, ethertype IPv4 (0x0800), length 98: 100.0.0.2 > 10.0.0.2: ICMP echo reply, id 11716, seq 2, length 64
+05:59:33.421543 66:f8:75:9a:c8:05 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+
+
+
+mininet> h1 arp -a
+? (10.0.0.1) at ae:05:25:14:e8:36 [ether] on h1-eth0
+? (10.0.0.3) at 00:00:00:00:00:02 [ether] PERM on h1-eth0
+
+
+mininet> h3 arp -a
+? (100.0.0.3) at 00:00:00:00:00:04 [ether] PERM on h3-eth0
+? (100.0.0.1) at 66:f8:75:9a:c8:05 [ether] on h3-eth0
