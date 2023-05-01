@@ -188,11 +188,11 @@ class NAT(app_manager.RyuApp):
                 dst_port = t.dst_port if t else u.dst_port
 					#print dst_port
 
-    if dst_port in maps :
+        if dst_port in maps :
             ipv4_addr = maps[dst_port]
-    else :
-        print "Dropping msg as dst is not understood"
-        return
+        else :
+            print "Dropping msg as dst is not understood"
+            return
         actions = [
 							parser.OFPActionSetNwDst( self.ipv4_to_int(ipv4_addr.addr) ),
 							parser.OFPActionSetTpDst( ipv4_addr.port ),
