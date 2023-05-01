@@ -76,7 +76,7 @@ class NAT(app_manager.RyuApp):
     def add_flow(self, datapath, match, actions, priority=0, hard_timeout=0):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
-
+    
         mod = parser.OFPFlowMod(datapath=datapath, priority=priority, match=match, actions=actions, hard_timeout=hard_timeout, cookie=0, command=ofproto.OFPFC_ADD)
         datapath.send_msg(mod)
         self.logger.debug("add_flow:"+str(mod))
@@ -90,40 +90,41 @@ class NAT(app_manager.RyuApp):
         ofproto = dp.ofproto
         parser = dp.ofproto_parser
         self.logger.info("switch connected %s", dp)
-
+        
         # pass packet directly
         actions = [parser.OFPActionOutput(ofproto.OFPP_NORMAL)]	
-
+    
         # arp
         match = parser.OFPMatch(dl_type = dl_type_arp)
-
+    
         self.add_flow(dp, match, actions)
-
+        
         # ipv6
         match = parser.OFPMatch(dl_type = dl_type_ipv6)
+    
         self.add_flow(dp, match, actions)
-
+    
         # igmp
         match = parser.OFPMatch(dl_type = dl_type_ipv4, nw_proto = 2)
-
+    
         self.add_flow(dp, match, actions)
-
+    
         # do address translation for following types of packet
         actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER)]
-
+    
         # icmp
         match = parser.OFPMatch(dl_type = dl_type_ipv4, nw_proto = 1)
-
+    
         self.add_flow(dp, match, actions)
-
+    
         # tcp
         match = parser.OFPMatch(dl_type = dl_type_ipv4, nw_proto = 6)
-
+    
         self.add_flow(dp, match, actions)
-
+    
         # udp
         match = parser.OFPMatch(dl_type = dl_type_ipv4, nw_proto = 17)
-
+    
         self.add_flow(dp, match, actions)
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
@@ -140,132 +141,131 @@ class NAT(app_manager.RyuApp):
         #self.logger.info("pkt %s", pkt)
         ip = pkt.get_protocol(ipv4.ipv4)
         #self.logger.info("ipv4 %s", ip)
-
+	
 
         bitmask = "24"
         src_match = IPNetwork("10.10.1.0"+ "/" + bitmask)
         dst_match = ex_ip
-
+    
         if message.in_port == ofproto.OFPP_LOCAL :
-             out_port = 1
+            out_port = 1
         else :
-             out_port = ofproto.OFPP_LOCAL
-
+            out_port = ofproto.OFPP_LOCAL
+    
         if ip.proto == 17 or ip.proto == 6 :
                 t = pkt.get_protocol(tcp.tcp)
                 #self.logger.info("tcp %s", t)
                 u = pkt.get_protocol(udp.udp)
                 #self.logger.info("udp %s", u)
-
-            if IPNetwork( ip.src + "/" + bitmask ) == src_match :
-			#print "convert src"
-            src_port = t.src_port if t else u.src_port
-			#print src_port
-            ipv4_addr = Ipv4_addr(addr=ip.src , port=src_port)
-
-            if ipv4_addr in maps :
-                port = maps[ipv4_addr]
-            else:
-                port = ports.pop()
-                maps[ ipv4_addr ] = port
-                maps[ port ] = ipv4_addr
-            print(f"Created mapping: {ipv4_addr.addr} {ipv4_addr.port} to {ex_ip} {port}")
-
-            actions = [
-				parser.OFPActionSetNwSrc( self.ipv4_to_int(ex_ip) ),
-				parser.OFPActionSetTpSrc( port ),
-				parser.OFPActionOutput(out_port)
-				]
-            data = None;
-					# Check the buffer_id and if needed pass the whole message down
-            if message.buffer_id == 0xffffffff:
-                  data=message.data
-            out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
-            datapath.send_msg(out)
-            return
-        elif ip.dst  == dst_match :
-                #print "convert dst"
-                dst_port = t.dst_port if t else u.dst_port
-					#print dst_port
-
-        if dst_port in maps :
-            ipv4_addr = maps[dst_port]
-        else :
-            print "Dropping msg as dst is not understood"
-            return
-        actions = [
-							parser.OFPActionSetNwDst( self.ipv4_to_int(ipv4_addr.addr) ),
-							parser.OFPActionSetTpDst( ipv4_addr.port ),
-							parser.OFPActionOutput(out_port)
-							]
-        data = None;
-					# Check the buffer_id and if needed pass the whole message down
-        if message.buffer_id == 0xffffffff:
-            data=message.data
-            out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
-        datapath.send_msg(out)
-					return
-
-	elif ip.proto == 1 :
-		ping = pkt.get_protocol(icmp.icmp)
-        	#self.logger.info("icmp %s", ping)
-		
-		if IPNetwork( ip.src + "/" + bitmask ) == src_match :
-			#print "convert src"
-
-			icmp_id = ping.data.id
-			#print icmp_id
-
-			if not icmp_id in maps :
-				maps[icmp_id] = ip.src
-
-			actions = [
-                                parser.OFPActionSetNwSrc( self.ipv4_to_int(ex_ip) ),
-                                parser.OFPActionOutput(out_port)
-                                ]
-                        data = None;
-                        # Check the buffer_id and if needed pass the whole message down
-                        if message.buffer_id == 0xffffffff:
-                                data=message.data
-                        out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data,  in_port=message.in_port,actions=actions)
-                        datapath.send_msg(out)
-                        return
-
-		elif ip.dst  == dst_match :
-			#print "convert dst"
-
-			icmp_id = ping.data.id
-                        #print icmp_id
-
-			if icmp_id in maps :
-				dst_addr = maps[icmp_id]
-			else :
-				print "Dropping msg as dst is not understood"
-				return
-						
-			actions = [
-                                parser.OFPActionSetNwDst( self.ipv4_to_int(dst_addr) ),
-                                parser.OFPActionOutput(out_port)
-                                ]
-                        data = None;
-                        # Check the buffer_id and if needed pass the whole message down
-                        if message.buffer_id == 0xffffffff:
-                                data=message.data
-                        out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
-                        datapath.send_msg(out)
-                        return
-	else:
-		#print "other"
-		actions = [parser.OFPActionOutput(out_port)]
+    
+                if(IPNetwork( ip.src + "/" + bitmask ) == src_match):
+                    #print "convert src"
+                    src_port = t.src_port if t else u.src_port
+                    #print src_port
+                    ipv4_addr = Ipv4_addr(addr=ip.src , port=src_port)
+    
+                    if ipv4_addr in maps :
+                        port = maps[ipv4_addr]
+                    else:
+                        port = ports.pop()
+                        maps[ ipv4_addr ] = port
+                        maps[ port ] = ipv4_addr
+                        print("Created mapping: %s %s to %s %s" % (ipv4_addr.addr, ipv4_addr.port, ex_ip, port ))
+                    actions = [
+                        parser.OFPActionSetNwSrc( self.ipv4_to_int(ex_ip) ),
+                        parser.OFPActionSetTpSrc( port ),
+                        parser.OFPActionOutput(out_port)
+                        ]
+                    data = None;
+                    # Check the buffer_id and if needed pass the whole message down
+                    if message.buffer_id == 0xffffffff:
+                        data=message.data
+                    out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
+                    datapath.send_msg(out)
+                    return
+                elif ip.dst  == dst_match :
+                    #print "convert dst"
+                    dst_port = t.dst_port if t else u.dst_port
+                    #print dst_port
+                
+                if dst_port in maps :
+                    ipv4_addr = maps[dst_port]
+                else :
+                    print("Dropping msg as dst is not understood")
+                    return
+                actions = [
+                                    parser.OFPActionSetNwDst( self.ipv4_to_int(ipv4_addr.addr) ),
+                                    parser.OFPActionSetTpDst( ipv4_addr.port ),
+                                    parser.OFPActionOutput(out_port)
+                                    ]
                 data = None;
-                # Check the buffer_id and if needed pass the whole message down
+                            # Check the buffer_id and if needed pass the whole message down
                 if message.buffer_id == 0xffffffff:
-                	data=message.data
+                                    data=message.data
                 out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
-                datapath.send_msg(out)		
-
+                datapath.send_msg(out)
+                return
+    
+        elif ip.proto == 1 :
+            ping = pkt.get_protocol(icmp.icmp)
+                #self.logger.info("icmp %s", ping)
+            
+            if IPNetwork( ip.src + "/" + bitmask ) == src_match :
+                #print "convert src"
+    
+                icmp_id = ping.data.id
+                #print icmp_id
+    
+                if not icmp_id in maps :
+                    maps[icmp_id] = ip.src
+    
+                actions = [
+                                    parser.OFPActionSetNwSrc( self.ipv4_to_int(ex_ip) ),
+                                    parser.OFPActionOutput(out_port)
+                                    ]
+                data = None;
+                            # Check the buffer_id and if needed pass the whole message down
+                if message.buffer_id == 0xffffffff:
+                    data=message.data
+                out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data,  in_port=message.in_port,actions=actions)
+                datapath.send_msg(out)
+                return
+    
+            elif ip.dst  == dst_match :
+                #print "convert dst"
+    
+                icmp_id = ping.data.id
+                            #print icmp_id
+    
+                if icmp_id in maps :
+                    dst_addr = maps[icmp_id]
+                else :
+                    print("Dropping msg as dst is not understood")
+                    return
+                            
+                actions = [
+                                    parser.OFPActionSetNwDst( self.ipv4_to_int(dst_addr) ),
+                                    parser.OFPActionOutput(out_port)
+                                    ]
+                data = None;
+                            # Check the buffer_id and if needed pass the whole message down
+                if message.buffer_id == 0xffffffff:
+                        data=message.data
+                out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
+                datapath.send_msg(out)
+                return
+        else:
+            #print "other"
+            actions = [parser.OFPActionOutput(out_port)]
+            data = None;
+            # Check the buffer_id and if needed pass the whole message down
+            if message.buffer_id == 0xffffffff:
+                    data=message.data
+            out = parser.OFPPacketOut(datapath=datapath, buffer_id=message.buffer_id, data=data, in_port=message.in_port,actions=actions)
+            datapath.send_msg(out)		
+    
     def ipv4_to_str(self, integre):
-	ip_list = [str((integre >> (24 - (n * 8)) & 255)) for n in range(4)]
+        ip_list = [str((integre >> (24 - (n * 8)) & 255)) for n in range(4)]
         return '.'.join(ip_list)
 
     def ipv4_to_int(self, string):
@@ -273,6 +273,6 @@ class NAT(app_manager.RyuApp):
        	assert len(ip) == 4
        	i = 0
        	for b in ip:
-    		b = int(b)
-        	i = (i << 8) | b
+            b = int(b)
+            i = (i << 8) | b
         return i
