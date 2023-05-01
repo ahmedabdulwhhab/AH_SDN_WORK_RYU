@@ -1,0 +1,135 @@
+h1 ping h2   -c3
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on r1-eth1, link-type EN10MB (Ethernet), capture size 262144 bytes
+21:40:07.026237 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:07.928757 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:08.830622 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:09.512110 00:00:00:00:00:01 > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Request who-has 172.16.20.1 tell 172.16.20.10, length 28
+21:40:09.519077 fa:a3:da:95:c6:99 > 00:00:00:00:00:01, ethertype ARP (0x0806), length 60: Reply 172.16.20.1 is-at fa:a3:da:95:c6:99, length 46
+21:40:09.519091 00:00:00:00:00:01 > fa:a3:da:95:c6:99, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 172.16.10.10: ICMP echo request, id 7835, seq 1, length 64
+21:40:09.534538 fa:a3:da:95:c6:99 > 00:00:00:00:00:01, ethertype IPv4 (0x0800), length 98: 172.16.10.10 > 172.16.20.10: ICMP echo reply, id 7835, seq 1, length 64
+21:40:09.731651 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:10.514235 00:00:00:00:00:01 > fa:a3:da:95:c6:99, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 172.16.10.10: ICMP echo request, id 7835, seq 2, length 64
+21:40:10.514747 fa:a3:da:95:c6:99 > 00:00:00:00:00:01, ethertype IPv4 (0x0800), length 98: 172.16.10.10 > 172.16.20.10: ICMP echo reply, id 7835, seq 2, length 64
+21:40:10.634397 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+
+
+
+
+*******************
+[sudo] password for ubuntu:
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on r2-eth1, link-type EN10MB (Ethernet), capture size 262144 bytes
+21:40:05.172834 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:06.074183 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:06.974980 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:07.876795 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:08.778861 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:09.525831 86:b7:dc:85:7b:3e > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 172.16.10.10 tell 172.16.10.1, length 46
+21:40:09.525855 00:00:00:00:00:02 > 86:b7:dc:85:7b:3e, ethertype ARP (0x0806), length 42: Reply 172.16.10.10 is-at 00:00:00:00:00:02, length 28
+21:40:09.534196 86:b7:dc:85:7b:3e > 00:00:00:00:00:02, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 172.16.10.10: ICMP echo request, id 7835, seq 1, length 64
+21:40:09.534319 00:00:00:00:00:02 > 86:b7:dc:85:7b:3e, ethertype IPv4 (0x0800), length 98: 172.16.10.10 > 172.16.20.10: ICMP echo reply, id 7835, seq 1, length 64
+21:40:09.680521 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:10.514665 86:b7:dc:85:7b:3e > 00:00:00:00:00:02, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 172.16.10.10: ICMP echo request, id 7835, seq 2, length 64
+21:40:10.514727 00:00:00:00:00:02 > 86:b7:dc:85:7b:3e, ethertype IPv4 (0x0800), length 98: 172.16.10.10 > 172.16.20.10: ICMP echo reply, id 7835, seq 2, length 64
+21:40:10.582625 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:11.484834 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:11.517058 86:b7:dc:85:7b:3e > 00:00:00:00:00:02, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 172.16.10.10: ICMP echo request, id 7835, seq 3, length 64
+21:40:11.517118 00:00:00:00:00:02 > 86:b7:dc:85:7b:3e, ethertype IPv4 (0x0800), length 98: 172.16.10.10 > 172.16.20.10: ICMP echo reply, id 7835, seq 3, length 64
+21:40:12.386254 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:13.288147 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:14.188977 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:14.637512 00:00:00:00:00:02 > 86:b7:dc:85:7b:3e, ethertype ARP (0x0806), length 42: Request who-has 172.16.10.1 tell 172.16.10.10, length 28
+21:40:14.659769 86:b7:dc:85:7b:3e > 00:00:00:00:00:02, ethertype ARP (0x0806), length 60: Reply 172.16.10.1 is-at 86:b7:dc:85:7b:3e, length 46
+21:40:15.091064 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:15.991531 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:16.893710 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:17.795299 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:18.695388 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:19.596344 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:20.498775 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:21.399429 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:21.804965 86:b7:dc:85:7b:3e > 33:33:00:00:00:02, ethertype IPv6 (0x86dd), length 70: fe80::84b7:dcff:fe85:7b3e > ff02::2: ICMP6, router solicitation, length 16
+21:40:21.805451 2a:ea:e6:b6:16:2c > 33:33:00:00:00:02, ethertype IPv6 (0x86dd), length 70: fe80::28ea:e6ff:feb6:162c > ff02::2: ICMP6, router solicitation, length 16
+21:40:22.302794 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:23.203850 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:40:23.853797 06:1b:ae:8f:9d:06 > 33:33:00:00:00:02, ethertype IPv6 (0x86dd), length 70: fe80::41b:aeff:fe8f:9d06 > ff02::2: ICMP6, router solicitation, length 16
+21:40:24.105975 86:b7:dc:85:7b:3e > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+
+####################################################
+------------------------------------------------
+h1 ping h3
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on r1-eth1, link-type EN10MB (Ethernet), capture size 262144 bytes
+21:41:31.808807 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:32.709671 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:33.612427 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:34.513557 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:35.415305 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:36.317277 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:37.219280 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:37.954675 00:00:00:00:00:01 > fa:a3:da:95:c6:99, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 192.168.30.10: ICMP echo request, id 7881, seq 1, length 64
+21:41:37.967097 fa:a3:da:95:c6:99 > 00:00:00:00:00:01, ethertype IPv4 (0x0800), length 98: 192.168.30.10 > 172.16.20.10: ICMP echo reply, id 7881, seq 1, length 64
+21:41:38.121246 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:38.956990 00:00:00:00:00:01 > fa:a3:da:95:c6:99, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 192.168.30.10: ICMP echo request, id 7881, seq 2, length 64
+21:41:38.957518 fa:a3:da:95:c6:99 > 00:00:00:00:00:01, ethertype IPv4 (0x0800), length 98: 192.168.30.10 > 172.16.20.10: ICMP echo reply, id 7881, seq 2, length 64
+21:41:39.022071 fa:a3:da:95:c6:99 > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+
+
+#################
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on r3-eth1, link-type EN10MB (Ethernet), capture size 262144 bytes
+21:41:33.377347 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:34.271877 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:35.173252 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:36.074862 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:36.976035 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:37.877707 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:37.959961 d6:ff:7c:55:57:af > ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 60: Request who-has 192.168.30.10 tell 192.168.30.1, length 46
+21:41:37.959985 00:00:00:00:00:03 > d6:ff:7c:55:57:af, ethertype ARP (0x0806), length 42: Reply 192.168.30.10 is-at 00:00:00:00:00:03, length 28
+21:41:37.966714 d6:ff:7c:55:57:af > 00:00:00:00:00:03, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 192.168.30.10: ICMP echo request, id 7881, seq 1, length 64
+21:41:37.966823 00:00:00:00:00:03 > d6:ff:7c:55:57:af, ethertype IPv4 (0x0800), length 98: 192.168.30.10 > 172.16.20.10: ICMP echo reply, id 7881, seq 1, length 64
+21:41:38.779183 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:38.957428 d6:ff:7c:55:57:af > 00:00:00:00:00:03, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 192.168.30.10: ICMP echo request, id 7881, seq 2, length 64
+21:41:38.957491 00:00:00:00:00:03 > d6:ff:7c:55:57:af, ethertype IPv4 (0x0800), length 98: 192.168.30.10 > 172.16.20.10: ICMP echo reply, id 7881, seq 2, length 64
+21:41:39.679576 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:39.959023 d6:ff:7c:55:57:af > 00:00:00:00:00:03, ethertype IPv4 (0x0800), length 98: 172.16.20.10 > 192.168.30.10: ICMP echo request, id 7881, seq 3, length 64
+21:41:39.959079 00:00:00:00:00:03 > d6:ff:7c:55:57:af, ethertype IPv4 (0x0800), length 98: 192.168.30.10 > 172.16.20.10: ICMP echo reply, id 7881, seq 3, length 64
+21:41:40.581669 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:41.483368 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:41.677706 00:00:00:00:00:03 > 33:33:00:00:00:02, ethertype IPv6 (0x86dd), length 70: fe80::200:ff:fe00:3 > ff02::2: ICMP6, router solicitation, length 16
+21:41:42.385502 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:43.212807 00:00:00:00:00:03 > d6:ff:7c:55:57:af, ethertype ARP (0x0806), length 42: Request who-has 192.168.30.1 tell 192.168.30.10, length 28
+21:41:43.233747 d6:ff:7c:55:57:af > 00:00:00:00:00:03, ethertype ARP (0x0806), length 60: Reply 192.168.30.1 is-at d6:ff:7c:55:57:af, length 46
+21:41:43.286944 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:43.724958 d6:ff:7c:55:57:af > 33:33:00:00:00:02, ethertype IPv6 (0x86dd), length 70: fe80::d4ff:7cff:fe55:57af > ff02::2: ICMP6, router solicitation, length 16
+21:41:44.189234 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:45.091309 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:45.992103 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:46.892829 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:47.794616 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:48.695914 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:49.598571 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:49.871110 00:00:00:00:00:01 > 33:33:00:00:00:02, ethertype IPv6 (0x86dd), length 70: fe80::200:ff:fe00:1 > ff02::2: ICMP6, router solicitation, length 16
+21:41:50.499496 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:51.400471 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:52.302406 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:53.205050 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:54.107399 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:55.009334 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:55.910591 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:56.812429 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:57.713179 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:58.614919 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:41:59.516007 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:00.417530 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:01.319090 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:02.219874 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:03.121423 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:04.023525 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:04.925335 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:05.826665 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:06.727665 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:07.629091 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:08.530520 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
+21:42:09.432107 d6:ff:7c:55:57:af > 01:80:c2:00:00:0e, ethertype LLDP (0x88cc), length 60: LLDP, length 46
