@@ -23,7 +23,7 @@ ubuntu@ubuntu:~$
 sudo sflow-rt/get-app.sh sflow-rt mininet-dashboard
 sudo ./sflow-rt/get-app.sh sflow-rt browse-flows
 
-sudo ./sflow-rt/start.sh
+sudo /home/ubuntu/sdn/projects/sflow/sflow-rt/start.sh
 
 ryu-manager ryu.app.simple_switch_13,ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py    --observe-links --ofp-tcp-listen-port 6653 --wsapi-port 8080
 
