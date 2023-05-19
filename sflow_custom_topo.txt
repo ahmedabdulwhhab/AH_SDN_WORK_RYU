@@ -1,7 +1,7 @@
 Here let us use sflow with custom topo
 1) create a file project_sflow.py at any location for example here
 
- /home/ubuntu/sdn/projects/learn_sflow/project_sflow.py
+ /home/ubuntu/sdn/projects/learn_sflow/mytopo.py
  
 2) copy below python topo as per below
 ######################################3 
@@ -30,15 +30,15 @@ class Project( Topo ):
                 self.addLink(s1,s2, port1 = 3,port2 = 3,bw=40.0, delay='40ms', use_htb=True)
 
 
-topos = { 'project_sflow': ( lambda: Project() )} 
+topos = { 'mytopo': ( lambda: Project() )} 
 #####################################################
 
 3) Run sflow-rt
 sudo /home/ubuntu/sdn/projects/sflow/sflow-rt/start.sh
 
 
-3) in my case sflow location is   /home/ubuntu/sdn/projects/sflow/sflow-rt/extras/sflow.py
+4) in my case sflow location is   /home/ubuntu/sdn/projects/sflow/sflow-rt/extras/sflow.py
 so run your topo as per bloew
 
-sudo mn -c; sudo mn --custom /home/ubuntu/sdn/projects/learn_sflow/project_sflow.py,/home/ubuntu/sdn/projects/sflow/sflow-rt/extras/sflow.py --link tc,bw=10 --topo=project_sflow --controller=remote,ip=127.0.0.1:6633
+sudo mn -c; sudo mn --custom /home/ubuntu/sdn/projects/learn_sflow/mytopo.py,/home/ubuntu/sdn/projects/sflow/sflow-rt/extras/sflow.py --link tc,bw=10 --topo=project_sflow --controller=remote,ip=127.0.0.1:6633
  
