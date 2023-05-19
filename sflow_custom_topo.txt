@@ -1,10 +1,10 @@
 Here let us use sflow with custom topo
-1) create a file project_sflow.py at any location for example here
+1) create a file mytopo.py at any location for example here
 
  /home/ubuntu/sdn/projects/learn_sflow/mytopo.py
  
 2) copy below python topo as per below
-######################################3 
+######################################
 from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.log import setLogLevel
