@@ -13,6 +13,19 @@ s2 - c0
 s1,s3,s4,s5 - c1
 
 
+.start the controllers:
+
+controller1:
+------------
+ryu-manager --ofp-tcp-listen-port 6653 ryu.app.simple_switch_13 
+
+
+controller2:
+------------
+
+ryu-manager --ofp-tcp-listen-port 6654 L3_switch.py 
+
+
 test method - generate a ping from h1 to h2
               generate a iperf UDP Parallel connection(50) from h2 to h5  continuously  for every 10 seconds
 
