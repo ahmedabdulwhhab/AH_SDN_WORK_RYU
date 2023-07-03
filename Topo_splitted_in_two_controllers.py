@@ -132,28 +132,7 @@ def myNetwork():
     h5.cmd(cmd1)
     h6.cmd(cmd1)
 
-    index = 1
-    for x in range(12):
-      time.sleep(10)
-      cmd2 = "iperf -u -c 10.10.10." + str(index)+" -P 20 -b 100k -t 5 &"
-      if index==1:
-        print("Running cmd in h2", cmd2)
-        h2.cmd(cmd2)
-      elif index==2:
-        print("Running cmd in h3", cmd2)
-        h3.cmd(cmd2)
-      elif index==3:
-        print("Running cmd in h4", cmd2)
-        h4.cmd(cmd2)
-      elif index==4:
-        print("Running cmd in h5", cmd2)
-        h5.cmd(cmd2)
-      elif index==5:
-        print("Running cmd in h1", cmd2)
-        h1.cmd(cmd2)
-      index+=1
-      if index>4:
-        index=1
+
     CLI(net)
     net.stop()
 
