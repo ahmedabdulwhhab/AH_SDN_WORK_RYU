@@ -29,4 +29,4 @@ and slave App which only make check whether I am slave or not
 <br>
 Refer to youtube link
 <br>
-https://youtu.be/pH5Sj8-O3Ek
+
