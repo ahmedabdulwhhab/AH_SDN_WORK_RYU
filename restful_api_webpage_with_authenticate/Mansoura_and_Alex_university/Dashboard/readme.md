@@ -14,7 +14,7 @@ terminal (2) to run ryu
 terminal (3) to run listener at port 5000
 <br>
 
-cd dashboard
+cd dashboard <br>
 python app.py
 
 <br>
