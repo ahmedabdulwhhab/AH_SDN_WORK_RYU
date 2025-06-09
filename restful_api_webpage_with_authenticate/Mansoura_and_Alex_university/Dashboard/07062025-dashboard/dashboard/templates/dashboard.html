@@ -1,0 +1,93 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Firewall Management</title>
+      <link rel="stylesheet" href="static/css/styles.css" />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      />
+ 
+    </head>
+    <body>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2 sidebar">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/firewall">Firewall </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/vpn_status">VPN Status</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/monitor">Traffic monitor</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-10 content">
+            <!-- edit here-->
+            <h1 class="h1">Firewall Management</h1>
+            <form>
+              <label for="switch-select">Switch Number:</label>
+              <input
+                type="text"
+                id="switch-select"
+                name="switch-select"
+                placeholder="example: 1"
+              />
+              <label for="select-action">Select an Action:</label>
+              <select id="select-action" name="action">
+                <option value="enable-firewall">Enable Firewall</option>
+                <option value="get-status">Get Status</option>
+                <option value="get-rules">Get Rules</option>
+                <option value="add-rule">Adding Rule</option>
+                <option value="block-traffic">Block Traffic</option>
+                <option value="delete-rule">Delete Rule</option>
+              </select>
+              <div id="input-fields"></div>
+              <button type="button" id="confirm" class="align-self-center">Confirm</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <script>
+        var currentPage = window.location.href;
+
+        // Get all the <a> tags in the navbar
+        var navLinks = document.querySelectorAll(".nav-item a");
+
+        // Loop through each <a> tag
+        for (var i = 0; i < navLinks.length; i++) {
+          var link = navLinks[i];
+
+          // Check if the href attribute matches the current page URL
+          if (link.href === currentPage) {
+            // Add the 'active' class to the matching element
+            link.classList.add("active");
+          }
+        }
+      </script>
+      <script>
+        function showAlert(data) {
+          // Use SweetAlert to display the alert with custom class
+          Swal.fire({
+            title: "Command Results",
+            text: JSON.stringify(data, null, 2),
+            icon: "success",
+            confirmButtonColor: "#02a6a6",
+            customClass: {
+              container: "my-alert",
+            },
+          });
+        }
+      </script>
+      <script src="static/js/script.js"></script>
+    </body>
+  </html>
+</html>

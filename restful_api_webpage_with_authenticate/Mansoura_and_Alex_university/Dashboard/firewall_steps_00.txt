@@ -1,0 +1,72 @@
+this example ryu is runnging on machine has ip 192.168.1.8
+mininet and ryu controller are running on same station
+
+1. Topo Single 4 hosts
+ clear && sudo mn -c ;sudo mn --controller=remote,ip=192.168.127.133:6644 --mac -i 10.0.0.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=single,4
+
+
+ 
+2. controller + flowmanager/flowmanager.py  
+  sudo ryu-manager ryu.app.rest_firewall  ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --ofp-tcp-listen-port 6644 --wsapi-port 8085 --observe-links
+
+
+3. after running dpid is registed automatically,
+controller is a websocket server at port 8080
+
+(2561) wsgi starting up on http://0.0.0.0:8080
+[FW][INFO] dpid=0000000000000001: Join as firewall.
+
+
+4. flowtable
+clear && sudo ovs-ofctl -O openflow13 dump-flows s1
+ cookie=0x0, duration=158.784s, table=0, n_packets=0, n_bytes=0, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535
+ cookie=0x0, duration=158.782s, table=0, n_packets=0, n_bytes=2352, priority=65535 actions=drop
+ cookie=0x0, duration=158.781s, table=0, n_packets=0, n_bytes=0, priority=0 actions=CONTROLLER:128
+ cookie=0x0, duration=158.781s, table=0, n_packets=0, n_bytes=0, priority=65534,arp actions=NORMAL
+ 
+ 
+ 5. after pingall
+ flow table is 
+  
+ cookie=0x0, duration=304.919s, table=0, n_packets=85, n_bytes=4018, priority=65535 actions=drop
+
+so by default drop is done for each packet
+
+
+curl -X PUT http://192.168.127.133:8085/firewall/module/enable/0000000000000001
+
+curl -X POST -d '{"nw_src": "10.0.0.1/32", "nw_dst": "10.0.0.2/32", "nw_proto": "ICMP"}' http://192.168.127.133:8085/firewall/rules/0000000000000001
+
+
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://192.168.127.133:8085/firewall/rules/0000000000000001
+
+6. after enable switch as firewall
+flowtable is
+ cookie=0x0, duration=397.607s, table=0, n_packets=0, n_bytes=0, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535
+ cookie=0x0, duration=397.605s, table=0, n_packets=0, n_bytes=0, priority=65534,arp actions=NORMAL
+ cookie=0x0, duration=397.605s, table=0, n_packets=0, n_bytes=0, priority=0 actions=CONTROLLER:128
+
+7. doing ping
+the controller starts to receive packets from switch
+[FW][INFO] dpid=0000000000000001: Blocked packet = ethernet(dst='00:00:00:00:00:02',ethertype=2048,src='00:00:00:00:00:01'), ipv4(csum=20952,dst='10.0.0.2',flags=2,header_length=5,identification=54478,offset=0,option=None,proto=1,src='10.0.0.1',tos=0,total_length=84,ttl=64,version=4), icmp(code=0,csum=50617,data=echo(data=b'&\xd9\xc8c\x00\x00\x00\x00q\xe8\x07\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567',id=2893,seq=1),type=8)
+
+and make block
+
+8. so enable will remove drop packet and put a new action is normal which pass packet to controller
+
+
+9. controller is default firewall so you have to pass configuration using curl command
+
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP"}' http://192.168.127.128:8085/firewall/rules/0000000000000001
+
+
+echo
+echo #################################
+echo S1  ALLOW "nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP"
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://192.168.127.128:8085/firewall/rules/0000000000000001 #to allow ICMP
+echo
+
+
+echo S2  ALLOW "nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP"
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://localhost:8080/firewall/rules/0000000000000013 #to allow ICMP
+echo

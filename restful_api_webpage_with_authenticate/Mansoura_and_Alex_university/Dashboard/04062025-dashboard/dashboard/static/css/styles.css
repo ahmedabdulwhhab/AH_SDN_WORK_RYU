@@ -1,0 +1,160 @@
+/* Body styles */
+body {
+  background-color: #161616;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Container styles */
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #161616;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 36px;
+  color: #fff;
+}
+h3 {
+  color: #fff;
+}
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Select styles */
+select {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f2f2f2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 5px #02a6a6;
+}
+
+/* Label styles */
+label {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+/* Input styles */
+input[type="text"] {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+  background-color: #f2f2f2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px #02a6a6;
+}
+
+/* Button styles */
+button {
+  margin-top: 20px;
+  padding: 10px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #02a6a6;
+  border: none;
+  margin: 4px auto; /* Center the button horizontally */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+button:hover {
+  background-color: #02a6a6;
+}
+
+/* Success message styles */
+.success-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #27ae60;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Error message styles */
+.error-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #c0392b;
+  color: #fff;
+  border-radius: 5px;
+}
+label[for="source-ip"],
+label[for="destination-ip"],
+label[for="protocol"],
+label[for="pirority"] {
+  display: inline-block;
+  width: 120px;
+}
+
+.computer {
+  width: 200px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+}
+.online {
+  opacity: 1;
+}
+.offline {
+  opacity: 0.15;
+}
+.sidebar {
+  min-height: 100vh;
+  background-color: #3f3e3e;
+}
+
+.content {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #161616;
+}
+
+.page {
+  display: none;
+}
+
+.page.show {
+  display: block;
+}
+.nav-item .active {
+  background-color: #02a6a6; /* Set the desired background color */
+  color: #ffffff; /* Set the desired text color */
+}
+.nav-link {
+  color: white;
+}
+.nav-link:hover {
+  color: #02a6a6; /* Customize hover text color */
+}
