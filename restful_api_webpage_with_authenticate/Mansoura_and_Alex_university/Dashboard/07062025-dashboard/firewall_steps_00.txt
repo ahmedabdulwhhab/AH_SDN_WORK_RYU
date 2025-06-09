@@ -7,7 +7,7 @@ mininet and ryu controller are running on same station
 
  
 2. controller + flowmanager/flowmanager.py  
- sudo ryu-manager ryu.app.rest_firewall  ryu.app.ofctl_rest /home/ubuntu/sources/sdn/flowmanager/flowmanager.py  --ofp-tcp-listen-port 6644 --wsapi-port 8085 --observe-links
+  sudo ryu-manager ryu.app.rest_firewall  ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --ofp-tcp-listen-port 6644 --wsapi-port 8085 --observe-links
 
 
 3. after running dpid is registed automatically,
@@ -33,12 +33,12 @@ clear && sudo ovs-ofctl -O openflow13 dump-flows s1
 so by default drop is done for each packet
 
 
-curl -X PUT http://192.168.127.128:8085/firewall/module/enable/0000000000000021
+curl -X PUT http://192.168.127.133:8085/firewall/module/enable/0000000000000001
 
-curl -X POST -d '{"nw_src": "10.0.0.1/32", "nw_dst": "10.0.0.2/32", "nw_proto": "ICMP"}' http://192.168.127.128:8085/firewall/rules/0000000000000021
+curl -X POST -d '{"nw_src": "10.0.0.1/32", "nw_dst": "10.0.0.2/32", "nw_proto": "ICMP"}' http://192.168.127.133:8085/firewall/rules/0000000000000001
 
 
-curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://192.168.127.128:8085/firewall/rules/0000000000000021
+curl -X POST -d '{"nw_src": "10.0.0.1/24", "nw_dst": "10.0.0.2/24", "nw_proto": "ICMP", "actions": "ALLOW" }' http://192.168.127.133:8085/firewall/rules/0000000000000001
 
 6. after enable switch as firewall
 flowtable is
