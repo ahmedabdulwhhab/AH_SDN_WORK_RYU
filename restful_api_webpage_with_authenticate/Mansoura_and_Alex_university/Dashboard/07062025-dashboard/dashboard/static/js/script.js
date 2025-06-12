@@ -66,7 +66,7 @@ confirmButton.addEventListener("click", () => {
       .then((data) => showAlert(data));
   } else if (selectedOption === "get-rules") {
     api_url = "http://192.168.127.133:8085/firewall/rules/000000000000000"+switch_id;
-    fetch("https://192.168.127.133:5000/send?api_url="+api_url+"&action=get_rules")
+    fetch("/send?api_url="+api_url+"&action=get_rules")
       .then((response) => response.json())
       .then((data) => showAlert(data));
   } else if (selectedOption === "add-rule") {
