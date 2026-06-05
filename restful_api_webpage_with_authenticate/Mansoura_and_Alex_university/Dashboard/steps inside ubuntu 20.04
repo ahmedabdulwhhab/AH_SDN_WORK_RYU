@@ -1,0 +1,8 @@
+sudo git clone https://github.com/ahmedabdulwhhab/AH_SDN_WORK_RYU
+
+terminal 1
+ubuntu@ubuntu:~/sdn/projects$ sudo ryu-manager ryu.app.rest_firewall  ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --ofp-tcp-listen-port 6644 --wsapi-port 8080 --observe-links
+
+
+terminal 2
+ubuntu@ubuntu:~/sdn/projects/FW_API_Authentication/2026/AH_SDN_WORK_RYU/restful_api_webpage_with_authenticate/Mansoura_and_Alex_university/Dashboard/07062025-dashboard/dashboard$ python app.py 
