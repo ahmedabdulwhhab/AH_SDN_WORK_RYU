@@ -6,7 +6,7 @@ terminal (1) to run TOPO
 <br>
 terminal (2) to run ryu
 <br>
- sudo ryu-manager ryu.app.rest_firewall  ryu.app.ofctl_rest /home/ubuntu/sdn/sources/flowmanager/flowmanager.py  --ofp-tcp-listen-port 6644 --wsapi-port 8085 --observe-links
+ sudo ryu-manager ryu.app.rest_firewall  ryu.app.ofctl_rest  --ofp-tcp-listen-port 6644 --wsapi-port 8085 --observe-links
 
 
 <br>
