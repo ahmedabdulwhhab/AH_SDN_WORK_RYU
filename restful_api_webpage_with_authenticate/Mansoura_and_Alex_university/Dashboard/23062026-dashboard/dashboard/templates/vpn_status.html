@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VPN Status</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 sidebar">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="/firewall">Firewall </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/vpn_status">VPN Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/monitor">Traffic monitor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-10 content">
+          <h1 class="h1 ml-5 mb-2 mt-2">VPN Status</h1>
+          <h3 class="h3 ml-5 pb-4">Count: {{count}}</h3>
+          <main class="container-fluid">
+            <div class="row">
+              {% for image in images %}
+              <div class="col-md-4">
+                <div class="card">
+                  <img
+                    src="static/img/computer.png"
+                    class="card-img-top p-3 {{ image.status }} w-75 align-self-center"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title text-center">
+                      {{ image.ip_address }}
+                    </h5>
+                    <table class="table table-striped">
+                      <tbody>
+                        <tr>
+                          <td>Machine</td>
+                          <td>{{ image.machine }}</td>
+                        </tr>
+                        <tr>
+                          <td>Network Id</td>
+                          <td>{{ image.networkId }}</td>
+                        </tr>
+                        <tr>
+                          <td>Node Id</td>
+                          <td>{{ image.nodeId }}</td>
+                        </tr>
+                        <tr>
+                          <td>Controller Id</td>
+                          <td>{{ image.controllerId }}</td>
+                        </tr>
+                        <tr>
+                          <td>Type</td>
+                          <td>{{ image.type }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    {% if image.status == "online" %}
+                    <a href="#" class="btn btn-success disabled mt-2">online</a>
+                    {% else %}
+                    <a href="#" class="btn btn-danger disabled mt-2">offline</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script>
+      var currentPage = window.location.href;
+
+      // Get all the <a> tags in the navbar
+      var navLinks = document.querySelectorAll(".nav-item a");
+
+      // Loop through each <a> tag
+      for (var i = 0; i < navLinks.length; i++) {
+        var link = navLinks[i];
+
+        // Check if the href attribute matches the current page URL
+        if (link.href === currentPage) {
+          // Add the 'active' class to the matching element
+          link.classList.add("active");
+        }
+      }
+    </script>
+  </body>
+</html>
